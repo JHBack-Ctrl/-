@@ -6,6 +6,11 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 # 기계가 읽는 곳(canonical, og:url, sitemap, JSON-LD)에는 퓨니코드가 안전하고,
 # 사람이 보는 문구에는 js/common.js 의 SITE_HOST('전국부동산계산기.com')를 쓴다.
 BASE = "https://xn--989anm2s84p8on6teba611m.com/"   # = https://전국부동산계산기.com/
+
+# 검색엔진 소유확인
+# 구글 서치 콘솔은 도메인 속성(가비아 TXT 레코드)으로 확인해 태그가 필요 없다.
+# 네이버 서치어드바이저(searchadvisor.naver.com)는 HTML 태그 방식. 재발급받으면 이 값만 바꾸면 된다.
+NAVER_VERIFY = "23a58d13ef990301f4ed06e8867ec8a3350cd4cb"
 TODAY = "2026-09-17"
 
 # ---------------- 페이지 등록부 ----------------
@@ -215,6 +220,7 @@ def head(title, desc, path, extra="", noindex=False, og_type="website"):
   <title>{title}</title>
   <meta name="description" content="{desc}">
   <meta name="theme-color" content="#f6f4ee">
+  <meta name="naver-site-verification" content="{NAVER_VERIFY}">
 {'  <meta name="robots" content="noindex, follow">' + chr(10) if noindex else ''}  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="css/site.css">
