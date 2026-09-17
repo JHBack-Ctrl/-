@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>대출이자 계산기 — 원리금균등·원금균등·만기일시</title>
+  <meta name="description" content="대출이자 계산기. 대출금액·연금리·기간을 넣으면 원리금균등, 원금균등, 만기일시 상환 방식별 월 상환액과 총 이자, 회차별 상환표를 계산합니다. 브라우저에서만 계산하며 저장하지 않습니다.">
+  <meta name="theme-color" content="#f6f4ee">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#calc">본문으로 건너뛰기</a>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-row">
+        <a class="brand" href="./" aria-label="집계산기 홈"><span class="brand-mark" aria-hidden="true"></span>집계산기</a>
+      </div>
+      <nav aria-label="계산기 메뉴">
+        <ul class="tool-nav">
+          <li><a href="index.html">월세 실부담</a></li>
+          <li><a href="loan.html">대출이자</a></li>
+          <li><a href="yield.html">상가 수익률</a></li>
+          <li><a href="fee.html">중개보수</a></li>
+          <li><a href="checklist.html">양도·취득 체크리스트</a></li>
+          <li><a href="policy.html">세제·정책 참고</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">Loan · Interest</p>
+      <h1>대출이자 계산기</h1>
+      <p class="hero-sub">상환 방식별 월 상환액과 총 이자, 회차별 상환표</p>
+      <p class="hero-body">
+        대출금액, 연금리, 기간을 넣으면 원리금균등·원금균등·만기일시 세 방식의 월 상환액과 총 이자를 계산합니다.
+        보증금을 대출로 마련할 때 실제 월 부담이 얼마인지 확인하는 용도입니다. 중도상환수수료·보증료·변동금리는 반영하지 않습니다.
+      </p>
+    </section>
+
+    <div class="layout">
+      <div>
+        <section id="calc" class="card" aria-labelledby="calc-title">
+          <div class="card-head">
+            <h2 id="calc-title">입력</h2>
+            <span class="muted" style="font-size:13px">입력 즉시 재계산</span>
+          </div>
+          <div class="chips" role="group" aria-label="예시 값 채우기">
+            <button type="button" class="chip" data-preset="deposit">보증금 대출 예시</button>
+            <button type="button" class="chip" data-preset="jeonse">전세대출 예시</button>
+            <button type="button" class="chip" data-preset="clear">비우기</button>
+          </div>
+          <form id="calc-form" novalidate>
+            <div class="field">
+              <label for="principal">대출금액</label>
+              <div class="input-wrap"><input id="principal" type="text" inputmode="numeric" autocomplete="off" placeholder="50,000,000" data-money><span class="suffix">원</span></div>
+            </div>
+            <div class="grid-2">
+              <div class="field">
+                <label for="rate">연금리</label>
+                <div class="input-wrap"><input id="rate" type="number" inputmode="decimal" step="0.01" min="0" value="4.5"><span class="suffix">%</span></div>
+              </div>
+              <div class="field">
+                <label for="months">대출기간</label>
+                <div class="input-wrap"><input id="months" type="number" inputmode="numeric" step="1" min="1" value="24"><span class="suffix">개월</span></div>
+              </div>
+            </div>
+            <div class="field">
+              <label for="grace">거치기간 <span class="unit">이자만 내는 기간, 선택</span></label>
+              <div class="input-wrap"><input id="grace" type="number" inputmode="numeric" step="1" min="0" value="0"><span class="suffix">개월</span></div>
+              <p class="field-help">거치기간은 대출기간에 포함되며, 만기일시 방식에는 적용되지 않습니다.</p>
+            </div>
+            <div class="field">
+              <span class="label-text" id="method-label">상환 방식</span>
+              <div class="segmented" role="radiogroup" aria-labelledby="method-label" style="--n:3">
+                <label class="seg-option"><input type="radio" name="method" value="annuity" checked><span>원리금균등</span></label>
+                <label class="seg-option"><input type="radio" name="method" value="principal"><span>원금균등</span></label>
+                <label class="seg-option"><input type="radio" name="method" value="bullet"><span>만기일시</span></label>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">이자 계산하기</button>
+            <div class="btn-row">
+              <button type="button" id="share-btn" class="btn btn-ghost btn-sm">결과 링크 복사</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="card" aria-labelledby="cmp-title">
+          <h2 id="cmp-title">세 방식 비교</h2>
+          <p class="hint">같은 조건에서 방식만 바꿨을 때의 차이입니다. 첫 달 상환액과 총 이자를 나란히 놓았습니다.</p>
+          <div class="table-wrap">
+            <table class="tbl">
+              <thead><tr><th scope="col">방식</th><th scope="col">첫 달</th><th scope="col">마지막 달</th><th scope="col">총 이자</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">원리금균등</th><td><span id="c-an-first">0</span></td><td><span id="c-an-last">0</span></td><td><span id="c-an-int">0</span></td></tr>
+                <tr><th scope="row">원금균등</th><td><span id="c-pr-first">0</span></td><td><span id="c-pr-last">0</span></td><td><span id="c-pr-int">0</span></td></tr>
+                <tr><th scope="row">만기일시</th><td><span id="c-bu-first">0</span></td><td><span id="c-bu-last">0</span></td><td><span id="c-bu-int">0</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="result-note">단위: 원. 총 이자가 적다고 반드시 유리한 것은 아니며 월 현금흐름과 함께 봐야 합니다.</p>
+        </section>
+      </div>
+
+      <div class="col-sticky">
+        <section id="result" class="card result-hero" aria-live="polite" aria-labelledby="result-title">
+          <h2 id="result-title" class="sr-only">계산 결과</h2>
+          <p class="result-kicker" id="out-kicker">첫 달 상환액</p>
+          <p class="result-big"><span id="out-first">0</span><span class="won">원</span></p>
+          <div class="stat-row">
+            <div class="stat"><p class="k">총 이자</p><p class="v"><span id="out-interest">0</span><small>원</small></p></div>
+            <div class="stat"><p class="k">총 상환액</p><p class="v"><span id="out-total">0</span><small>원</small></p></div>
+            <div class="stat"><p class="k">월 평균 이자</p><p class="v"><span id="out-avg-int">0</span><small>원</small></p></div>
+            <div class="stat"><p class="k">월 평균 상환</p><p class="v"><span id="out-avg-pay">0</span><small>원</small></p></div>
+          </div>
+          <p class="result-note" id="out-note"></p>
+        </section>
+
+        <section class="card" aria-labelledby="sch-title">
+          <details open>
+            <summary class="details-summary" id="sch-title">회차별 상환표</summary>
+            <div class="schedule-wrap" style="margin-top:10px">
+              <table class="tbl schedule" id="schedule">
+                <thead><tr><th scope="col">회차</th><th scope="col">상환액</th><th scope="col">원금</th><th scope="col">이자</th><th scope="col">잔액</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <p class="result-note">단위: 원. 월 단위 단리 계산이며 실제 금융기관 계산과 소수점 단위 차이가 있을 수 있습니다.</p>
+          </details>
+        </section>
+
+        <aside class="card slot" aria-label="제휴 링크">
+          <span class="slot-label">제휴</span>
+          <p class="slot-title">관련 링크</p>
+          <ul class="slot-links">
+            <li><a href="#" rel="nofollow sponsored" data-soon="금융비교 링크">금융비교 링크 자리 (플레이스홀더)</a></li>
+          </ul>
+          <p class="slot-note">이 영역의 링크로 발생한 가입에 대해 일정 수수료를 받을 수 있습니다.</p>
+        </aside>
+        <aside class="card slot" aria-label="광고">
+          <span class="slot-label">광고</span>
+          <div class="ad-placeholder">애드센스 슬롯 자리 (플레이스홀더)</div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <div id="sticky-summary" class="sticky-summary" aria-hidden="true">
+    <div><p class="k">첫 달 상환액</p><p class="v"><span id="sticky-monthly">0</span>원</p></div>
+    <a href="#result">결과 보기</a>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="footer-links">
+        <li><a href="index.html">월세 실부담</a></li>
+        <li><a href="loan.html">대출이자</a></li>
+        <li><a href="yield.html">상가 수익률</a></li>
+        <li><a href="fee.html">중개보수</a></li>
+        <li><a href="checklist.html">양도·취득 체크리스트</a></li>
+        <li><a href="policy.html">세제·정책 참고</a></li>
+      </ul>
+      <p class="disclaimer">본 계산기는 참고용이며 금융·세무·법률 자문이 아닙니다.</p>
+      <p class="privacy">입력값은 서버로 전송되거나 저장되지 않습니다.</p>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="js/common.js"></script>
+  <script src="js/loan.js"></script>
+</body>
+</html>

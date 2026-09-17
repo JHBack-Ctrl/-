@@ -4,233 +4,270 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>월세 실부담 계산기 — 관리비·보증금까지</title>
-  <meta name="description" content="월세 실부담 계산기. 월세·관리비·기타 고정비에 보증금 기회비용까지 더해 진짜 매달 나가는 돈을 계산하고, 전세 월세 환산 비교표를 확인하세요. 모든 계산은 브라우저에서만 처리되며 저장되지 않습니다.">
-  <meta name="theme-color" content="#f6f7f9">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="월세 실부담 계산기. 월세·관리비·기타 고정비에 보증금 기회비용까지 더해 진짜 매달 나가는 돈을 계산하고, 전세 월세 환산 비교표와 두 매물 비교를 확인하세요. 모든 계산은 브라우저에서만 처리되며 저장되지 않습니다.">
+  <meta name="theme-color" content="#f6f4ee">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
   <a class="skip-link" href="#calc">본문으로 건너뛰기</a>
 
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="월세 실부담 계산기 홈">월세 실부담 계산기</a>
-      <nav class="site-nav" aria-label="주요 메뉴">
-        <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-list">메뉴</button>
-        <ul id="nav-list" class="nav-list">
-          <li><a href="#calc">실부담 계산</a></li>
-          <li><a href="#conversion">전월세 환산</a></li>
-          <li><button type="button" class="nav-soon" data-soon="양도·취득 체크리스트">양도·취득 체크리스트 <span class="badge-soon">곧</span></button></li>
-          <li><button type="button" class="nav-soon" data-soon="세제·정책 참고">세제·정책 참고 <span class="badge-soon">곧</span></button></li>
-          <li><button type="button" class="nav-soon" data-soon="대출이자">대출이자 <span class="badge-soon">곧</span></button></li>
-          <li><button type="button" class="nav-soon" data-soon="복비">복비 <span class="badge-soon">곧</span></button></li>
+    <div class="container">
+      <div class="header-row">
+        <a class="brand" href="./" aria-label="집계산기 홈"><span class="brand-mark" aria-hidden="true"></span>집계산기</a>
+      </div>
+      <nav aria-label="계산기 메뉴">
+        <ul class="tool-nav">
+          <li><a href="index.html">월세 실부담</a></li>
+          <li><a href="loan.html">대출이자</a></li>
+          <li><a href="yield.html">상가 수익률</a></li>
+          <li><a href="fee.html">중개보수</a></li>
+          <li><a href="checklist.html">양도·취득 체크리스트</a></li>
+          <li><a href="policy.html">세제·정책 참고</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main id="top" class="container">
+  <main class="container">
     <section class="hero">
+      <p class="eyebrow">Rent · True Cost</p>
       <h1>월세 실부담 계산기</h1>
       <p class="hero-sub">관리비·보증금 기회비용 포함, 진짜 매달 나가는 돈</p>
       <p class="hero-body">
         월세 실부담은 월세만이 아니라 관리비 계산과 보증금 기회비용까지 더해야 보입니다.
-        아래에 숫자를 넣으면 실제 월 지출과 연 지출, 그리고 전세 월세 환산 비교표를 바로 계산합니다.
+        숫자를 넣으면 실제 월·연 지출, 전세 월세 환산 비교표, 두 매물 비교를 바로 계산합니다.
         입력한 값은 저장되지 않으며 모든 계산은 브라우저 안에서만 처리됩니다.
       </p>
     </section>
 
-    <section id="calc" class="card" aria-labelledby="calc-title">
-      <h2 id="calc-title">입력</h2>
-      <p class="hint">입력하면 바로 재계산됩니다. 단위는 원, 금리는 연 % 기준입니다.</p>
-
-      <form id="calc-form" novalidate>
-        <fieldset>
-          <legend>월 고정 지출</legend>
-
-          <div class="field">
-            <label for="rent">월세 <span class="unit">(원)</span></label>
-            <input id="rent" name="rent" type="text" inputmode="numeric" autocomplete="off" placeholder="예: 700,000" data-money>
+    <div class="layout">
+      <div>
+        <section id="calc" class="card" aria-labelledby="calc-title">
+          <div class="card-head">
+            <h2 id="calc-title">입력</h2>
+            <span class="muted" style="font-size:13px">입력 즉시 재계산</span>
           </div>
 
-          <div class="field">
-            <label for="maint">관리비 <span class="unit">(원)</span></label>
-            <input id="maint" name="maint" type="text" inputmode="numeric" autocomplete="off" placeholder="예: 100,000" data-money>
+          <div class="chips" role="group" aria-label="예시 값 채우기">
+            <button type="button" class="chip" data-preset="oneroom">원룸 예시</button>
+            <button type="button" class="chip" data-preset="officetel">오피스텔 예시</button>
+            <button type="button" class="chip" data-preset="apt">아파트 예시</button>
+            <button type="button" class="chip" data-preset="clear">비우기</button>
           </div>
 
-          <div class="field">
-            <label for="extra">기타 월 고정비 <span class="unit">(주차·인터넷 등, 원)</span></label>
-            <input id="extra" name="extra" type="text" inputmode="numeric" autocomplete="off" value="0" data-money>
-          </div>
-        </fieldset>
+          <form id="calc-form" novalidate>
+            <fieldset>
+              <legend>월 고정 지출</legend>
+              <div class="field">
+                <label for="rent">월세</label>
+                <div class="input-wrap"><input id="rent" type="text" inputmode="numeric" autocomplete="off" placeholder="700,000" data-money><span class="suffix">원</span></div>
+              </div>
+              <div class="grid-2">
+                <div class="field">
+                  <label for="maint">관리비</label>
+                  <div class="input-wrap"><input id="maint" type="text" inputmode="numeric" autocomplete="off" placeholder="100,000" data-money><span class="suffix">원</span></div>
+                </div>
+                <div class="field">
+                  <label for="extra">기타 고정비 <span class="unit">주차·인터넷</span></label>
+                  <div class="input-wrap"><input id="extra" type="text" inputmode="numeric" autocomplete="off" value="0" data-money><span class="suffix">원</span></div>
+                </div>
+              </div>
+            </fieldset>
 
-        <fieldset>
-          <legend>보증금과 기회비용</legend>
+            <fieldset>
+              <legend>보증금과 기회비용</legend>
+              <div class="field">
+                <label for="deposit">보증금</label>
+                <div class="input-wrap"><input id="deposit" type="text" inputmode="numeric" autocomplete="off" placeholder="10,000,000" data-money><span class="suffix">원</span></div>
+              </div>
+              <div class="field">
+                <span class="label-text" id="mode-label">기회비용 기준</span>
+                <div class="segmented" role="radiogroup" aria-labelledby="mode-label">
+                  <label class="seg-option"><input type="radio" name="mode" value="deposit" checked><span>예금금리</span></label>
+                  <label class="seg-option"><input type="radio" name="mode" value="loan"><span>대출금리 (고급)</span></label>
+                </div>
+                <p class="field-help">예금금리: 보증금을 예금했을 때 받을 이자를 기회비용으로 봅니다. 대출금리: 보증금을 대출로 마련했을 때의 이자를 기준으로 봅니다.</p>
+              </div>
+              <div class="grid-2">
+                <div class="field">
+                  <label for="rate">연금리</label>
+                  <div class="input-wrap"><input id="rate" type="number" inputmode="decimal" step="0.1" min="0" value="3.0"><span class="suffix">%</span></div>
+                </div>
+                <div class="field">
+                  <label for="months">계약기간</label>
+                  <div class="input-wrap"><input id="months" type="number" inputmode="numeric" step="1" min="1" value="24"><span class="suffix">개월</span></div>
+                </div>
+              </div>
+              <p class="field-help">금리가 0 또는 빈값이면 기회비용은 0원. 계약기간은 누적 그래프용이며 연 실부담은 월 × 12입니다.</p>
+            </fieldset>
 
-          <div class="field">
-            <label for="deposit">보증금 <span class="unit">(원)</span></label>
-            <input id="deposit" name="deposit" type="text" inputmode="numeric" autocomplete="off" placeholder="예: 10,000,000" data-money>
-          </div>
+            <fieldset>
+              <legend>전월세 환산 <span class="unit">(선택)</span></legend>
+              <div class="grid-2">
+                <div class="field">
+                  <label for="jeonse">전세보증금</label>
+                  <div class="input-wrap"><input id="jeonse" type="text" inputmode="numeric" autocomplete="off" placeholder="200,000,000" data-money><span class="suffix">원</span></div>
+                </div>
+                <div class="field">
+                  <label for="jeonseRate">전세 기회비용 연금리</label>
+                  <div class="input-wrap"><input id="jeonseRate" type="number" inputmode="decimal" step="0.1" min="0" value="3.0"><span class="suffix">%</span></div>
+                </div>
+              </div>
+            </fieldset>
 
-          <div class="field">
-            <span class="label-text" id="mode-label">기회비용 기준</span>
-            <div class="segmented" role="radiogroup" aria-labelledby="mode-label">
-              <label class="seg-option">
-                <input type="radio" name="mode" value="deposit" checked>
-                <span>예금금리 (기본)</span>
-              </label>
-              <label class="seg-option">
-                <input type="radio" name="mode" value="loan">
-                <span>대출금리 (고급)</span>
-              </label>
+            <button type="submit" class="btn btn-primary">실부담 계산하기</button>
+            <div class="btn-row">
+              <button type="button" id="share-btn" class="btn btn-ghost btn-sm">결과 링크 복사</button>
+              <button type="button" id="copy-btn" class="btn btn-ghost btn-sm">결과 텍스트 복사</button>
             </div>
-            <p class="field-help" id="mode-help">예금금리: 보증금을 예금했을 때 받을 이자를 기회비용으로 봅니다. 대출금리: 보증금을 대출로 마련했을 때의 이자를 기준으로 봅니다.</p>
+          </form>
+        </section>
+
+        <section class="card" aria-labelledby="ab-title">
+          <div class="ab-head">
+            <h2 id="ab-title">두 매물 비교</h2>
+            <label class="toggle"><input type="checkbox" id="ab-toggle"><span class="knob" aria-hidden="true"></span>B 매물 켜기</label>
           </div>
-
-          <div class="field">
-            <label for="rate">연금리 <span class="unit">(%)</span></label>
-            <input id="rate" name="rate" type="number" inputmode="decimal" step="0.1" min="0" value="3.0" aria-describedby="rate-help">
-            <p class="field-help" id="rate-help">0 또는 빈값이면 보증금 기회비용은 0원으로 계산됩니다.</p>
+          <p class="hint">위 입력이 A 매물입니다. B 매물 값을 넣으면 월 실부담 차이를 숫자로만 보여줍니다.</p>
+          <div id="ab-body" class="ab-body" hidden>
+            <div class="grid-2">
+              <div class="field">
+                <label for="b-rent">B 월세</label>
+                <div class="input-wrap"><input id="b-rent" type="text" inputmode="numeric" autocomplete="off" data-money><span class="suffix">원</span></div>
+              </div>
+              <div class="field">
+                <label for="b-maint">B 관리비</label>
+                <div class="input-wrap"><input id="b-maint" type="text" inputmode="numeric" autocomplete="off" data-money><span class="suffix">원</span></div>
+              </div>
+              <div class="field">
+                <label for="b-extra">B 기타 고정비</label>
+                <div class="input-wrap"><input id="b-extra" type="text" inputmode="numeric" autocomplete="off" value="0" data-money><span class="suffix">원</span></div>
+              </div>
+              <div class="field">
+                <label for="b-deposit">B 보증금</label>
+                <div class="input-wrap"><input id="b-deposit" type="text" inputmode="numeric" autocomplete="off" data-money><span class="suffix">원</span></div>
+              </div>
+            </div>
+            <p class="field-help">기회비용 금리는 A와 같은 값을 사용합니다.</p>
+            <div class="table-wrap">
+              <table class="tbl" aria-label="A·B 매물 비교">
+                <thead><tr><th scope="col">항목</th><th scope="col">A</th><th scope="col">B</th><th scope="col">차이 (A−B)</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">월세</th><td><span id="ab-a-rent">0</span></td><td><span id="ab-b-rent">0</span></td><td><span id="ab-d-rent">0</span></td></tr>
+                  <tr><th scope="row">관리비 + 기타</th><td><span id="ab-a-fixed">0</span></td><td><span id="ab-b-fixed">0</span></td><td><span id="ab-d-fixed">0</span></td></tr>
+                  <tr><th scope="row">보증금 기회비용</th><td><span id="ab-a-opp">0</span></td><td><span id="ab-b-opp">0</span></td><td><span id="ab-d-opp">0</span></td></tr>
+                  <tr class="total"><th scope="row">월 실부담</th><td><span id="ab-a-total">0</span></td><td><span id="ab-b-total">0</span></td><td><span id="ab-d-total">0</span></td></tr>
+                  <tr class="sub"><th scope="row">계약기간 누적</th><td><span id="ab-a-cum">0</span></td><td><span id="ab-b-cum">0</span></td><td><span id="ab-d-cum">0</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="result-note">단위: 원. 차이는 A에서 B를 뺀 값이며 양수면 A가 더 큽니다. 어느 쪽이 유리한지는 조건·위치·계약 내용에 따라 다릅니다.</p>
           </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>전월세 환산 <span class="unit">(선택)</span></legend>
-
-          <div class="field">
-            <label for="jeonse">전세보증금 <span class="unit">(원)</span></label>
-            <input id="jeonse" name="jeonse" type="text" inputmode="numeric" autocomplete="off" placeholder="예: 200,000,000" data-money>
-          </div>
-
-          <div class="field">
-            <label for="jeonseRate">전세 기회비용 연금리 <span class="unit">(%)</span></label>
-            <input id="jeonseRate" name="jeonseRate" type="number" inputmode="decimal" step="0.1" min="0" value="3.0">
-          </div>
-        </fieldset>
-
-        <fieldset>
-          <legend>계약 정보</legend>
-          <div class="field">
-            <label for="months">계약기간 <span class="unit">(개월)</span></label>
-            <input id="months" name="months" type="number" inputmode="numeric" step="1" min="1" value="24" aria-describedby="months-help">
-            <p class="field-help" id="months-help">표시용입니다. 실부담 연 금액은 월 실부담 × 12로 계산합니다.</p>
-          </div>
-        </fieldset>
-
-        <button type="submit" class="btn-primary">실부담 계산하기</button>
-      </form>
-    </section>
-
-    <section id="result" class="results" aria-labelledby="result-title" aria-live="polite">
-      <h2 id="result-title" class="sr-only">계산 결과</h2>
-
-      <div class="card result-main">
-        <p class="result-kicker">월 실부담</p>
-        <p class="result-big"><span id="out-monthly">0</span><span class="won">원</span></p>
-        <p class="result-kicker">연 실부담 <span class="unit">(월 × 12)</span></p>
-        <p class="result-mid"><span id="out-yearly">0</span><span class="won">원</span></p>
-        <p class="result-note" id="out-term-note"></p>
+        </section>
       </div>
 
-      <div class="card">
-        <h3>구성 분해</h3>
-        <table class="breakdown">
-          <tbody>
-            <tr><th scope="row">월세</th><td><span id="bd-rent">0</span>원</td></tr>
-            <tr><th scope="row">관리비</th><td><span id="bd-maint">0</span>원</td></tr>
-            <tr><th scope="row">기타 월 고정비</th><td><span id="bd-extra">0</span>원</td></tr>
-            <tr><th scope="row">보증금 기회비용 <span class="unit" id="bd-rate-label"></span></th><td><span id="bd-opp">0</span>원</td></tr>
-            <tr class="total"><th scope="row">월 실부담 합계</th><td><span id="bd-total">0</span>원</td></tr>
-          </tbody>
-        </table>
-        <p class="result-note">보증금 기회비용 = 보증금 × (연금리 ÷ 12 ÷ 100)</p>
-      </div>
+      <div class="col-sticky">
+        <section id="result" class="card result-hero" aria-live="polite" aria-labelledby="result-title">
+          <h2 id="result-title" class="sr-only">계산 결과</h2>
+          <p class="result-kicker">월 실부담</p>
+          <p class="result-big"><span id="out-monthly">0</span><span class="won">원</span></p>
+          <div class="stat-row">
+            <div class="stat"><p class="k">연 실부담 <span class="unit">월 × 12</span></p><p class="v"><span id="out-yearly">0</span><small>원</small></p></div>
+            <div class="stat"><p class="k">계약기간 누적 <span id="out-term-k"></span></p><p class="v"><span id="out-cum">0</span><small>원</small></p></div>
+          </div>
+          <p class="result-note" id="out-korean"></p>
+        </section>
 
-      <div id="conversion" class="card">
-        <h3>전세 월세 환산 비교표</h3>
-        <p class="hint">같은 기회비용 금리를 기준으로 두 조건을 나란히 놓은 표입니다. 관리비와 기타 고정비는 두 조건에 동일하게 적용했습니다.</p>
-        <div class="table-wrap">
-          <table class="compare">
-            <thead>
-              <tr>
-                <th scope="col">항목</th>
-                <th scope="col">월세 조건</th>
-                <th scope="col">전세 조건</th>
-              </tr>
-            </thead>
+        <section class="card" aria-labelledby="bd-title">
+          <h2 id="bd-title">구성 분해</h2>
+          <div class="bar" aria-hidden="true"><span class="b1" id="bar-rent"></span><span class="b2" id="bar-maint"></span><span class="b3" id="bar-extra"></span><span class="b4" id="bar-opp"></span></div>
+          <p class="legend"><span><i style="background:var(--accent)"></i>월세</span><span><i style="background:color-mix(in srgb,var(--accent) 65%,var(--surface))"></i>관리비</span><span><i style="background:color-mix(in srgb,var(--accent) 40%,var(--surface))"></i>기타</span><span><i style="background:var(--ink-3)"></i>보증금 기회비용</span></p>
+          <table class="tbl">
             <tbody>
-              <tr>
-                <th scope="row">보증금</th>
-                <td><span id="cv-rent-deposit">0</span>원</td>
-                <td><span id="cv-jeonse-deposit">0</span>원</td>
-              </tr>
-              <tr>
-                <th scope="row">월세</th>
-                <td><span id="cv-rent-rent">0</span>원</td>
-                <td>0원</td>
-              </tr>
-              <tr>
-                <th scope="row">보증금 기회비용 <span class="unit">(월)</span></th>
-                <td><span id="cv-rent-opp">0</span>원</td>
-                <td><span id="cv-jeonse-opp">0</span>원</td>
-              </tr>
-              <tr>
-                <th scope="row">관리비 + 기타</th>
-                <td><span id="cv-rent-fixed">0</span>원</td>
-                <td><span id="cv-jeonse-fixed">0</span>원</td>
-              </tr>
-              <tr class="total">
-                <th scope="row">월 실부담 합계</th>
-                <td><span id="cv-rent-total">0</span>원</td>
-                <td><span id="cv-jeonse-total">0</span>원</td>
-              </tr>
+              <tr><th scope="row">월세</th><td><span id="bd-rent">0</span>원</td></tr>
+              <tr><th scope="row">관리비</th><td><span id="bd-maint">0</span>원</td></tr>
+              <tr><th scope="row">기타 고정비</th><td><span id="bd-extra">0</span>원</td></tr>
+              <tr><th scope="row">보증금 기회비용 <span class="unit" id="bd-rate-label"></span></th><td><span id="bd-opp">0</span>원</td></tr>
+              <tr class="total"><th scope="row">월 실부담 합계</th><td><span id="bd-total">0</span>원</td></tr>
             </tbody>
           </table>
-        </div>
-        <dl class="conv-list">
-          <div>
-            <dt>전세 → 월세 상당액 <span class="unit">(전세보증금 × 전세금리 ÷ 12)</span></dt>
-            <dd><span id="cv-jeonse-as-rent">0</span>원 / 월</dd>
+          <p class="result-note">보증금 기회비용 = 보증금 × (연금리 ÷ 12 ÷ 100)</p>
+        </section>
+
+        <section class="card" aria-labelledby="chart-title">
+          <h2 id="chart-title">계약기간 누적 실부담</h2>
+          <p class="hint" id="chart-hint"></p>
+          <svg id="chart" class="chart" viewBox="0 0 360 180" role="img" aria-labelledby="chart-desc"><title id="chart-desc">월별 누적 실부담 그래프</title></svg>
+        </section>
+
+        <section id="conversion" class="card" aria-labelledby="cv-title">
+          <h2 id="cv-title">전세 월세 환산 비교표</h2>
+          <p class="hint">같은 기회비용 금리로 두 조건을 나란히 놓은 표입니다. 관리비와 기타 고정비는 두 조건에 동일하게 적용했습니다.</p>
+          <div class="table-wrap">
+            <table class="tbl">
+              <thead><tr><th scope="col">항목</th><th scope="col">월세 조건</th><th scope="col">전세 조건</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">보증금</th><td><span id="cv-rent-deposit">0</span>원</td><td><span id="cv-jeonse-deposit">0</span>원</td></tr>
+                <tr><th scope="row">월세</th><td><span id="cv-rent-rent">0</span>원</td><td>0원</td></tr>
+                <tr><th scope="row">보증금 기회비용 <span class="unit">월</span></th><td><span id="cv-rent-opp">0</span>원</td><td><span id="cv-jeonse-opp">0</span>원</td></tr>
+                <tr><th scope="row">관리비 + 기타</th><td><span id="cv-rent-fixed">0</span>원</td><td><span id="cv-jeonse-fixed">0</span>원</td></tr>
+                <tr class="total"><th scope="row">월 실부담 합계</th><td><span id="cv-rent-total">0</span>원</td><td><span id="cv-jeonse-total">0</span>원</td></tr>
+              </tbody>
+            </table>
           </div>
-          <div>
-            <dt>월세 → 필요 전세금 <span class="unit">(월세 + 보증금 기회비용을 전세금리로 환산)</span></dt>
-            <dd id="cv-needed-jeonse-wrap"><span id="cv-needed-jeonse">0</span>원</dd>
-          </div>
-        </dl>
-        <p class="result-note" id="cv-note"></p>
+          <table class="tbl" style="margin-top:8px">
+            <tbody>
+              <tr><th scope="row">전세 → 월세 상당액 <span class="unit">전세보증금 × 전세금리 ÷ 12</span></th><td><span id="cv-jeonse-as-rent">0</span>원 / 월</td></tr>
+              <tr><th scope="row">월세 → 필요 전세금 <span class="unit">월세 + 기회비용을 전세금리로 환산</span></th><td id="cv-needed-jeonse-wrap"><span id="cv-needed-jeonse">0</span>원</td></tr>
+            </tbody>
+          </table>
+          <p class="result-note" id="cv-note"></p>
+        </section>
+
+        <aside class="card slot" aria-label="제휴 링크">
+          <span class="slot-label">제휴</span>
+          <p class="slot-title">관련 링크</p>
+          <ul class="slot-links">
+            <li><a href="#" rel="nofollow sponsored" data-soon="쿠팡파트너스 링크">쿠팡파트너스 링크 자리 (플레이스홀더)</a></li>
+            <li><a href="#" rel="nofollow sponsored" data-soon="금융비교 링크">금융비교 링크 자리 (플레이스홀더)</a></li>
+          </ul>
+          <p class="slot-note">이 영역의 링크로 발생한 구매·가입에 대해 일정 수수료를 받을 수 있습니다.</p>
+        </aside>
+
+        <aside class="card slot" aria-label="광고">
+          <span class="slot-label">광고</span>
+          <div class="ad-placeholder">애드센스 슬롯 자리 (플레이스홀더)</div>
+        </aside>
       </div>
-
-      <aside class="card slot slot-affiliate" aria-label="제휴 링크">
-        <span class="slot-label">제휴</span>
-        <p class="slot-title">관련 링크</p>
-        <ul class="slot-links">
-          <li><a href="#" rel="nofollow sponsored" data-soon="쿠팡파트너스 링크">쿠팡파트너스 링크 자리 (플레이스홀더)</a></li>
-          <li><a href="#" rel="nofollow sponsored" data-soon="금융비교 링크">금융비교 링크 자리 (플레이스홀더)</a></li>
-        </ul>
-        <p class="slot-note">이 영역의 링크로 발생한 구매·가입에 대해 일정 수수료를 받을 수 있습니다.</p>
-      </aside>
-
-      <aside class="card slot slot-ad" aria-label="광고">
-        <span class="slot-label">광고</span>
-        <div class="ad-placeholder">애드센스 슬롯 자리 (플레이스홀더)</div>
-      </aside>
-    </section>
+    </div>
   </main>
+
+  <div id="sticky-summary" class="sticky-summary" aria-hidden="true">
+    <div><p class="k">월 실부담</p><p class="v"><span id="sticky-monthly">0</span>원</p></div>
+    <a href="#result">결과 보기</a>
+  </div>
 
   <footer class="site-footer">
     <div class="container">
       <ul class="footer-links">
-        <li><button type="button" class="nav-soon" data-soon="양도·취득 체크리스트">양도·취득 체크리스트 <span class="badge-soon">곧</span></button></li>
-        <li><button type="button" class="nav-soon" data-soon="세제·정책 참고">세제·정책 참고 <span class="badge-soon">곧</span></button></li>
-        <li><button type="button" class="nav-soon" data-soon="대출이자">대출이자 <span class="badge-soon">곧</span></button></li>
-        <li><button type="button" class="nav-soon" data-soon="복비">복비 <span class="badge-soon">곧</span></button></li>
+        <li><a href="index.html">월세 실부담</a></li>
+        <li><a href="loan.html">대출이자</a></li>
+        <li><a href="yield.html">상가 수익률</a></li>
+        <li><a href="fee.html">중개보수</a></li>
+        <li><a href="checklist.html">양도·취득 체크리스트</a></li>
+        <li><a href="policy.html">세제·정책 참고</a></li>
       </ul>
       <p class="disclaimer">본 계산기는 참고용이며 금융·세무·법률 자문이 아닙니다.</p>
-      <p class="privacy">입력값은 서버로 전송되거나 저장되지 않습니다.</p>
+      <p class="privacy">입력값은 서버로 전송되거나 저장되지 않습니다. 공유 링크는 입력값을 주소에만 담습니다.</p>
     </div>
   </footer>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <script src="app.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/rent.js"></script>
 </body>
 </html>

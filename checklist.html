@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>양도·취득 체크리스트 — 확인 항목과 서류</title>
+  <meta name="description" content="부동산 취득과 양도 전에 확인할 항목과 준비 서류 체크리스트. 세액 계산이나 법령 해석은 하지 않으며, 세무사·법무사 상담 전 정리용입니다.">
+  <meta name="theme-color" content="#f6f4ee">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-row">
+        <a class="brand" href="./" aria-label="집계산기 홈"><span class="brand-mark" aria-hidden="true"></span>집계산기</a>
+      </div>
+      <nav aria-label="계산기 메뉴">
+        <ul class="tool-nav">
+          <li><a href="index.html">월세 실부담</a></li>
+          <li><a href="loan.html">대출이자</a></li>
+          <li><a href="yield.html">상가 수익률</a></li>
+          <li><a href="fee.html">중개보수</a></li>
+          <li><a href="checklist.html">양도·취득 체크리스트</a></li>
+          <li><a href="policy.html">세제·정책 참고</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="hero">
+      <p class="eyebrow">Checklist</p>
+      <h1>양도·취득 체크리스트</h1>
+      <p class="hero-sub">계약 전후에 확인할 항목과 준비 서류</p>
+      <p class="hero-body">
+        세액을 계산하거나 법령을 해석하지 않습니다. 세무사·법무사와 상담하기 전에 무엇을 확인했고 무엇이 남았는지 정리하는 용도입니다.
+        체크 상태는 저장되지 않으며 페이지를 닫으면 초기화됩니다.
+      </p>
+    </section>
+
+    <div class="layout">
+      <div>
+        <section class="card" aria-labelledby="buy-title">
+          <div class="card-head"><h2 id="buy-title">취득 전 확인</h2><span class="muted" id="buy-count" style="font-size:13px"></span></div>
+          <div class="progress"><span id="buy-progress"></span></div>
+          <ul class="check-list" data-group="buy">
+            <li><label><input type="checkbox"><div><div class="t">등기사항전부증명서 확인</div><div class="d">소유자, 근저당·가압류·전세권 등 권리관계와 계약 상대방 일치 여부. 계약일과 잔금일에 각각 다시 확인.</div></div></label></li>
+            <li><label><input type="checkbox"><div><div class="t">건축물대장·토지대장 확인</div><div class="d">용도, 면적, 위반건축물 표시, 실제 현황과 일치 여부.</div></div></label></li>
+            <li><label><input type="checkbox"><div><div class="t">토지이용계획 확인</div><div class="d">용도지역·지구, 개발 제한이나 도시계획 사항.</div></div></label></li>
+            <li><label><input type="checkbox"><div><div class="t">실거래가·시세 비교</div><div class="d">국토교통부 실거래가 공개시스템과 주변 거래 사례.</div></div></label></li>
+            <li><label><input type="checkbox"><div><div class="t">자금조달계획서 대상 여부</div><div class="d">지역·금액에 따라 제출 의무가 있을 수 있음. 중개업소나 지자체에 확인.</div></div></label></li>
+            <li><label><input type="checkbox"><div><div class="t">대출 한도·금리 사전 확인</div><div class="d">규제 지역 여부와 본인 소득 기준 한도. <a href="loan.html">대출이자 계산기</a>로 월 상환액 확인.</div></div></label></li>
+            <li><label><input type="checkbox"><div><div class="t">취득세 신고·납부 기한 확인</div><div class="d">취득일 기준 기한이 있음. 세율·감면 여부는 지자체(위택스)나 세무사에게 확인.</div></div></label></li>
+            <li><label><input type="checkbox"><div><div class="t">계약서 특약 정리</div><div class="d">잔금일, 하자 처리, 임차인 승계, 관리비 정산, 계약 해제 조건.</div></div></label></li>
+            <li><label><input type="checkbox"><div><div class="t">중개보수 사전 협의</div><div class="d"><a href="fee.html">중개보수 계산기</a>로 상한 확인 후 계약 전 금액 합의.</div></div></label></li>
+            <li><label><input type="checkbox"><div><div class="t">잔금·등기 일정</div><div class="d">잔금 당일 등기 접수, 법무사 비용, 선순위 권리 말소 확인.</div></div></label></li>
+          </ul>
+        </section>
+
+        <section class="card" aria-labelledby="sell-title">
+          <div class="card-head"><h2 id="sell-title">양도 전 확인</h2><span class="muted" id="sell-count" style="font-size:13px"></span></div>
+          <div class="progress"><span id="sell-progress"></span></div>
+          <ul class="check-list" data-group="sell">
+            <li><label><input type="checkbox"><div><div class="t">보유·거주 기간 정리</div><div class="d">취득일과 전입·전출 기록. 비과세·감면 요건 판단은 세무사에게 확인.</div></div></label></li>
+            <li><label><input type="checkbox"><div><div class="t">세대 기준 주택 수 확인</div><div class="d">본인과 세대원 명의 주택, 분양권·입주권 포함 여부.</div></div></label></li>
+            <li><label><input type="checkbox"><div><div class="t">취득가액·필요경비 증빙 모으기</div><div class="d">매매계약서, 취득세 영수증, 중개보수, 법무사 비용, 자본적 지출(확장·새시 등) 영수증.</div></div></label></li>
+            <li><label><input type="checkbox"><div><div class="t">양도소득세 예정신고 기한 확인</div><div class="d">양도일 기준 기한이 있음. 홈택스 안내 또는 세무사 확인.</div></div></label></li>
+            <li><label><input type="checkbox"><div><div class="t">임차인 계약 상태</div><div class="d">계약갱신 여부, 보증금 반환 일정, 매수인 승계 조건.</div></div></label></li>
+            <li><label><input type="checkbox"><div><div class="t">대출 상환·근저당 말소</div><div class="d">잔금일에 상환하고 말소 서류 준비. 중도상환수수료 확인.</div></div></label></li>
+            <li><label><input type="checkbox"><div><div class="t">관리비·공과금 정산</div><div class="d">장기수선충당금 반환, 잔금일 기준 일할 정산.</div></div></label></li>
+            <li><label><input type="checkbox"><div><div class="t">세무사 상담 예약</div><div class="d">계약 전에 상담해야 계약 시점·조건을 조정할 여지가 있음.</div></div></label></li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="col-sticky">
+        <section class="card">
+          <h2>준비 서류</h2>
+          <ul class="ref-list">
+            <li><p class="t">신분증, 인감증명서·인감도장 (또는 본인서명사실확인서)</p><p class="d">매도인 필수. 대리인이면 위임장과 대리인 신분증 추가.</p></li>
+            <li><p class="t">등기권리증 (등기필정보)</p><p class="d">매도인이 잔금일에 제출.</p></li>
+            <li><p class="t">주민등록등본·초본</p><p class="d">매수인 등기용. 초본은 주소 변동 이력 포함.</p></li>
+            <li><p class="t">매매계약서 원본</p><p class="d">취득세 신고와 향후 양도세 신고에 필요. 분실하지 말 것.</p></li>
+            <li><p class="t">각종 영수증</p><p class="d">취득세, 중개보수, 법무사 비용, 수리·확장 비용. 양도 시 필요경비 증빙.</p></li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <div class="callout">이 페이지는 확인 항목을 나열할 뿐 세액 계산이나 법령 해석을 하지 않습니다. 세율·기한·요건은 자주 바뀌므로 반드시 공식 기관이나 전문가에게 확인하세요.</div>
+          <p class="hint" style="margin:0">관련 기관 링크는 <a href="policy.html">세제·정책 참고</a> 페이지에 모아두었습니다.</p>
+        </section>
+
+        <aside class="card slot" aria-label="광고">
+          <span class="slot-label">광고</span>
+          <div class="ad-placeholder">애드센스 슬롯 자리 (플레이스홀더)</div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul class="footer-links">
+        <li><a href="index.html">월세 실부담</a></li>
+        <li><a href="loan.html">대출이자</a></li>
+        <li><a href="yield.html">상가 수익률</a></li>
+        <li><a href="fee.html">중개보수</a></li>
+        <li><a href="checklist.html">양도·취득 체크리스트</a></li>
+        <li><a href="policy.html">세제·정책 참고</a></li>
+      </ul>
+      <p class="disclaimer">본 페이지는 참고용이며 금융·세무·법률 자문이 아닙니다.</p>
+      <p class="privacy">체크 상태는 저장되지 않습니다.</p>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="js/common.js"></script>
+  <script>
+    (function () {
+      var S = window.Site;
+      function update(group) {
+        var boxes = S.$$('.check-list[data-group="' + group + '"] input[type="checkbox"]');
+        var done = boxes.filter(function (b) { return b.checked; }).length;
+        S.setText(group + '-count', done + ' / ' + boxes.length);
+        var bar = S.$(group + '-progress'); if (bar) bar.style.width = (boxes.length ? done / boxes.length * 100 : 0) + '%';
+      }
+      S.ready(function () {
+        ['buy', 'sell'].forEach(function (g) {
+          update(g);
+          S.$$('.check-list[data-group="' + g + '"] input').forEach(function (b) { b.addEventListener('change', function () { update(g); }); });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
