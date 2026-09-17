@@ -9,6 +9,85 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="css/site.css">
+  <link rel="canonical" href="https://jhback-ctrl.github.io/-/yield.html">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="집계산기">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="상가 수익률 계산기 — 공실·대출 반영">
+  <meta property="og:description" content="공실률과 대출을 반영한 총투자 수익률과 자기자본 수익률을 계산합니다.">
+  <meta property="og:url" content="https://jhback-ctrl.github.io/-/yield.html">
+  <meta property="og:image" content="https://jhback-ctrl.github.io/-/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="상가 수익률 계산기 — 공실·대출 반영">
+  <meta name="twitter:description" content="공실률과 대출을 반영한 총투자 수익률과 자기자본 수익률을 계산합니다.">
+  <meta name="twitter:image" content="https://jhback-ctrl.github.io/-/og.png">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "상가 수익률 계산기",
+  "url": "https://jhback-ctrl.github.io/-/yield.html",
+  "description": "공실률과 대출을 반영한 총투자 수익률과 자기자본 수익률을 계산합니다.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "inLanguage": "ko-KR",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "집계산기",
+    "url": "https://jhback-ctrl.github.io/-/"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "수익률 몇 퍼센트면 괜찮은 건가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "기준을 제시하지 않겠습니다. 적정 수익률은 지역, 물건 종류, 금리 수준, 공실 위험에 따라 크게 달라집니다. 다만 비교 기준 하나는 만들 수 있습니다. 대출 금리보다 총투자 수익률이 낮다면 대출을 낄수록 자기자본 수익률이 떨어집니다. 계산기에서 대출금액을 바꿔가며 확인해 보세요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "자기자본 수익률이 줄표로 나옵니다",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "대출금액이 실투자금 이상이면 자기자본이 0 이하가 되어 나눗셈이 성립하지 않습니다. 이때는 계산하지 않고 줄표를 표시합니다. 실투자금은 매매가에 부대비용을 더하고 보증금을 뺀 금액입니다. 대출금액을 그보다 작게 넣으세요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "취득 부대비용에는 무엇을 넣나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "중개보수, 법무사 비용, 등기 관련 비용처럼 매입 시점에 나가는 돈을 넣으세요. 중개보수는 <a href='fee.html'>중개보수 계산기</a>에서 상한을 확인할 수 있습니다. 취득세는 물건과 지역에 따라 달라 이 계산기에서 자동 계산하지 않습니다. 직접 확인한 금액을 부대비용에 포함해 넣으시면 됩니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "주택 임대에도 쓸 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "구조는 같아 대략적인 감을 잡는 데는 쓸 수 있습니다. 다만 주택은 취득세와 보유세 부담, 임대소득 과세 기준이 상가와 달라 실제 수익률은 차이가 납니다. 세금 관련 확인 포인트는 <a href='policy.html'>세제·정책 참고</a> 페이지에 정리해 두었습니다."
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#calc">본문으로 건너뛰기</a>
@@ -31,6 +110,13 @@
     </div>
   </header>
 
+<div class="page-shell">
+  <aside class="rail" aria-label="광고">
+    <div class="card slot">
+      <span class="slot-label">광고</span>
+      <div class="ad-placeholder">애드센스 세로 슬롯 자리<br>(플레이스홀더)</div>
+    </div>
+  </aside>
   <main class="container">
     <section class="hero">
       <p class="eyebrow">Commercial · Yield</p>
@@ -166,7 +252,67 @@
         </aside>
       </div>
     </div>
+
+    <section class="card" aria-labelledby="guide-title">
+      <h2 id="guide-title">수익률 용어 정리</h2>
+      <div class="prose">
+<h3>두 가지 수익률</h3>
+<p><strong>총투자 수익률</strong>은 대출을 고려하지 않고 이 부동산 자체가 연간 얼마를 버는지 보는 숫자입니다. 순영업수익을 실투자금으로 나눕니다. 물건끼리 비교할 때 쓰기 좋습니다.</p>
+<p><strong>자기자본 수익률</strong>은 내 돈이 얼마나 일하는지 보는 숫자입니다. 순영업수익에서 대출이자를 뺀 금액을 자기자본으로 나눕니다. 대출을 많이 낄수록 이 숫자는 커지지만 그만큼 위험도 커집니다.</p>
+<h3>순영업수익이란</h3>
+<p>연간 월세 수입에서 공실로 비는 기간의 손실과 임대인이 부담하는 운영비를 뺀 금액입니다. 관리비를 임차인이 내는 구조라면 운영비에 넣지 마세요. 임대인이 내는 건물 보험료, 공용부 수선비, 위탁관리 수수료 같은 것만 넣습니다.</p>
+<h3>보증금은 왜 투자금에서 빼나요</h3>
+<p>임대 보증금은 계약 기간 동안 임대인이 무이자로 쓰는 돈입니다. 실제로 내 주머니에서 나간 돈이 아니므로 매매가와 부대비용 합계에서 빼면 실제로 묶인 금액이 나옵니다. 다만 계약이 끝나면 돌려줘야 할 빚이라는 점은 기억해야 합니다.</p>
+<h3>공실률을 반드시 넣으세요</h3>
+<p>공실률 0%는 한 번도 비지 않는다는 가정입니다. 현실에서는 임차인이 바뀌는 사이 몇 달이 비고, 상권이 나빠지면 더 길어집니다. 이 계산기에 공실률 민감도표를 둔 이유입니다. 0%일 때와 20%일 때의 차이를 보고 감당할 수 있는 범위인지 확인하세요.</p>
+<h3>이 계산기가 반영하지 않는 것</h3>
+<ul><li>취득세, 재산세, 종합부동산세, 임대소득세, 양도소득세 등 모든 세금.</li><li>건물 감가상각과 대규모 수선 비용.</li><li>시세 변동에 따른 매각 손익.</li><li>대출 원금 상환. 원금 상환은 비용이 아니라 자산 이동이라 수익률에서 제외했습니다. 실제 현금흐름은 <a href='loan.html'>대출이자 계산기</a>로 확인하세요.</li></ul>
+<p>여기 나오는 숫자는 입력한 가정에 따른 산술 결과입니다. 미래 수익을 보장하지 않습니다.</p>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="faq-title">
+      <h2 id="faq-title">자주 묻는 질문</h2>
+      <p class="hint">상가 수익률 계산에서 자주 나오는 질문입니다.</p>
+      <div class="faq">
+        <details>
+          <summary>수익률 몇 퍼센트면 괜찮은 건가요?</summary>
+          <div class="a">
+          <p>기준을 제시하지 않겠습니다. 적정 수익률은 지역, 물건 종류, 금리 수준, 공실 위험에 따라 크게 달라집니다.</p>
+          <p>다만 비교 기준 하나는 만들 수 있습니다. 대출 금리보다 총투자 수익률이 낮다면 대출을 낄수록 자기자본 수익률이 떨어집니다. 계산기에서 대출금액을 바꿔가며 확인해 보세요.</p>
+          </div>
+        </details>
+        <details>
+          <summary>자기자본 수익률이 줄표로 나옵니다</summary>
+          <div class="a">
+          <p>대출금액이 실투자금 이상이면 자기자본이 0 이하가 되어 나눗셈이 성립하지 않습니다. 이때는 계산하지 않고 줄표를 표시합니다.</p>
+          <p>실투자금은 매매가에 부대비용을 더하고 보증금을 뺀 금액입니다. 대출금액을 그보다 작게 넣으세요.</p>
+          </div>
+        </details>
+        <details>
+          <summary>취득 부대비용에는 무엇을 넣나요?</summary>
+          <div class="a">
+          <p>중개보수, 법무사 비용, 등기 관련 비용처럼 매입 시점에 나가는 돈을 넣으세요. 중개보수는 <a href='fee.html'>중개보수 계산기</a>에서 상한을 확인할 수 있습니다.</p>
+          <p>취득세는 물건과 지역에 따라 달라 이 계산기에서 자동 계산하지 않습니다. 직접 확인한 금액을 부대비용에 포함해 넣으시면 됩니다.</p>
+          </div>
+        </details>
+        <details>
+          <summary>주택 임대에도 쓸 수 있나요?</summary>
+          <div class="a">
+          <p>구조는 같아 대략적인 감을 잡는 데는 쓸 수 있습니다. 다만 주택은 취득세와 보유세 부담, 임대소득 과세 기준이 상가와 달라 실제 수익률은 차이가 납니다.</p>
+          <p>세금 관련 확인 포인트는 <a href='policy.html'>세제·정책 참고</a> 페이지에 정리해 두었습니다.</p>
+          </div>
+        </details>
+      </div>
+    </section>
   </main>
+  <aside class="rail" aria-label="광고">
+    <div class="card slot">
+      <span class="slot-label">광고</span>
+      <div class="ad-placeholder">애드센스 세로 슬롯 자리<br>(플레이스홀더)</div>
+    </div>
+  </aside>
+</div>
 
   <div id="sticky-summary" class="sticky-summary" aria-hidden="true">
     <div><p class="k">자기자본 수익률</p><p class="v"><span id="sticky-monthly">0.00</span>%</p></div>
@@ -182,6 +328,11 @@
         <li><a href="fee.html">중개보수</a></li>
         <li><a href="checklist.html">양도·취득 체크리스트</a></li>
         <li><a href="policy.html">세제·정책 참고</a></li>
+      </ul>
+      <ul class="footer-links">
+        <li><a href="about.html">사이트 소개</a></li>
+        <li><a href="privacy.html">개인정보처리방침</a></li>
+        <li><a href="terms.html">이용약관</a></li>
       </ul>
       <p class="disclaimer">본 계산기는 참고용이며 금융·세무·법률 자문이 아닙니다. 수익을 보장하지 않습니다.</p>
       <p class="privacy">입력값은 서버로 전송되거나 저장되지 않습니다.</p>

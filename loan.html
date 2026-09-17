@@ -9,6 +9,93 @@
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="css/site.css">
+  <link rel="canonical" href="https://jhback-ctrl.github.io/-/loan.html">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="집계산기">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="대출이자 계산기 — 원리금균등·원금균등·만기일시">
+  <meta property="og:description" content="원리금균등·원금균등·만기일시 상환 방식별 월 상환액과 총 이자를 계산합니다.">
+  <meta property="og:url" content="https://jhback-ctrl.github.io/-/loan.html">
+  <meta property="og:image" content="https://jhback-ctrl.github.io/-/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="대출이자 계산기 — 원리금균등·원금균등·만기일시">
+  <meta name="twitter:description" content="원리금균등·원금균등·만기일시 상환 방식별 월 상환액과 총 이자를 계산합니다.">
+  <meta name="twitter:image" content="https://jhback-ctrl.github.io/-/og.png">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "대출이자 계산기",
+  "url": "https://jhback-ctrl.github.io/-/loan.html",
+  "description": "원리금균등·원금균등·만기일시 상환 방식별 월 상환액과 총 이자를 계산합니다.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "inLanguage": "ko-KR",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "집계산기",
+    "url": "https://jhback-ctrl.github.io/-/"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "월 상환액은 어떤 공식으로 계산하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "원리금균등은 대출금에 월이율을 곱하고 복리 항을 적용하는 표준 공식을 씁니다. 월이율은 연금리를 12로 나눈 값입니다. 원금균등은 매달 원금을 기간으로 나눈 금액에 남은 잔액의 이자를 더합니다. 만기일시는 매달 잔액 전체의 이자만 냅니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "전세자금대출은 어떤 방식으로 넣어야 하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "전세자금대출은 대부분 만기일시 방식입니다. 계약 기간 동안 이자만 내고 만기에 보증금을 돌려받아 원금을 갚습니다. 상환 방식에서 만기일시를 고르거나, 거치기간을 대출기간과 같게 두면 비슷한 결과가 나옵니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "보증금 대출 이자를 월세 계산에 어떻게 반영하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "<a href='index.html'>월세 실부담 계산기</a>에서 기회비용 기준을 대출금리로 바꾸고 실제 대출 금리를 넣으세요. 그러면 보증금에 대출 금리를 곱한 금액이 월 부담에 더해져, 이 계산기의 만기일시 월 이자와 같은 값이 됩니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "금리를 0으로 넣으면 어떻게 되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "이자가 0원이 되고 원금만 기간으로 나눠 갚는 형태가 됩니다. 만기일시에서는 매달 0원을 내고 만기에 원금 전액을 갚습니다. 거치기간을 함께 넣으면 거치 기간 동안 내는 금액이 0원이 됩니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "계산 결과를 남길 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "결과 링크 복사 버튼을 누르면 입력값이 담긴 주소가 복사됩니다. 그 링크를 열면 같은 조건이 다시 채워집니다. 입력값은 서버로 전송되지 않으며 브라우저 안에서만 계산됩니다."
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#calc">본문으로 건너뛰기</a>
@@ -31,6 +118,13 @@
     </div>
   </header>
 
+<div class="page-shell">
+  <aside class="rail" aria-label="광고">
+    <div class="card slot">
+      <span class="slot-label">광고</span>
+      <div class="ad-placeholder">애드센스 세로 슬롯 자리<br>(플레이스홀더)</div>
+    </div>
+  </aside>
   <main class="container">
     <section class="hero">
       <p class="eyebrow">Loan · Interest</p>
@@ -147,7 +241,73 @@
         </aside>
       </div>
     </div>
+
+    <section class="card" aria-labelledby="guide-title">
+      <h2 id="guide-title">상환 방식을 고르는 기준</h2>
+      <div class="prose">
+<h3>세 가지 방식의 차이</h3>
+<p><strong>원리금균등</strong>은 매달 내는 총액이 같습니다. 초반에는 이자 비중이 크고 갚아갈수록 원금 비중이 커집니다. 매달 나가는 돈이 일정해 생활비 계획을 세우기 쉽습니다.</p>
+<p><strong>원금균등</strong>은 매달 갚는 원금이 같고 이자는 잔액에 붙습니다. 첫 달이 가장 부담스럽고 갈수록 가벼워집니다. 총 이자는 세 방식 중 가장 적습니다.</p>
+<p><strong>만기일시</strong>는 기간 내내 이자만 내고 만기에 원금을 한 번에 갚습니다. 매달 부담이 가장 가볍지만 원금이 줄지 않아 총 이자가 가장 많습니다. 전세자금대출이 주로 이 방식입니다.</p>
+<h3>총 이자가 적다고 좋은 것은 아닙니다</h3>
+<p>원금균등은 총 이자가 가장 적지만 초반 부담이 큽니다. 그 돈을 다른 곳에 쓸 수 있다면 원리금균등이 나을 수 있습니다. 총 이자 숫자 하나만 보지 말고 매달 감당할 수 있는 금액인지 함께 보세요.</p>
+<h3>거치기간이란</h3>
+<p>거치기간은 원금을 갚지 않고 이자만 내는 기간입니다. 당장 부담이 줄지만 원금이 그대로 남아 이후 상환액이 커지고 총 이자도 늘어납니다. 이 계산기에서 거치기간은 대출기간에 포함됩니다. 거치 24개월에 기간 24개월을 넣으면 실제로는 23개월만 거치로 처리해 마지막 회차에 원금을 정리합니다.</p>
+<h3>이 계산기가 반영하지 않는 것</h3>
+<ul><li>중도상환수수료. 만기 전에 갚으면 보통 수수료가 붙습니다.</li><li>보증료와 인지세 같은 부대비용.</li><li>변동금리. 여기서는 입력한 금리가 만기까지 유지된다고 가정합니다.</li><li>거치 후 금리 변경이나 원금 분할 조건 변경.</li></ul>
+<p>실제 금융기관 상환표와는 이자 계산일 처리 방식 때문에 소수점 단위 차이가 날 수 있습니다.</p>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="faq-title">
+      <h2 id="faq-title">자주 묻는 질문</h2>
+      <p class="hint">대출이자 계산에서 자주 나오는 질문입니다.</p>
+      <div class="faq">
+        <details>
+          <summary>월 상환액은 어떤 공식으로 계산하나요?</summary>
+          <div class="a">
+          <p>원리금균등은 대출금에 월이율을 곱하고 복리 항을 적용하는 표준 공식을 씁니다. 월이율은 연금리를 12로 나눈 값입니다.</p>
+          <p>원금균등은 매달 원금을 기간으로 나눈 금액에 남은 잔액의 이자를 더합니다. 만기일시는 매달 잔액 전체의 이자만 냅니다.</p>
+          </div>
+        </details>
+        <details>
+          <summary>전세자금대출은 어떤 방식으로 넣어야 하나요?</summary>
+          <div class="a">
+          <p>전세자금대출은 대부분 만기일시 방식입니다. 계약 기간 동안 이자만 내고 만기에 보증금을 돌려받아 원금을 갚습니다.</p>
+          <p>상환 방식에서 만기일시를 고르거나, 거치기간을 대출기간과 같게 두면 비슷한 결과가 나옵니다.</p>
+          </div>
+        </details>
+        <details>
+          <summary>보증금 대출 이자를 월세 계산에 어떻게 반영하나요?</summary>
+          <div class="a">
+          <p><a href='index.html'>월세 실부담 계산기</a>에서 기회비용 기준을 대출금리로 바꾸고 실제 대출 금리를 넣으세요.</p>
+          <p>그러면 보증금에 대출 금리를 곱한 금액이 월 부담에 더해져, 이 계산기의 만기일시 월 이자와 같은 값이 됩니다.</p>
+          </div>
+        </details>
+        <details>
+          <summary>금리를 0으로 넣으면 어떻게 되나요?</summary>
+          <div class="a">
+          <p>이자가 0원이 되고 원금만 기간으로 나눠 갚는 형태가 됩니다. 만기일시에서는 매달 0원을 내고 만기에 원금 전액을 갚습니다.</p>
+          <p>거치기간을 함께 넣으면 거치 기간 동안 내는 금액이 0원이 됩니다.</p>
+          </div>
+        </details>
+        <details>
+          <summary>계산 결과를 남길 수 있나요?</summary>
+          <div class="a">
+          <p>결과 링크 복사 버튼을 누르면 입력값이 담긴 주소가 복사됩니다. 그 링크를 열면 같은 조건이 다시 채워집니다.</p>
+          <p>입력값은 서버로 전송되지 않으며 브라우저 안에서만 계산됩니다.</p>
+          </div>
+        </details>
+      </div>
+    </section>
   </main>
+  <aside class="rail" aria-label="광고">
+    <div class="card slot">
+      <span class="slot-label">광고</span>
+      <div class="ad-placeholder">애드센스 세로 슬롯 자리<br>(플레이스홀더)</div>
+    </div>
+  </aside>
+</div>
 
   <div id="sticky-summary" class="sticky-summary" aria-hidden="true">
     <div><p class="k">첫 달 상환액</p><p class="v"><span id="sticky-monthly">0</span>원</p></div>
@@ -163,6 +323,11 @@
         <li><a href="fee.html">중개보수</a></li>
         <li><a href="checklist.html">양도·취득 체크리스트</a></li>
         <li><a href="policy.html">세제·정책 참고</a></li>
+      </ul>
+      <ul class="footer-links">
+        <li><a href="about.html">사이트 소개</a></li>
+        <li><a href="privacy.html">개인정보처리방침</a></li>
+        <li><a href="terms.html">이용약관</a></li>
       </ul>
       <p class="disclaimer">본 계산기는 참고용이며 금융·세무·법률 자문이 아닙니다.</p>
       <p class="privacy">입력값은 서버로 전송되거나 저장되지 않습니다.</p>
