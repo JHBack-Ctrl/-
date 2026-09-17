@@ -150,30 +150,43 @@
       try {
         var W = 1080, pad = 72, scale = 2;
         var rows = c.rows || [];
-        var H = 420 + rows.length * 56 + (c.note ? 90 : 0);
+        var H = 470 + rows.length * 56 + (c.note ? 90 : 0);
         var cv = document.createElement('canvas');
         cv.width = W * scale; cv.height = H * scale;
         var ctx = cv.getContext('2d');
         ctx.scale(scale, scale);
         var dark = document.documentElement.getAttribute('data-theme') === 'dark' ||
           (!document.documentElement.getAttribute('data-theme') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        var bg = dark ? '#1b1d20' : '#ffffff', ink = dark ? '#eef0f2' : '#17191c', ink2 = dark ? '#b6bbc3' : '#4a4f57', ink3 = dark ? '#7f858f' : '#7b818b', accent = dark ? '#4fc39d' : '#0e6b52', line = dark ? '#2b2f35' : '#e2dfd6';
+        var bg = dark ? '#1b1d20' : '#ffffff', ink = dark ? '#eef0f2' : '#17191c', ink2 = dark ? '#b6bbc3' : '#4a4f57', ink3 = dark ? '#7f858f' : '#7b818b', accent = dark ? '#4fc39d' : '#0e6b52', accentInk = dark ? '#08160f' : '#ffffff', line = dark ? '#2b2f35' : '#e2dfd6';
         var font = '"Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif';
         ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
-        // 브랜드
-        ctx.fillStyle = accent; roundRect(ctx, pad, pad, 34, 34, 10); ctx.fill();
+        // 브랜드 마크: 헤더의 .brand-mark(22px)를 34px로 키워 그대로 그림
+        drawBrandMark(ctx, pad, pad, 34, accent, accentInk);
         ctx.fillStyle = ink; ctx.font = '700 26px ' + font; ctx.textBaseline = 'middle';
         ctx.fillText('집계산기', pad + 46, pad + 17);
         ctx.fillStyle = ink3; ctx.font = '500 22px ' + font; ctx.textAlign = 'right';
         ctx.fillText(c.title || '', W - pad, pad + 17); ctx.textAlign = 'left';
-        // 큰 숫자
-        var y = pad + 90;
-        ctx.fillStyle = ink3; ctx.font = '600 24px ' + font; ctx.fillText(c.kicker || '', pad, y); y += 62;
-        ctx.fillStyle = ink; ctx.font = '800 84px ' + font; ctx.textBaseline = 'alphabetic';
-        ctx.fillText(c.big || '', pad, y);
+        // 설명 줄 (윗선 기준으로 그려 아래 큰 숫자와 겹치지 않게 함)
+        var y = pad + 84;
+        ctx.textBaseline = 'top';
+        ctx.fillStyle = ink3; ctx.font = '600 24px ' + font; ctx.fillText(c.kicker || '', pad, y);
+        y += 24 + 22; // 설명 줄 높이 + 여백 = 큰 숫자의 윗선
+        // 큰 숫자: 폭이 넘치면 글자 크기를 줄임
+        var bigSize = 84, unitSize = 34, maxW = W - pad * 2;
+        ctx.font = '800 ' + bigSize + 'px ' + font;
         var bw = ctx.measureText(c.big || '').width;
-        ctx.fillStyle = ink3; ctx.font = '600 34px ' + font; ctx.fillText(c.unit || '', pad + bw + 10, y);
-        y += 50;
+        ctx.font = '600 ' + unitSize + 'px ' + font;
+        var uw = c.unit ? ctx.measureText(c.unit).width + 10 : 0;
+        if (bw + uw > maxW) {
+          var k = maxW / (bw + uw);
+          bigSize = Math.floor(bigSize * k); unitSize = Math.floor(unitSize * k);
+          ctx.font = '800 ' + bigSize + 'px ' + font; bw = ctx.measureText(c.big || '').width;
+        }
+        y += bigSize; // 큰 숫자의 밑선
+        ctx.textBaseline = 'alphabetic';
+        ctx.fillStyle = ink; ctx.font = '800 ' + bigSize + 'px ' + font; ctx.fillText(c.big || '', pad, y);
+        ctx.fillStyle = ink3; ctx.font = '600 ' + unitSize + 'px ' + font; ctx.fillText(c.unit || '', pad + bw + 10, y);
+        y += 36;
         ctx.strokeStyle = line; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(W - pad, y); ctx.stroke();
         y += 20;
         // 행
@@ -200,6 +213,17 @@
   function roundRect(ctx, x, y, w, h, r) {
     ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
     ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  }
+  // 헤더 .brand-mark 와 같은 모양: 둥근 네모(반지름 7/22) 안에 45° 돌린 작은 네모 테두리, 윗변은 비움
+  function drawBrandMark(ctx, x, y, size, fill, stroke) {
+    var k = size / 22;
+    ctx.fillStyle = fill; roundRect(ctx, x, y, size, size, 7 * k); ctx.fill();
+    ctx.save();
+    ctx.translate(x + 11 * k, y + 11 * k); ctx.rotate(Math.PI / 4);
+    var s = 8 * k / 2; // 10px 상자에서 2px 테두리 중심선까지 = 8px, 그 절반
+    ctx.strokeStyle = stroke; ctx.lineWidth = 2 * k; ctx.lineJoin = 'round'; ctx.lineCap = 'butt';
+    ctx.beginPath(); ctx.moveTo(s, -s); ctx.lineTo(s, s); ctx.lineTo(-s, s); ctx.lineTo(-s, -s); ctx.stroke();
+    ctx.restore();
   }
   function wrapText(ctx, text, x, y, maxW, lh) {
     var words = String(text).split(' '), line = '';
