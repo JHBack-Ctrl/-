@@ -16,11 +16,29 @@
 | `fee.html` | 중개보수 — 법정 상한 요율 기준 예상 최대 금액 |
 | `checklist.html` | 양도·취득 체크리스트 — 확인 항목과 준비 서류 (세액 계산 없음) |
 | `policy.html` | 세제·정책 참고 — 공식 확인처 링크 모음 (세율 제시 없음) |
+| `about.html` | 사이트 소개 — 운영 원칙, 계산 기준, 문의처 |
+| `privacy.html` | 개인정보처리방침 — 쿠키·광고·제휴 고지 포함 |
+| `terms.html` | 이용약관 — 책임 범위와 저작권 |
+| `404.html` | 없는 주소로 들어왔을 때 보여줄 안내 |
 
 ## 검색엔진 파일
 
-- `sitemap.xml` — 6개 페이지의 절대 주소 목록. 배포 주소가 바뀌면 `loc` 값을 함께 수정해야 합니다
+- `sitemap.xml` — 9개 페이지의 절대 주소 목록. 배포 주소가 바뀌면 `loc` 값을 함께 수정해야 합니다
 - `robots.txt` — 전체 허용과 sitemap 위치 안내
+- `favicon.svg`, `apple-touch-icon.png` — 탭 아이콘과 홈 화면 아이콘
+- `og.png` — 공유 미리보기 이미지 1200×630
+
+각 페이지 `<head>`에 canonical, Open Graph, 트위터 카드 태그가 들어 있습니다.
+계산기 4개에는 WebApplication과 FAQPage 구조화 데이터를 넣었습니다.
+주소를 바꾸면 각 페이지의 canonical과 og:url, 구조화 데이터의 url도 함께 고쳐야 합니다.
+
+## 광고 슬롯
+
+- 본문 안 가로 슬롯: 결과 아래에 배치. 모든 폭에서 표시
+- 좌우 세로 레일: `.page-shell` 안의 `.rail`. 화면 폭 1280px 이상에서만 표시되고 그 아래에서는 숨김
+- 제휴 링크 영역은 `제휴`, 광고 영역은 `광고` 라벨을 붙였습니다
+
+실제 광고 코드를 넣을 때는 `.ad-placeholder` 안을 교체하면 됩니다.
 
 주의: GitHub Pages 프로젝트 페이지(`user.github.io/repo/`)에서는 크롤러가 호스트 최상위인
 `https://jhback-ctrl.github.io/robots.txt`만 읽습니다. 이 저장소의 `robots.txt`는 하위 경로에 있어
