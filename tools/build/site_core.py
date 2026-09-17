@@ -137,7 +137,7 @@ ICON_SUN = '<svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="
 ICON_MOON = '<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>'
 ICON_MENU = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>'
 
-QUICK_NAV = [("index.html", "홈"), ("rent.html", "월세"), ("loan.html", "대출이자"), ("acquisition-tax.html", "취득세"), ("capital-gains-tax.html", "양도세"), ("salary.html", "연봉"), ("renewal.html", "갱신 청구권"), ("subscription.html", "청약"), ("area.html", "평수"), ("glossary.html", "용어 사전"), ("guides.html", "안내 글")]
+QUICK_NAV = [("index.html", "홈"), ("rent.html", "월세"), ("loan.html", "대출이자"), ("acquisition-tax.html", "취득세"), ("capital-gains-tax.html", "양도세"), ("salary.html", "연봉"), ("subscription.html", "청약"), ("guides.html", "안내 글")]
 
 def menu_panel():
     groups = []
@@ -185,16 +185,17 @@ def rail():
 
 def footer(disclaimer="본 계산기는 참고용이며 금융·세무·법률 자문이 아닙니다.", privacy="입력값은 서버로 전송되거나 저장되지 않습니다. 최근 계산 기억 기능을 켜면 이 기기 브라우저에만 저장됩니다."):
     cols = []
-    for cat in CATS:
+    for cat in CATS[:4]:  # 계산기 카테고리만 열로
         items = "".join(f'<li><a href="{f}">{n}</a></li>' for (f, n, *_r) in tools_by_cat(cat))
         cols.append(f'<div class="menu-group"><h3>{cat}</h3><ul>{items}</ul></div>')
-    for cat, lst in extra_groups():
-        items = "".join(f'<li><a href="{f}">{n}</a></li>' for (f, n, *_r) in lst)
-        cols.append(f'<div class="menu-group"><h3>{cat}</h3><ul>{items}</ul></div>')
+    # 표·서식·용어·참고는 한 줄 링크로
+    extra = [("glossary.html", "용어 사전"), ("guides.html", "안내 글"), ("checklist.html", "체크리스트"), ("policy.html", "세제·정책")] + [(f, n) for (f, n, *_r) in TABLES] + [(f, n) for (f, n, *_r) in FORMS]
+    extra_html = "".join(f'<li><a href="{f}">{n}</a></li>' for f, n in extra)
     docs = "".join(f'<li><a href="{f}">{n}</a></li>' for f, n in DOCS)
     return f'''  <footer class="site-footer">
     <div class="container">
-      <div class="menu-groups" style="margin-bottom:18px">{"".join(cols)}</div>
+      <div class="menu-groups" style="margin-bottom:14px">{"".join(cols)}</div>
+      <ul class="footer-links footer-extra">{extra_html}</ul>
       <ul class="footer-links">{docs}</ul>
       <p class="disclaimer">{disclaimer}</p>
       <p class="privacy">{privacy}</p>

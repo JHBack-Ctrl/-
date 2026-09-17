@@ -628,3 +628,15 @@ details[open] .details-summary::after { content: "접기"; }
   .receipt { border: 1px solid #000; }
   .receipt th, .receipt td { border-color: #000; }
 }
+
+/* 홈 접이식 카테고리, 푸터 보조 링크 */
+.hub-fold { margin-top: 10px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); }
+.hub-fold summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 12px 16px; }
+.hub-fold summary::-webkit-details-marker { display: none; }
+.hub-fold summary h2 { font-size: 15px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin: 0; }
+.hub-fold summary .muted { font-size: 13px; margin-left: auto; }
+.hub-fold summary::after { content: "+"; font-size: 18px; color: var(--ink-3); line-height: 1; }
+.hub-fold[open] summary::after { content: "−"; }
+.hub-fold .tool-grid, .hub-fold .hub-sub { padding: 0 16px 16px; }
+.hub-fold .hub-sub { margin: 0; padding-bottom: 8px; }
+.footer-extra { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
