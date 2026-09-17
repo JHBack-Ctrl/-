@@ -5,6 +5,9 @@
   var STORAGE_PREFIX = 'jipcalc:';
   var REMEMBER_KEY = STORAGE_PREFIX + 'remember';   // "1"이면 최근 계산 기억 켜짐
   var THEME_KEY = STORAGE_PREFIX + 'theme';         // "light" | "dark" | 없음(자동)
+  // 한글 도메인은 location.host 가 퓨니코드(xn--...)로 나오므로 사람이 보는 문구에는 이 값을 쓴다
+  var SITE_HOST = '전국부동산계산기.com';
+  function displayHost() { return /^xn--/.test(location.hostname) ? SITE_HOST : location.host; }
 
   function $(id) { return document.getElementById(id); }
   function $$(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
@@ -163,7 +166,7 @@
         // 브랜드 마크: 헤더의 .brand-mark(22px)를 34px로 키워 그대로 그림
         drawBrandMark(ctx, pad, pad, 34, accent, accentInk);
         ctx.fillStyle = ink; ctx.font = '700 26px ' + font; ctx.textBaseline = 'middle';
-        ctx.fillText('집계산기', pad + 46, pad + 17);
+        ctx.fillText('전국부동산계산기', pad + 46, pad + 17);
         ctx.fillStyle = ink3; ctx.font = '500 22px ' + font; ctx.textAlign = 'right';
         ctx.fillText(c.title || '', W - pad, pad + 17); ctx.textAlign = 'left';
         // 설명 줄 (윗선 기준으로 그려 아래 큰 숫자와 겹치지 않게 함)
@@ -201,7 +204,7 @@
         ctx.textAlign = 'left';
         if (c.note) { y += 40; ctx.fillStyle = ink3; ctx.font = '400 20px ' + font; wrapText(ctx, c.note, pad, y, W - pad * 2, 28); }
         ctx.fillStyle = ink3; ctx.font = '400 19px ' + font; ctx.textAlign = 'right';
-        ctx.fillText('참고용 · 금융·세무·법률 자문 아님 · ' + location.host + location.pathname.replace(/\/[^\/]*$/, '/'), W - pad, H - 36);
+        ctx.fillText('참고용 · 금융·세무·법률 자문 아님 · ' + displayHost() + location.pathname.replace(/\/[^\/]*$/, '/'), W - pad, H - 36);
         var a = document.createElement('a');
         a.download = (c.file || 'result') + '.png';
         a.href = cv.toDataURL('image/png');

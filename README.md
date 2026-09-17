@@ -1,6 +1,22 @@
-# 집계산기
+# 전국부동산계산기
 
 부동산 계산기 모음. 서버·DB·로그인 없이 브라우저에서만 계산하며 입력값을 저장하지 않습니다.
+
+주소: https://전국부동산계산기.com
+
+## 도메인
+
+한글 도메인이라 기계가 읽는 곳에는 퓨니코드를 씁니다.
+
+| 위치 | 값 |
+| --- | --- |
+| 사람이 보는 주소 | `전국부동산계산기.com` |
+| 퓨니코드 | `xn--989anm2s84p8on6teba611m.com` |
+| `CNAME` 파일, GitHub Pages 설정 | 퓨니코드 |
+| `tools/build/site_core.py`의 `BASE` | 퓨니코드 (canonical·og:url·sitemap·JSON-LD가 여기서 나옴) |
+| `js/common.js`의 `SITE_HOST` | 한글 (이미지 저장 문구처럼 사람이 보는 곳) |
+
+DNS는 가비아에서 관리하며 A 레코드 4개(185.199.108~111.153)가 apex를, CNAME이 `www`를 `jhback-ctrl.github.io`로 보냅니다.
 
 ## 실행
 
@@ -96,7 +112,9 @@ ID를 넣으면 `privacy.html` 6-1 항목을 실제 도입 내용으로 갱신�
 - `js/<계산기>.js` — 페이지별 계산 로직 21개. 공통 배선은 `Site.wireCalc`가 담당
 - `js/analytics.js` — 방문 통계 로더 (ID 비어 있으면 동작 안 함)
 - `sw.js`, `manifest.json` — 앱 설치와 오프라인 캐시
+- `CNAME` — GitHub Pages 커스텀 도메인 (퓨니코드)
 - `tools/build/` — 사이트 빌더
+- `tools/make-og.js` — 공유 카드 이미지 `og.png` 생성 (`node tools/make-og.js`). 이름이나 문구를 바꾸면 다시 실행
 
 기본 금리, 프리셋 값, 중개보수 요율표 등 바뀔 수 있는 값은 각 스크립트 상단에 상수로 모아두었습니다.
 

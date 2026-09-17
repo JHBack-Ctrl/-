@@ -11,7 +11,7 @@ def article(path, h1, lead, blocks, cta, related_tools):
         <p class="eyebrow">Guide</p>
         <h1>{h1}</h1>
         <p class="lead">{lead}</p>
-        <p class="meta">집계산기 · {TODAY.replace("-", ".")} · 참고용 설명이며 금융·세무·법률 자문이 아닙니다</p>
+        <p class="meta">전국부동산계산기 · {TODAY.replace("-", ".")} · 참고용 설명이며 금융·세무·법률 자문이 아닙니다</p>
       </section>
       <section class="card">
         <div class="prose">
@@ -170,7 +170,7 @@ def home():
     n_tools = len(TOOLS)
     main = f'''    <section class="hero hub-hero">
       <p class="eyebrow">Real Estate · Calculators</p>
-      <h1>집계산기</h1>
+      <h1>전국부동산계산기</h1>
       <p class="hero-sub">월세 실부담부터 양도세, 연봉 실수령액까지, 집과 돈의 숫자를 같은 기준으로</p>
       <p class="hero-body">계산기 {n_tools}개와 세율표, 용어 사전, 계약 서식. 회원가입이 없고 입력값을 서버로 보내지 않습니다.</p>
     </section>
@@ -191,12 +191,12 @@ def home():
         <p>자세한 내용은 <a href="about.html">사이트 소개</a>에 있습니다.</p>
       </div>
     </section>'''
-    ld = jsonld({"@context": "https://schema.org", "@type": "WebSite", "name": "집계산기", "url": BASE, "inLanguage": "ko-KR",
+    ld = jsonld({"@context": "https://schema.org", "@type": "WebSite", "name": "전국부동산계산기", "url": BASE, "inLanguage": "ko-KR",
                  "description": "부동산 계산기 모음. 월세 실부담, 대출이자, 취득세, 청약 가점, 평수 변환 등을 브라우저에서만 계산합니다.",
-                 "publisher": {"@type": "Organization", "name": "집계산기", "url": BASE}})
+                 "publisher": {"@type": "Organization", "name": "전국부동산계산기", "url": BASE}})
     # 예전 공유 링크(index.html?r=…)는 월세 계산기로 넘김
     redirect = '''  <script>(function(){var q=location.search;if(/[?&](r|m|d|rent|deposit)=/.test(q)){location.replace('rent.html'+q);}})();</script>
 '''
-    return page("집계산기 — 월세 실부담부터 양도세, 연봉 실수령액까지 계산기 모음",
+    return page("전국부동산계산기 — 월세 실부담부터 양도세, 연봉 실수령액까지 계산기 모음",
                 f"월세 실부담, 계약 갱신 청구권, 대출이자, DSR·LTV 한도, 취득세, 양도소득세, 청약 가점, 연봉 실수령액, 퇴직금 등 계산기 {n_tools}개와 세율표, 부동산 용어 사전, 계약 서식. 회원가입 없이 브라우저에서만 계산하며 입력값을 저장하지 않습니다.",
                 "index.html", main, extra_head=ld + redirect)

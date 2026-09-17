@@ -14,15 +14,17 @@ from pages_glossary import TERMS, term_page, term_path, glossary_index
 os.chdir(ROOT)
 
 # ---------- 1) 기존 계산기 4개: 본문 추출 → 새 틀로 재포장 ----------
-OLD_CALC = {  # 파일: (등록부 인덱스, 스크립트, 하단 요약 라벨)
-    "rent.html": (0, "js/rent.js", "월 실부담"),
-    "loan.html": (4, "js/loan.js", "첫 달 상환액"),
-    "yield.html": (8, "js/yield.js", "자기자본 수익률"),
-    "fee.html": (3, "js/fee.js", "예상 최대 중개보수"),
+OLD_CALC = {  # 파일: (스크립트, 하단 요약 라벨) — 등록부는 파일명으로 찾는다(번호로 찾으면 TOOLS 순서가 바뀔 때 어긋남)
+    "rent.html": ("js/rent.js", "월 실부담"),
+    "loan.html": ("js/loan.js", "첫 달 상환액"),
+    "yield.html": ("js/yield.js", "자기자본 수익률"),
+    "fee.html": ("js/fee.js", "예상 최대 중개보수"),
 }
-for src, (idx, script, sticky) in OLD_CALC.items():
+for src, (script, sticky) in OLD_CALC.items():
     html = read(src)
-    f, name, title, desc, cat, short = TOOLS[idx]
+    entry = [t for t in TOOLS if t[0] == src]
+    assert entry, src + ": TOOLS 등록부에 없습니다"
+    f, name, title, desc, cat, short = entry[0]
     main = extract_main(html)
     ld = extract_ld(html)
     assert 'id="calc-form"' in main, src + ": 계산기 본문이 아닙니다"
@@ -44,7 +46,7 @@ for f, name in DOCS:
 # 404
 html = read("404.html"); main = extract_main(html)
 main = main.replace('<a class="tool-card" href="index.html"><p class="t">월세 실부담 계산기</p>', '<a class="tool-card" href="rent.html"><p class="t">월세 실부담 계산기</p>')
-write("404.html", page("페이지를 찾을 수 없습니다 — 집계산기", "요청하신 페이지가 없습니다. 집계산기의 계산기 목록에서 원하시는 도구를 찾아보세요.", "404.html", main, noindex=True, with_rails=False))
+write("404.html", page("페이지를 찾을 수 없습니다 — 전국부동산계산기", "요청하신 페이지가 없습니다. 전국부동산계산기의 계산기 목록에서 원하시는 도구를 찾아보세요.", "404.html", main, noindex=True, with_rails=False))
 
 # ---------- 3) 새 계산기 7개 ----------
 for f, (fn, script, sticky) in NEW_PAGES.items():
@@ -68,7 +70,7 @@ write("glossary.html", glossary_index())
 
 # ---------- 5) 부속 파일 ----------
 manifest = {
-    "name": "집계산기", "short_name": "집계산기", "description": "월세 실부담부터 양도세, 연봉 실수령액까지 계산기 모음",
+    "name": "전국부동산계산기", "short_name": "전국부동산계산기", "description": "월세 실부담부터 양도세, 연봉 실수령액까지 계산기 모음",
     "start_url": "./", "scope": "./", "display": "standalone", "background_color": "#f6f4ee", "theme_color": "#0e6b52", "lang": "ko",
     "icons": [{"src": "icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}]
 }
@@ -79,7 +81,7 @@ ALL_HTML = [t[0] for t in TOOLS] + [r[0] for r in REFS] + [g[0] for g in GUIDES]
 assets = ["css/site.css", "js/common.js", "js/analytics.js", "js/forms.js", "favicon.svg", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "manifest.json"] + \
          [f"js/{n}.js" for n in ["rent", "loan", "yield", "fee", "area", "conversion", "subscription", "rent-tax-credit", "dsr", "prepayment", "acquisition-tax", "capital-gains-tax",
                                  "renewal", "tax-calendar", "moving", "rate-compare", "buy-vs-rent", "jeonse-insurance", "jeonse-fraud-check", "salary", "severance"]]
-sw = """/* 집계산기 서비스 워커: 정적 자산은 캐시 우선, HTML은 네트워크 우선(오프라인 시 캐시) */
+sw = """/* 전국부동산계산기 서비스 워커: 정적 자산은 캐시 우선, HTML은 네트워크 우선(오프라인 시 캐시) */
 var VERSION = 'jipcalc-v5';
 var ASSETS = %s;
 self.addEventListener('install', function (e) {

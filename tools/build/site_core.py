@@ -1,8 +1,11 @@
-# 집계산기 사이트 빌더 — 공통 틀(헤더·메뉴·레일·푸터)과 페이지 등록부
+# 전국부동산계산기 사이트 빌더 — 공통 틀(헤더·메뉴·레일·푸터)과 페이지 등록부
 import json, re, os
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-BASE = "https://jhback-ctrl.github.io/-/"
+# 사이트 주소. 한글 도메인 전국부동산계산기.com 의 퓨니코드 표기.
+# 기계가 읽는 곳(canonical, og:url, sitemap, JSON-LD)에는 퓨니코드가 안전하고,
+# 사람이 보는 문구에는 js/common.js 의 SITE_HOST('전국부동산계산기.com')를 쓴다.
+BASE = "https://xn--989anm2s84p8on6teba611m.com/"   # = https://전국부동산계산기.com/
 TODAY = "2026-09-17"
 
 # ---------------- 페이지 등록부 ----------------
@@ -162,10 +165,10 @@ def header():
     return f'''  <header class="site-header">
     <div class="container">
       <div class="header-row">
-        <a class="brand" href="./" aria-label="집계산기 홈"><span class="brand-mark" aria-hidden="true"></span>집계산기</a>
+        <a class="brand" href="./" aria-label="전국부동산계산기 홈"><span class="brand-mark" aria-hidden="true"></span>전국부동산계산기</a>
         <div class="header-actions">
           <button type="button" id="theme-toggle" class="icon-btn" aria-pressed="false" aria-label="어두운 화면으로 전환">{ICON_SUN}{ICON_MOON}</button>
-          <button type="button" id="menu-toggle" class="icon-btn" aria-expanded="false" aria-controls="menu-panel">{ICON_MENU}전체 계산기</button>
+          <button type="button" id="menu-toggle" class="icon-btn" aria-expanded="false" aria-controls="menu-panel">{ICON_MENU}<span class="btn-label">전체 계산기</span></button>
         </div>
       </div>
       <nav aria-label="빠른 메뉴">
@@ -220,7 +223,7 @@ def head(title, desc, path, extra="", noindex=False, og_type="website"):
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
   <meta property="og:type" content="{og_type}">
-  <meta property="og:site_name" content="집계산기">
+  <meta property="og:site_name" content="전국부동산계산기">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:title" content="{title}">
   <meta property="og:description" content="{desc}">
@@ -257,7 +260,7 @@ def jsonld(data):
 def app_ld(name, desc, path):
     return jsonld({"@context": "https://schema.org", "@type": "WebApplication", "name": name, "url": BASE + path, "description": desc,
                    "applicationCategory": "FinanceApplication", "operatingSystem": "All", "inLanguage": "ko-KR", "isAccessibleForFree": True,
-                   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "KRW"}, "publisher": {"@type": "Organization", "name": "집계산기", "url": BASE}})
+                   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "KRW"}, "publisher": {"@type": "Organization", "name": "전국부동산계산기", "url": BASE}})
 
 def faq_ld(items):
     return jsonld({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
@@ -266,11 +269,11 @@ def faq_ld(items):
 def article_ld(title, desc, path):
     return jsonld({"@context": "https://schema.org", "@type": "Article", "headline": title, "description": desc, "url": BASE + path,
                    "datePublished": TODAY, "dateModified": TODAY, "inLanguage": "ko-KR",
-                   "author": {"@type": "Organization", "name": "집계산기"}, "publisher": {"@type": "Organization", "name": "집계산기", "url": BASE}})
+                   "author": {"@type": "Organization", "name": "전국부동산계산기"}, "publisher": {"@type": "Organization", "name": "전국부동산계산기", "url": BASE}})
 
 def breadcrumb_ld(name, path):
     return jsonld({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "집계산기", "item": BASE},
+        {"@type": "ListItem", "position": 1, "name": "전국부동산계산기", "item": BASE},
         {"@type": "ListItem", "position": 2, "name": name, "item": BASE + path}]})
 
 def faq_section(items, intro="자주 나오는 질문을 모았습니다."):

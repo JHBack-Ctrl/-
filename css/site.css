@@ -178,6 +178,18 @@ button { font: inherit; }
   height: 36px; min-width: 36px; padding: 0 10px; border-radius: 10px;
   border: 1px solid var(--line-2); background: var(--surface); color: var(--ink-2);
   font-size: 13.5px; font-weight: 600; cursor: pointer;
+  white-space: nowrap; flex: none;
+}
+/* 브랜드 이름이 길어 좁은 화면에서는 글자와 마크를 줄인다 */
+@media (max-width: 420px) {
+  .brand { font-size: 16px; gap: 6px; }
+  .brand-mark { width: 19px; height: 19px; border-radius: 6px; }
+  .brand-mark::after { left: 5px; top: 5px; width: 9px; height: 9px; border-width: 1.5px; }
+  .icon-btn { padding: 0 8px; font-size: 13px; }
+  .header-actions { gap: 4px; }
+}
+@media (max-width: 340px) {
+  #menu-toggle .btn-label { display: none; }
 }
 .icon-btn:hover { border-color: var(--ink-3); color: var(--ink); }
 .icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }

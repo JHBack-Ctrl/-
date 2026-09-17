@@ -242,7 +242,7 @@ def term_page(t):
       </section>
     </article>'''
     ld = jsonld({"@context": "https://schema.org", "@type": "DefinedTerm", "name": name, "description": one, "url": BASE + path, "inLanguage": "ko-KR",
-                 "inDefinedTermSet": {"@type": "DefinedTermSet", "name": "집계산기 부동산 용어 사전", "url": BASE + "glossary.html"}})
+                 "inDefinedTermSet": {"@type": "DefinedTermSet", "name": "전국부동산계산기 부동산 용어 사전", "url": BASE + "glossary.html"}})
     return page(title, desc, path, main, extra_head=ld + article_ld(title, desc, path) + breadcrumb_ld(name, path), og_type="article",
                 disclaimer="본 설명은 참고용이며 금융·세무·법률 자문이 아닙니다. 법령은 개정될 수 있습니다.")
 
@@ -264,6 +264,6 @@ def glossary_index():
       <p class="hero-body">{len(TERMS)}개 용어를 뜻, 왜 중요한지, 어디서 확인하는지 순서로 설명하고 관련 계산기로 연결합니다. 법령은 바뀔 수 있으니 기준일을 확인하세요.</p>
     </section>
     <div class="alpha-index">{idx}</div>{"".join(cats[:3])}{INLINE_AD}{"".join(cats[3:])}'''
-    ld = jsonld({"@context": "https://schema.org", "@type": "DefinedTermSet", "name": "집계산기 부동산 용어 사전", "url": BASE + f, "inLanguage": "ko-KR",
+    ld = jsonld({"@context": "https://schema.org", "@type": "DefinedTermSet", "name": "전국부동산계산기 부동산 용어 사전", "url": BASE + f, "inLanguage": "ko-KR",
                  "hasDefinedTerm": [{"@type": "DefinedTerm", "name": n, "url": BASE + term_path(s)} for (s, n, _c, _o, _p, _r) in TERMS]})
     return page(title, desc, f, main, extra_head=ld + breadcrumb_ld(name, f))
