@@ -128,7 +128,7 @@ def area_page():
           <p class="result-note" id="out-area-both"></p>
         </section>'''
     main = hero("Area · Unit", "평수 변환기", "평과 제곱미터를 바꾸고 평당 가격을 계산", "평을 제곱미터로, 제곱미터를 평으로 바꿉니다. 총액과 면적을 넣으면 평당·㎡당 가격이 나옵니다. 전용면적과 공급면적이 왜 다른지도 아래에 정리했습니다.") + layout(left, right) + INLINE_AD + guide + faq_section(faq) + related("area.html")
-    head_extra = app_ld("평수 변환기", TOOLS[10][3], "area.html") + faq_ld(faq) + breadcrumb_ld("평수 변환", "area.html")
+    head_extra = app_ld("평수 변환기", desc_of("area.html"), "area.html") + faq_ld(faq) + breadcrumb_ld("평수 변환", "area.html")
     return main, head_extra
 
 # ============================================================ 전월세 전환율
@@ -176,7 +176,7 @@ def conversion_page():
           <p class="result-note" id="out-diff"></p>
         </section>'''
     main = hero("Rent · Conversion", "전월세 전환율 계산기", "법정 전환율로 전세와 월세를 서로 바꿔보기", "한국은행 기준금리에 2%포인트를 더한 법정 전환율로 전세를 월세로, 월세를 전세로 환산합니다. 시장 전환율을 넣으면 두 기준을 나란히 비교할 수 있습니다. 계약 갱신 때 집주인이 제시한 월세가 상한을 넘는지 확인하는 용도입니다.") + layout(left, right) + INLINE_AD + guide + faq_section(faq) + related("conversion.html")
-    return main, app_ld("전월세 전환율 계산기", TOOLS[1][3], "conversion.html") + faq_ld(faq) + breadcrumb_ld("전월세 전환율", "conversion.html")
+    return main, app_ld("전월세 전환율 계산기", desc_of("conversion.html"), "conversion.html") + faq_ld(faq) + breadcrumb_ld("전월세 전환율", "conversion.html")
 
 # ============================================================ 청약 가점
 def subscription_page():
@@ -233,7 +233,7 @@ def subscription_page():
             </tbody></table></div>
         </section>'''
     main = hero("Subscription · Score", "청약 가점 계산기", "무주택기간·부양가족·통장기간으로 84점 만점 계산", "생년월일, 혼인 여부, 부양가족 수, 청약통장 가입일을 넣으면 가점을 계산합니다. 참고용이며 실제 청약에서는 청약홈이 산정한 점수를 써야 합니다. 잘못 넣어 당첨되면 취소될 수 있습니다.") + layout(left, right) + INLINE_AD + guide + faq_section(faq) + related("subscription.html")
-    return main, app_ld("청약 가점 계산기", TOOLS[9][3], "subscription.html") + faq_ld(faq) + breadcrumb_ld("청약 가점", "subscription.html")
+    return main, app_ld("청약 가점 계산기", desc_of("subscription.html"), "subscription.html") + faq_ld(faq) + breadcrumb_ld("청약 가점", "subscription.html")
 
 # ============================================================ 월세 세액공제
 def rent_tax_credit_page():
@@ -273,7 +273,7 @@ def rent_tax_credit_page():
           <p class="result-note">종합소득금액 7,000만원 초과자는 총급여와 무관하게 대상이 아닙니다.</p>
         </section>'''
     main = hero("Tax · Credit", "월세 세액공제 계산기", "연말정산에서 돌려받는 월세 세액공제액 추정", "총급여와 월세를 넣으면 공제율과 연 1,000만원 한도를 적용해 세액공제액을 계산합니다. 요건 세 가지를 확인 항목으로 두었습니다. 실제 환급액은 산출세액 범위 안에서 정해지므로 결과는 상한으로 보세요.") + layout(left, right) + INLINE_AD + guide + faq_section(faq) + related("rent-tax-credit.html")
-    return main, app_ld("월세 세액공제 계산기", TOOLS[2][3], "rent-tax-credit.html") + faq_ld(faq) + breadcrumb_ld("월세 세액공제", "rent-tax-credit.html")
+    return main, app_ld("월세 세액공제 계산기", desc_of("rent-tax-credit.html"), "rent-tax-credit.html") + faq_ld(faq) + breadcrumb_ld("월세 세액공제", "rent-tax-credit.html")
 
 # ============================================================ DSR·LTV
 def dsr_page():
@@ -316,7 +316,7 @@ def dsr_page():
           </ul>
         </section>'''
     main = hero("Loan · Limit", "DSR·LTV 대출 한도 계산기", "연소득과 담보로 보는 주택담보대출 가능 금액", "연소득, 담보 시세, 기존 대출 상환액과 신규 대출 조건을 넣으면 LTV 한도와 DSR 한도를 각각 계산해 낮은 쪽을 예상 한도로 보여줍니다. 비율과 스트레스 가산폭은 규제에 따라 바뀌므로 직접 넣게 했습니다.") + layout(left, right) + INLINE_AD + guide + faq_section(faq) + related("dsr.html")
-    return main, app_ld("DSR·LTV 대출 한도 계산기", TOOLS[5][3], "dsr.html") + faq_ld(faq) + breadcrumb_ld("DSR·LTV 한도", "dsr.html")
+    return main, app_ld("DSR·LTV 대출 한도 계산기", desc_of("dsr.html"), "dsr.html") + faq_ld(faq) + breadcrumb_ld("DSR·LTV 한도", "dsr.html")
 
 # ============================================================ 중도상환수수료
 def prepayment_page():
@@ -347,7 +347,7 @@ def prepayment_page():
           <p class="result-note">수수료 = 상환금액 × 수수료율 × (잔여일수 ÷ 부과 기간 일수)</p>
         </section>'''
     main = hero("Loan · Prepayment", "중도상환수수료 계산기", "잔여일수 비율로 계산한 수수료와 면제일", "상환금액, 수수료율, 대출 실행일과 상환 예정일을 넣으면 남은 기간 비율로 중도상환수수료를 계산하고 수수료가 사라지는 면제일을 알려줍니다. 약정서의 수수료율과 부과 기간을 그대로 넣으세요.") + layout(left, right) + INLINE_AD + guide + faq_section(faq) + related("prepayment.html")
-    return main, app_ld("중도상환수수료 계산기", TOOLS[6][3], "prepayment.html") + faq_ld(faq) + breadcrumb_ld("중도상환수수료", "prepayment.html")
+    return main, app_ld("중도상환수수료 계산기", desc_of("prepayment.html"), "prepayment.html") + faq_ld(faq) + breadcrumb_ld("중도상환수수료", "prepayment.html")
 
 # ============================================================ 취득세
 def acquisition_tax_page():
@@ -407,7 +407,7 @@ def acquisition_tax_page():
             </tbody></table></div>
         </section>'''
     main = hero("Tax · Acquisition", "취득세 계산기", "취득세·지방교육세·농어촌특별세 참고용 추정", "취득가액과 주택 수, 조정대상지역 여부, 전용면적을 넣으면 취득세와 함께 붙는 지방교육세, 농어촌특별세를 합한 예상 세금을 계산합니다. 세율은 개정될 수 있고 주택 수 판정은 개인 상황에 따라 달라 결과는 참고용입니다. 실제 신고는 위택스 화면과 세무사 확인을 기준으로 하세요.") + layout(left, right) + INLINE_AD + guide + faq_section(faq) + related("acquisition-tax.html")
-    return main, app_ld("취득세 계산기", TOOLS[7][3], "acquisition-tax.html") + faq_ld(faq) + breadcrumb_ld("취득세", "acquisition-tax.html")
+    return main, app_ld("취득세 계산기", desc_of("acquisition-tax.html"), "acquisition-tax.html") + faq_ld(faq) + breadcrumb_ld("취득세", "acquisition-tax.html")
 
 NEW_PAGES = {
     "area.html": (area_page, "js/area.js", "㎡ 환산"),

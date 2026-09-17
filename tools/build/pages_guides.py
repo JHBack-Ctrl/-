@@ -149,7 +149,7 @@ def home():
         out = []
         for (f, n, _t, _d, _c, d) in tools_by_cat(cat):
             if f == "guides.html": continue
-            tag = ' <span class="tag">인기</span>' if f in ("rent.html", "loan.html", "area.html", "subscription.html") else ""
+            tag = ' <span class="tag">인기</span>' if f in ("rent.html", "loan.html", "area.html", "subscription.html", "capital-gains-tax.html") else ""
             out.append(f'<a class="tool-card{" featured" if f == featured else ""}" href="{f}"><p class="t">{n}{tag}</p><p class="d">{d}</p></a>')
         return "".join(out)
     sections = "".join(f'''
@@ -162,7 +162,7 @@ def home():
       <p class="eyebrow">Real Estate · Calculators</p>
       <h1>집계산기</h1>
       <p class="hero-sub">월세 실부담부터 취득세까지, 부동산 숫자를 같은 기준으로</p>
-      <p class="hero-body">관리비와 보증금 기회비용을 더한 진짜 월세, 상환 방식별 대출 이자, 청약 가점, 취득세까지 11개 계산기를 모았습니다. 회원가입이 없고 입력값을 서버로 보내지 않으며 모든 계산은 브라우저 안에서 끝납니다.</p>
+      <p class="hero-body">관리비와 보증금 기회비용을 더한 진짜 월세, 상환 방식별 대출 이자, 청약 가점, 취득세와 양도세까지 12개 계산기를 모았습니다. 회원가입이 없고 입력값을 서버로 보내지 않으며 모든 계산은 브라우저 안에서 끝납니다.</p>
     </section>{sections}
     <section class="hub-cat" aria-labelledby="cat-ref">
       <h2 id="cat-ref">참고</h2>

@@ -3,6 +3,8 @@ import os, re, json, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from site_core import *
 from pages_new import NEW_PAGES
+from pages_cgt import CGT_PAGES
+NEW_PAGES.update(CGT_PAGES)
 from pages_guides import guide_repayment, guide_brokerage, guide_conversion, guide_jeonse_vs_monthly, guides_index, home
 
 os.chdir(ROOT)
@@ -64,9 +66,9 @@ write("manifest.json", json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
 
 ALL_HTML = [t[0] for t in TOOLS] + [r[0] for r in REFS] + [g[0] for g in GUIDES] + [d[0] for d in DOCS] + ["index.html", "404.html"]
 assets = ["css/site.css", "js/common.js", "js/analytics.js", "favicon.svg", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "manifest.json"] + \
-         [f"js/{n}.js" for n in ["rent", "loan", "yield", "fee", "area", "conversion", "subscription", "rent-tax-credit", "dsr", "prepayment", "acquisition-tax"]]
+         [f"js/{n}.js" for n in ["rent", "loan", "yield", "fee", "area", "conversion", "subscription", "rent-tax-credit", "dsr", "prepayment", "acquisition-tax", "capital-gains-tax"]]
 sw = """/* 집계산기 서비스 워커: 정적 자산은 캐시 우선, HTML은 네트워크 우선(오프라인 시 캐시) */
-var VERSION = 'jipcalc-v3';
+var VERSION = 'jipcalc-v4';
 var ASSETS = %s;
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(ASSETS.map(function (a) { return new Request(a, { cache: 'reload' }); })).catch(function () {}); }).then(function () { return self.skipWaiting(); }));
