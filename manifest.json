@@ -1,6 +1,6 @@
 {
-  "name": "집계산기",
-  "short_name": "집계산기",
+  "name": "전국부동산계산기",
+  "short_name": "전국부동산계산기",
   "description": "월세 실부담부터 양도세, 연봉 실수령액까지 계산기 모음",
   "start_url": "./",
   "scope": "./",
