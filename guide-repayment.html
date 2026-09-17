@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>원리금균등과 원금균등 차이 — 어떤 상환 방식을 골라야 하나</title>
+  <meta name="description" content="원리금균등, 원금균등, 만기일시 상환 방식의 차이를 숫자로 비교합니다. 총 이자와 월 부담이 어떻게 달라지는지, 어떤 상황에 어떤 방식이 맞는지 설명합니다.">
+  <meta name="theme-color" content="#f6f4ee">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="canonical" href="https://jhback-ctrl.github.io/-/guide-repayment.html">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="집계산기">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="원리금균등과 원금균등 차이 — 어떤 상환 방식을 골라야 하나">
+  <meta property="og:description" content="원리금균등, 원금균등, 만기일시 상환 방식의 차이를 숫자로 비교합니다. 총 이자와 월 부담이 어떻게 달라지는지, 어떤 상황에 어떤 방식이 맞는지 설명합니다.">
+  <meta property="og:url" content="https://jhback-ctrl.github.io/-/guide-repayment.html">
+  <meta property="og:image" content="https://jhback-ctrl.github.io/-/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="원리금균등과 원금균등 차이 — 어떤 상환 방식을 골라야 하나">
+  <meta name="twitter:description" content="원리금균등, 원금균등, 만기일시 상환 방식의 차이를 숫자로 비교합니다. 총 이자와 월 부담이 어떻게 달라지는지, 어떤 상황에 어떤 방식이 맞는지 설명합니다.">
+  <meta name="twitter:image" content="https://jhback-ctrl.github.io/-/og.png">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "원리금균등과 원금균등 차이 — 어떤 상환 방식을 골라야 하나",
+  "description": "원리금균등, 원금균등, 만기일시 상환 방식의 차이를 숫자로 비교합니다. 총 이자와 월 부담이 어떻게 달라지는지, 어떤 상황에 어떤 방식이 맞는지 설명합니다.",
+  "url": "https://jhback-ctrl.github.io/-/guide-repayment.html",
+  "datePublished": "2026-09-17",
+  "dateModified": "2026-09-17",
+  "inLanguage": "ko-KR",
+  "author": {
+    "@type": "Organization",
+    "name": "집계산기"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "집계산기",
+    "url": "https://jhback-ctrl.github.io/-/"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "집계산기",
+      "item": "https://jhback-ctrl.github.io/-/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "원리금균등과 원금균등, 무엇이 다른가",
+      "item": "https://jhback-ctrl.github.io/-/guide-repayment.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-row">
+        <a class="brand" href="./" aria-label="집계산기 홈"><span class="brand-mark" aria-hidden="true"></span>집계산기</a>
+        <div class="header-actions">
+          <button type="button" id="theme-toggle" class="icon-btn" aria-pressed="false" aria-label="어두운 화면으로 전환"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+          <button type="button" id="menu-toggle" class="icon-btn" aria-expanded="false" aria-controls="menu-panel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>전체 계산기</button>
+        </div>
+      </div>
+      <nav aria-label="빠른 메뉴">
+        <ul class="tool-nav"><li><a href="index.html">홈</a></li><li><a href="rent.html">월세</a></li><li><a href="loan.html">대출이자</a></li><li><a href="acquisition-tax.html">취득세</a></li><li><a href="area.html">평수</a></li><li><a href="subscription.html">청약</a></li><li><a href="guides.html">안내 글</a></li></ul>
+      </nav>
+    </div>
+      <div id="menu-panel" class="menu-panel" hidden>
+        <div class="container">
+          <div class="menu-groups">
+            <div class="menu-group"><h3>임대</h3><ul><li><a href="rent.html">월세 실부담<small>관리비와 보증금 기회비용까지 더한 진짜 월 지출</small></a></li><li><a href="conversion.html">전월세 전환율<small>법정 전환율로 전세를 월세로, 월세를 전세로</small></a></li><li><a href="rent-tax-credit.html">월세 세액공제<small>연말정산에서 돌려받는 월세 세액공제액</small></a></li><li><a href="fee.html">중개보수<small>법정 상한 요율 기준 예상 최대 중개보수</small></a></li></ul></div><div class="menu-group"><h3>대출</h3><ul><li><a href="loan.html">대출이자<small>상환 방식별 월 상환액과 회차별 상환표</small></a></li><li><a href="dsr.html">DSR·LTV 한도<small>연소득과 담보로 보는 대출 가능 금액</small></a></li><li><a href="prepayment.html">중도상환수수료<small>잔여일수 비율로 계산한 수수료와 면제일</small></a></li></ul></div><div class="menu-group"><h3>매매·투자</h3><ul><li><a href="acquisition-tax.html">취득세<small>취득세·지방교육세·농특세 참고용 추정</small></a></li><li><a href="yield.html">상가 수익률<small>공실과 대출을 반영한 총투자·자기자본 수익률</small></a></li><li><a href="subscription.html">청약 가점<small>무주택기간·부양가족·통장기간 84점 만점</small></a></li><li><a href="area.html">평수 변환<small>평 ↔ ㎡ 변환과 평당 가격</small></a></li></ul></div><div class="menu-group"><h3>참고</h3><ul><li><a href="checklist.html">양도·취득 체크리스트<small>계약 전후 확인 항목과 준비 서류</small></a></li><li><a href="policy.html">세제·정책 참고<small>세금별 확인 포인트와 공식 기관 링크</small></a></li><li><a href="guides.html">안내 글<small>개념 설명과 계산 방법</small></a></li></ul></div>
+          </div>
+          <ul class="footer-links" style="margin:14px 0 0"><li><a href="about.html">사이트 소개</a></li><li><a href="privacy.html">개인정보처리방침</a></li><li><a href="terms.html">이용약관</a></li></ul>
+        </div>
+      </div>
+  </header>
+
+<div class="page-shell">
+  <aside class="rail" aria-label="광고">
+    <div class="card slot">
+      <span class="slot-label">광고</span>
+      <div class="ad-placeholder">애드센스 세로 슬롯 자리<br>(플레이스홀더)</div>
+    </div>
+  </aside>
+  <main id="main" class="container">
+    <article class="article">
+      <section class="hero">
+        <p class="eyebrow">Guide</p>
+        <h1>원리금균등과 원금균등, 무엇이 다른가</h1>
+        <p class="lead">같은 돈을 빌려도 상환 방식에 따라 매달 내는 돈과 총 이자가 달라집니다. 세 방식을 숫자로 놓고 비교합니다.</p>
+        <p class="meta">집계산기 · 2026.09.17 · 참고용 설명이며 금융·세무·법률 자문이 아닙니다</p>
+      </section>
+      <section class="card">
+        <div class="prose">
+<p>대출을 받을 때 은행이 묻는 첫 질문 중 하나가 상환 방식입니다. 원리금균등, 원금균등, 만기일시 세 가지가 있고, 같은 금액을 같은 금리로 빌려도 매달 내는 돈과 총 이자가 달라집니다. 숫자로 놓고 비교하면 차이가 분명해집니다.</p>
+<h2>같은 조건, 세 가지 결과</h2>
+<p>1억원을 연 4.5%로 10년간 빌린다고 해봅시다.</p>
+<div class="table-wrap"><table class="tbl"><thead><tr><th scope="col">방식</th><th scope="col">첫 달</th><th scope="col">마지막 달</th><th scope="col">총 이자</th></tr></thead><tbody><tr><th scope="row">원리금균등</th><td>1,036,384원</td><td>1,036,384원</td><td>약 2,437만원</td></tr><tr><th scope="row">원금균등</th><td>1,208,333원</td><td>836,458원</td><td>약 2,269만원</td></tr><tr><th scope="row">만기일시</th><td>375,000원</td><td>100,375,000원</td><td>4,500만원</td></tr></tbody></table></div>
+<p>총 이자만 보면 원금균등이 가장 적고 만기일시가 가장 많습니다. 하지만 첫 달 부담은 정반대입니다. 이 표 하나가 세 방식의 성격을 다 보여줍니다.</p>
+<h2>원리금균등: 매달 같은 금액</h2>
+<p>원금과 이자를 합한 총액이 매달 같습니다. 초반에는 그 안에서 이자 비중이 크고, 갚아갈수록 원금 비중이 커집니다. 매달 나가는 돈이 일정해 생활비 계획을 세우기 쉽고, 급여 생활자가 가장 많이 고르는 방식입니다.</p>
+<p>단점은 초반에 원금이 천천히 줄어 총 이자가 원금균등보다 많다는 점입니다. 위 예시에서는 약 170만원 차이입니다.</p>
+<h2>원금균등: 처음이 무겁고 갈수록 가벼움</h2>
+<p>매달 갚는 원금이 같습니다. 이자는 남은 원금에 붙으니 매달 조금씩 줄어들어 총 납부액도 매달 줄어듭니다. 원금이 빨리 줄어 총 이자가 가장 적습니다.</p>
+<p>첫 달 부담이 원리금균등보다 크다는 점이 부담입니다. 소득이 앞으로 늘어날 사람보다는, 지금 여유가 있고 총 비용을 줄이고 싶은 사람에게 맞습니다.</p>
+<h2>만기일시: 이자만 내다 한 번에</h2>
+<p>기간 내내 이자만 내고 만기에 원금을 한 번에 갚습니다. 매달 부담이 가장 가볍지만 원금이 전혀 줄지 않아 총 이자가 가장 많습니다. 전세자금대출처럼 만기에 목돈이 돌아오는 상황에 쓰는 방식입니다.</p>
+<p>일반 주택담보대출이나 신용대출을 이 방식으로 받으면 만기에 원금을 마련하지 못해 다시 대출을 받는 상황이 생기기 쉽습니다.</p>
+<h2>어떻게 고르나</h2>
+<ul><li>매달 지출을 일정하게 유지하는 것이 중요하면 <strong>원리금균등</strong></li><li>초반 부담을 감당할 수 있고 총 이자를 줄이고 싶으면 <strong>원금균등</strong></li><li>만기에 목돈이 들어오는 것이 확실하면 <strong>만기일시</strong></li></ul>
+<p>총 이자 숫자 하나로 정하지 마세요. 원금균등으로 아낀 이자보다 초반에 묶인 현금의 가치가 더 클 수도 있습니다. 반대로 매달 여유가 있는데 원리금균등을 고르면 이자를 더 내는 셈입니다.</p>
+<h2>거치기간이 있을 때</h2>
+<p>거치기간은 원금 상환을 미루고 이자만 내는 기간입니다. 당장 부담은 줄지만 그 기간만큼 원금이 안 줄어 이후 상환액이 커지고 총 이자도 늘어납니다. 거치를 넣을 때는 거치가 끝난 뒤의 월 상환액을 반드시 확인하세요.</p>
+        </div>
+        <div class="cta-box"><p>내 조건으로 세 방식을 바로 비교해 보세요.</p><a class="btn btn-primary" href="loan.html">대출이자 계산기 열기</a></div>
+      </section>
+    <aside class="card slot inline" aria-label="광고">
+      <span class="slot-label">광고</span>
+      <div class="ad-placeholder">애드센스 본문 슬롯 자리 (플레이스홀더)</div>
+    </aside>
+      <section class="card related" aria-labelledby="rel-title">
+        <h2 id="rel-title">이 글과 함께 쓰는 계산기</h2>
+        <div class="tool-grid"><a class="tool-card" href="rent.html"><p class="t">월세 실부담</p><p class="d">관리비와 보증금 기회비용까지 더한 진짜 월 지출</p></a><a class="tool-card" href="loan.html"><p class="t">대출이자</p><p class="d">상환 방식별 월 상환액과 회차별 상환표</p></a><a class="tool-card" href="dsr.html"><p class="t">DSR·LTV 한도</p><p class="d">연소득과 담보로 보는 대출 가능 금액</p></a><a class="tool-card" href="prepayment.html"><p class="t">중도상환수수료</p><p class="d">잔여일수 비율로 계산한 수수료와 면제일</p></a></div>
+      </section>
+      <p class="hint" style="margin-top:14px"><a href="guides.html">← 안내 글 목록</a></p>
+    </article>
+  </main>
+  <aside class="rail" aria-label="광고">
+    <div class="card slot">
+      <span class="slot-label">광고</span>
+      <div class="ad-placeholder">애드센스 세로 슬롯 자리<br>(플레이스홀더)</div>
+    </div>
+  </aside>
+</div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="menu-groups" style="margin-bottom:18px"><div class="menu-group"><h3>임대</h3><ul><li><a href="rent.html">월세 실부담</a></li><li><a href="conversion.html">전월세 전환율</a></li><li><a href="rent-tax-credit.html">월세 세액공제</a></li><li><a href="fee.html">중개보수</a></li></ul></div><div class="menu-group"><h3>대출</h3><ul><li><a href="loan.html">대출이자</a></li><li><a href="dsr.html">DSR·LTV 한도</a></li><li><a href="prepayment.html">중도상환수수료</a></li></ul></div><div class="menu-group"><h3>매매·투자</h3><ul><li><a href="acquisition-tax.html">취득세</a></li><li><a href="yield.html">상가 수익률</a></li><li><a href="subscription.html">청약 가점</a></li><li><a href="area.html">평수 변환</a></li></ul></div><div class="menu-group"><h3>참고</h3><ul><li><a href="checklist.html">양도·취득 체크리스트</a></li><li><a href="policy.html">세제·정책 참고</a></li><li><a href="guides.html">안내 글</a></li></ul></div></div>
+      <ul class="footer-links"><li><a href="about.html">사이트 소개</a></li><li><a href="privacy.html">개인정보처리방침</a></li><li><a href="terms.html">이용약관</a></li></ul>
+      <p class="disclaimer">본 계산기는 참고용이며 금융·세무·법률 자문이 아닙니다.</p>
+      <p class="privacy">입력값은 서버로 전송되거나 저장되지 않습니다. 최근 계산 기억 기능을 켜면 이 기기 브라우저에만 저장됩니다.</p>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="js/common.js"></script>
+  <script src="js/analytics.js"></script>
+</body>
+</html>

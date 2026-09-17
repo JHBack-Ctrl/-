@@ -1,0 +1,20 @@
+/* 집계산기 서비스 워커: 정적 자산은 캐시 우선, HTML은 네트워크 우선(오프라인 시 캐시) */
+var VERSION = 'jipcalc-v3';
+var ASSETS = ["css/site.css", "js/common.js", "js/analytics.js", "favicon.svg", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "manifest.json", "js/rent.js", "js/loan.js", "js/yield.js", "js/fee.js", "js/area.js", "js/conversion.js", "js/subscription.js", "js/rent-tax-credit.js", "js/dsr.js", "js/prepayment.js", "js/acquisition-tax.js", "rent.html", "conversion.html", "rent-tax-credit.html", "fee.html", "loan.html", "dsr.html", "prepayment.html", "acquisition-tax.html", "yield.html", "subscription.html", "area.html", "checklist.html", "policy.html", "guides.html", "guide-repayment.html", "guide-brokerage.html", "guide-conversion.html", "guide-jeonse-vs-monthly.html", "about.html", "privacy.html", "terms.html", "index.html", "404.html"];
+self.addEventListener('install', function (e) {
+  e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(ASSETS.map(function (a) { return new Request(a, { cache: 'reload' }); })).catch(function () {}); }).then(function () { return self.skipWaiting(); }));
+});
+self.addEventListener('activate', function (e) {
+  e.waitUntil(caches.keys().then(function (keys) { return Promise.all(keys.filter(function (k) { return k !== VERSION; }).map(function (k) { return caches.delete(k); })); }).then(function () { return self.clients.claim(); }));
+});
+self.addEventListener('fetch', function (e) {
+  var req = e.request;
+  if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
+  var isHTML = req.mode === 'navigate' || (req.headers.get('accept') || '').indexOf('text/html') !== -1;
+  if (isHTML) {
+    e.respondWith(fetch(req).then(function (res) { var copy = res.clone(); caches.open(VERSION).then(function (c) { c.put(req, copy); }); return res; })
+      .catch(function () { return caches.match(req).then(function (r) { return r || caches.match('404.html'); }); }));
+  } else {
+    e.respondWith(caches.match(req).then(function (r) { return r || fetch(req).then(function (res) { var copy = res.clone(); caches.open(VERSION).then(function (c) { c.put(req, copy); }); return res; }); }));
+  }
+});

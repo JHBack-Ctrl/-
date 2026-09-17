@@ -3,29 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>세제·정책 참고 — 공식 확인처 모음</title>
-  <meta name="description" content="부동산 세금과 정책을 확인할 때 참고할 공식 기관과 확인 포인트 모음. 세율이나 법령을 해석하지 않으며 어디서 무엇을 확인해야 하는지 안내합니다.">
+  <title>전세 vs 월세 비교 — 보증금 기회비용으로 같은 기준 만들기</title>
+  <meta name="description" content="전세와 월세를 같은 기준으로 비교하려면 보증금 기회비용을 넣어야 합니다. 계산 순서와 흔한 착각, 금액 외에 봐야 할 것을 정리합니다.">
   <meta name="theme-color" content="#f6f4ee">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="css/site.css">
-  <link rel="canonical" href="https://jhback-ctrl.github.io/-/policy.html">
+  <link rel="canonical" href="https://jhback-ctrl.github.io/-/guide-jeonse-vs-monthly.html">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
   <meta property="og:site_name" content="집계산기">
   <meta property="og:locale" content="ko_KR">
-  <meta property="og:title" content="세제·정책 참고 — 공식 확인처 모음">
-  <meta property="og:description" content="부동산 세금과 정책을 확인할 때 참고할 공식 기관과 확인 포인트 모음. 세율이나 법령을 해석하지 않으며 어디서 무엇을 확인해야 하는지 안내합니다.">
-  <meta property="og:url" content="https://jhback-ctrl.github.io/-/policy.html">
+  <meta property="og:title" content="전세 vs 월세 비교 — 보증금 기회비용으로 같은 기준 만들기">
+  <meta property="og:description" content="전세와 월세를 같은 기준으로 비교하려면 보증금 기회비용을 넣어야 합니다. 계산 순서와 흔한 착각, 금액 외에 봐야 할 것을 정리합니다.">
+  <meta property="og:url" content="https://jhback-ctrl.github.io/-/guide-jeonse-vs-monthly.html">
   <meta property="og:image" content="https://jhback-ctrl.github.io/-/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="세제·정책 참고 — 공식 확인처 모음">
-  <meta name="twitter:description" content="부동산 세금과 정책을 확인할 때 참고할 공식 기관과 확인 포인트 모음. 세율이나 법령을 해석하지 않으며 어디서 무엇을 확인해야 하는지 안내합니다.">
+  <meta name="twitter:title" content="전세 vs 월세 비교 — 보증금 기회비용으로 같은 기준 만들기">
+  <meta name="twitter:description" content="전세와 월세를 같은 기준으로 비교하려면 보증금 기회비용을 넣어야 합니다. 계산 순서와 흔한 착각, 금액 외에 봐야 할 것을 정리합니다.">
   <meta name="twitter:image" content="https://jhback-ctrl.github.io/-/og.png">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "전세 vs 월세 비교 — 보증금 기회비용으로 같은 기준 만들기",
+  "description": "전세와 월세를 같은 기준으로 비교하려면 보증금 기회비용을 넣어야 합니다. 계산 순서와 흔한 착각, 금액 외에 봐야 할 것을 정리합니다.",
+  "url": "https://jhback-ctrl.github.io/-/guide-jeonse-vs-monthly.html",
+  "datePublished": "2026-09-17",
+  "dateModified": "2026-09-17",
+  "inLanguage": "ko-KR",
+  "author": {
+    "@type": "Organization",
+    "name": "집계산기"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "집계산기",
+    "url": "https://jhback-ctrl.github.io/-/"
+  }
+}
+  </script>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -40,8 +61,8 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "세제·정책 참고",
-      "item": "https://jhback-ctrl.github.io/-/policy.html"
+      "name": "전세와 월세, 숫자로 비교하는 법",
+      "item": "https://jhback-ctrl.github.io/-/guide-jeonse-vs-monthly.html"
     }
   ]
 }
@@ -81,87 +102,41 @@
     </div>
   </aside>
   <main id="main" class="container">
-    <section class="hero">
-      <p class="eyebrow">Reference</p>
-      <h1>세제·정책 참고</h1>
-      <p class="hero-sub">어디서 무엇을 확인해야 하는지 모아둔 페이지</p>
-      <p class="hero-body">
-        세율, 공제, 규제는 자주 바뀝니다. 이 페이지는 숫자를 제시하지 않고, 항목별로 확인할 포인트와 공식 확인처만 정리합니다.
-        최종 판단은 공식 기관 안내와 전문가 상담을 기준으로 하세요.
-      </p>
-    </section>
-
-    <div class="layout">
-      <div>
-        <section class="card">
-          <h2>세금별 확인 포인트</h2>
-          <ul class="ref-list">
-            <li>
-              <p class="t">취득세</p>
-              <p class="d">주택 수, 조정대상지역 여부, 취득가액, 생애최초·신혼 등 감면 대상 여부, 신고·납부 기한.</p>
-              <a href="https://www.wetax.go.kr" target="_blank" rel="noopener">위택스 (지방세 신고·납부) ↗</a>
-            </li>
-            <li>
-              <p class="t">양도소득세</p>
-              <p class="d">보유·거주 기간, 세대 주택 수, 1세대 1주택 비과세 요건, 장기보유특별공제, 필요경비 증빙, 예정신고 기한.</p>
-              <a href="https://www.hometax.go.kr" target="_blank" rel="noopener">국세청 홈택스 (모의계산·신고) ↗</a>
-            </li>
-            <li>
-              <p class="t">재산세·종합부동산세</p>
-              <p class="d">과세기준일(매년 6월 1일) 기준 소유자, 공시가격, 공정시장가액비율, 합산 대상.</p>
-              <a href="https://www.realtyprice.kr" target="_blank" rel="noopener">부동산 공시가격 알리미 ↗</a>
-            </li>
-            <li>
-              <p class="t">임대소득세</p>
-              <p class="d">주택 수와 임대수입 규모에 따른 과세 여부, 분리과세·종합과세 선택, 사업자등록 의무.</p>
-              <a href="https://www.hometax.go.kr" target="_blank" rel="noopener">국세청 홈택스 ↗</a>
-            </li>
-            <li>
-              <p class="t">부가가치세 (상가)</p>
-              <p class="d">상가 매매·임대 시 건물분 부가세, 포괄양수도 요건, 일반·간이 과세 유형.</p>
-              <a href="https://www.nts.go.kr" target="_blank" rel="noopener">국세청 ↗</a>
-            </li>
-          </ul>
-        </section>
-
-        <section class="card">
-          <h2>정책·규제 확인처</h2>
-          <ul class="ref-list">
-            <li><p class="t">조정대상지역·규제지역 지정 현황</p><p class="d">대출 한도, 취득세·양도세 중과 여부에 영향. 지정·해제가 수시로 바뀜.</p><a href="https://www.molit.go.kr" target="_blank" rel="noopener">국토교통부 ↗</a></li>
-            <li><p class="t">실거래가</p><p class="d">매매·전월세 신고 내역. 시세 비교와 신고가액 확인.</p><a href="https://rt.molit.go.kr" target="_blank" rel="noopener">실거래가 공개시스템 ↗</a></li>
-            <li><p class="t">법령 원문</p><p class="d">소득세법, 지방세법, 공인중개사법 시행규칙(중개보수 요율표) 등 현행 조문.</p><a href="https://www.law.go.kr" target="_blank" rel="noopener">국가법령정보센터 ↗</a></li>
-            <li><p class="t">등기·대장 열람</p><p class="d">등기사항증명서는 인터넷등기소, 건축물대장·토지대장은 정부24.</p><a href="https://www.iros.go.kr" target="_blank" rel="noopener">인터넷등기소 ↗</a> · <a href="https://www.gov.kr" target="_blank" rel="noopener">정부24 ↗</a></li>
-            <li><p class="t">임대차 분쟁·상담</p><p class="d">계약갱신, 보증금 반환, 수선 의무 등 분쟁 조정.</p><a href="https://www.hldcc.or.kr" target="_blank" rel="noopener">주택임대차분쟁조정위원회 ↗</a></li>
-          </ul>
-        </section>
-      </div>
-
-      <div class="col-sticky">
-        <section class="card">
-          <h2>이 사이트의 계산기</h2>
-          <ul class="ref-list">
-            <li><p class="t"><a href="index.html">월세 실부담</a></p><p class="d">관리비·보증금 기회비용을 더한 진짜 월 지출과 전월세 환산.</p></li>
-            <li><p class="t"><a href="loan.html">대출이자</a></p><p class="d">원리금균등·원금균등·만기일시 월 상환액과 상환표.</p></li>
-            <li><p class="t"><a href="yield.html">상가 수익률</a></p><p class="d">공실·대출을 반영한 총투자·자기자본 수익률.</p></li>
-            <li><p class="t"><a href="fee.html">중개보수</a></p><p class="d">법정 상한 요율 기준 예상 최대 중개보수.</p></li>
-            <li><p class="t"><a href="checklist.html">양도·취득 체크리스트</a></p><p class="d">확인 항목과 준비 서류.</p></li>
-          </ul>
-        </section>
-
-        <section class="card">
-          <div class="callout">이 페이지의 링크는 공식 기관 안내로 연결되며, 사이트 구조 변경으로 주소가 바뀔 수 있습니다. 세율·기한·요건의 최종 확인은 해당 기관과 전문가에게 하세요.</div>
-        </section>
-
-        <aside class="card slot" aria-label="광고">
-          <span class="slot-label">광고</span>
-          <div class="ad-placeholder">애드센스 슬롯 자리 (플레이스홀더)</div>
-        </aside>
-      </div>
-    </div>
-  
-  
-  
-  
+    <article class="article">
+      <section class="hero">
+        <p class="eyebrow">Guide</p>
+        <h1>전세와 월세, 숫자로 비교하는 법</h1>
+        <p class="lead">보증금 기회비용을 넣으면 전세와 월세를 같은 저울에 올릴 수 있습니다. 계산 순서와 흔한 착각을 정리합니다.</p>
+        <p class="meta">집계산기 · 2026.09.17 · 참고용 설명이며 금융·세무·법률 자문이 아닙니다</p>
+      </section>
+      <section class="card">
+        <div class="prose">
+<p>전세는 보증금이 크고 월세가 없습니다. 월세는 보증금이 작고 매달 돈이 나갑니다. 겉으로 보이는 숫자가 달라 그대로는 비교가 안 됩니다. 같은 기준으로 바꾸는 방법이 있습니다.</p>
+<h2>보증금도 비용이다</h2>
+<p>보증금은 돌려받는 돈이라 비용이 아니라고 생각하기 쉽습니다. 하지만 그 돈이 묶여 있는 동안 얻을 수 있었던 이자를 포기한 것입니다. 이것을 기회비용이라고 합니다. 보증금 2억을 예금하면 연 3%로 600만원, 월 50만원을 받을 수 있는데 이걸 포기한 셈입니다.</p>
+<p>보증금을 대출로 마련했다면 더 분명합니다. 실제로 이자를 내니까요. 이때는 대출금리가 기회비용입니다.</p>
+<h2>계산 순서</h2>
+<ol><li>전세 조건: 보증금 × 연금리 ÷ 12 = 월 기회비용. 여기에 관리비를 더합니다.</li><li>월세 조건: 월세 + 관리비 + (보증금 × 연금리 ÷ 12).</li><li>두 값을 나란히 놓습니다.</li></ol>
+<p>전세 2억(3%)은 월 50만원 + 관리비, 보증금 2천만 월세 60만원은 월 60만 + 5만 + 관리비입니다. 관리비가 같다면 전세가 월 15만원 적습니다. 대출로 보증금을 마련해 금리가 5%라면 전세는 월 83만원이 되어 순서가 바뀝니다.</p>
+<h2>흔한 착각</h2>
+<ul><li><strong>전세는 공짜다.</strong> 기회비용을 빼먹은 계산입니다.</li><li><strong>보증금을 올리면 무조건 이득이다.</strong> 전환율이 내 기회비용보다 높을 때만 그렇습니다.</li><li><strong>월세는 버리는 돈이다.</strong> 전세 이자도 똑같이 사라지는 돈입니다. 다만 월세는 눈에 보이고 이자는 안 보일 뿐입니다.</li></ul>
+<h2>숫자 밖의 것들</h2>
+<p>계산이 비슷하게 나오면 다음이 결정적입니다.</p>
+<ul><li><strong>보증금 회수 위험.</strong> 전세는 보증금이 크니 돌려받지 못할 때 손실이 큽니다. 등기부등본, 선순위 채권, 보증보험 가입 가능 여부를 확인하세요.</li><li><strong>목돈이 묶이는 부담.</strong> 그 돈으로 할 수 있는 다른 일이 있는지.</li><li><strong>이사 계획.</strong> 2년 안에 옮길 생각이면 큰 보증금을 맡기는 것이 번거롭습니다.</li><li><strong>세액공제.</strong> 월세는 요건이 맞으면 연말정산 세액공제를 받을 수 있어 실부담이 줄어듭니다.</li></ul>
+<p>계산기는 어느 쪽이 유리한지 판정하지 않습니다. 같은 기준의 숫자를 보여줄 뿐이고, 위 항목까지 넣어 판단하는 것은 본인의 몫입니다.</p>
+        </div>
+        <div class="cta-box"><p>두 조건을 넣고 월 부담을 나란히 비교해 보세요.</p><a class="btn btn-primary" href="rent.html">월세 실부담 계산기 열기</a></div>
+      </section>
+    <aside class="card slot inline" aria-label="광고">
+      <span class="slot-label">광고</span>
+      <div class="ad-placeholder">애드센스 본문 슬롯 자리 (플레이스홀더)</div>
+    </aside>
+      <section class="card related" aria-labelledby="rel-title">
+        <h2 id="rel-title">이 글과 함께 쓰는 계산기</h2>
+        <div class="tool-grid"><a class="tool-card" href="rent.html"><p class="t">월세 실부담</p><p class="d">관리비와 보증금 기회비용까지 더한 진짜 월 지출</p></a><a class="tool-card" href="conversion.html"><p class="t">전월세 전환율</p><p class="d">법정 전환율로 전세를 월세로, 월세를 전세로</p></a><a class="tool-card" href="rent-tax-credit.html"><p class="t">월세 세액공제</p><p class="d">연말정산에서 돌려받는 월세 세액공제액</p></a><a class="tool-card" href="loan.html"><p class="t">대출이자</p><p class="d">상환 방식별 월 상환액과 회차별 상환표</p></a></div>
+      </section>
+      <p class="hint" style="margin-top:14px"><a href="guides.html">← 안내 글 목록</a></p>
+    </article>
   </main>
   <aside class="rail" aria-label="광고">
     <div class="card slot">
@@ -175,7 +150,7 @@
     <div class="container">
       <div class="menu-groups" style="margin-bottom:18px"><div class="menu-group"><h3>임대</h3><ul><li><a href="rent.html">월세 실부담</a></li><li><a href="conversion.html">전월세 전환율</a></li><li><a href="rent-tax-credit.html">월세 세액공제</a></li><li><a href="fee.html">중개보수</a></li></ul></div><div class="menu-group"><h3>대출</h3><ul><li><a href="loan.html">대출이자</a></li><li><a href="dsr.html">DSR·LTV 한도</a></li><li><a href="prepayment.html">중도상환수수료</a></li></ul></div><div class="menu-group"><h3>매매·투자</h3><ul><li><a href="acquisition-tax.html">취득세</a></li><li><a href="yield.html">상가 수익률</a></li><li><a href="subscription.html">청약 가점</a></li><li><a href="area.html">평수 변환</a></li></ul></div><div class="menu-group"><h3>참고</h3><ul><li><a href="checklist.html">양도·취득 체크리스트</a></li><li><a href="policy.html">세제·정책 참고</a></li><li><a href="guides.html">안내 글</a></li></ul></div></div>
       <ul class="footer-links"><li><a href="about.html">사이트 소개</a></li><li><a href="privacy.html">개인정보처리방침</a></li><li><a href="terms.html">이용약관</a></li></ul>
-      <p class="disclaimer">본 페이지는 참고용이며 금융·세무·법률 자문이 아닙니다.</p>
+      <p class="disclaimer">본 계산기는 참고용이며 금융·세무·법률 자문이 아닙니다.</p>
       <p class="privacy">입력값은 서버로 전송되거나 저장되지 않습니다. 최근 계산 기억 기능을 켜면 이 기기 브라우저에만 저장됩니다.</p>
     </div>
   </footer>
