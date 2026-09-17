@@ -44,6 +44,56 @@ TOOLS = [
     ("area.html", "평수 변환", "평수 변환기 — 평 ㎡ 변환과 평당 가격",
      "평수 변환기. 평을 제곱미터로, 제곱미터를 평으로 바꾸고 총액과 면적으로 평당·㎡당 가격을 계산합니다. 전용면적과 공급면적 차이도 설명합니다.",
      "매매·투자", "평 ↔ ㎡ 변환과 평당 가격"),
+    # ---- 2차 추가 ----
+    ("renewal.html", "계약 갱신 청구권", "계약 갱신 청구권 계산기 — 갱신 요구 기간과 임대료 5% 상한",
+     "계약 갱신 청구권 계산기. 계약 시작일과 기간을 넣으면 만기와 갱신 요구 가능 기간(만기 6~2개월 전), 오늘 기준 남은 날짜가 나옵니다. 보증금·월세 5% 인상 상한과 전환 시 환산보증금 기준 상한도 계산합니다.",
+     "임대", "갱신 요구 기간 D-day와 5% 인상 상한"),
+    ("jeonse-insurance.html", "전세보증보험 자가진단", "전세보증보험 가입 가능 여부 자가진단 — 보증금 한도·담보인정비율 90%",
+     "전세보증금 반환보증 가입 자가진단. 지역별 보증금 한도, 담보인정비율 90%, 선순위채권 60%, 계약기간과 신청 시기, 전입신고·확정일자 등 HUG 요건을 입력값과 비교해 가능 보증금 상한과 미충족 항목을 보여줍니다.",
+     "임대", "HUG 요건별 판정과 가능 보증금 상한"),
+    ("jeonse-fraud-check.html", "전세 사기 위험 체크", "전세 사기 위험 신호 체크 — 전세가율과 10가지 위험 신호",
+     "전세 사기 위험 신호 체크. 시세와 보증금으로 전세가율을 계산하고 근저당, 신탁, 동시진행, 시세 이하 조건, 다가구 선순위 미확인 등 위험 신호를 점수로 합산해 계약 전 참고 위험도를 보여줍니다.",
+     "임대", "전세가율과 위험 신호 점수로 계약 전 점검"),
+    ("moving.html", "이사 체크리스트", "이사 체크리스트 · D-day 계산기 — 한 달 전부터 이사 후 30일까지",
+     "이사 체크리스트. 이사 날짜를 넣으면 한 달 전, 2주 전, 1주 전, 전날, 당일, 이사 후 14일·30일 할 일이 날짜별로 나오고 체크하면 진행률이 보입니다. 전입신고 14일, 자동차 변경등록 30일 기한 포함.",
+     "임대", "이사일 기준 단계별 할 일과 법정 기한"),
+    ("rate-compare.html", "고정 vs 변동금리", "고정금리 vs 변동금리 비교 계산기 — 총 이자와 손익분기 변동폭",
+     "고정금리 vs 변동금리 비교 계산기. 대출금·기간·두 금리와 변동금리 연간 변동폭을 넣으면 총 이자와 월 상환액 변화를 비교하고, 변동금리가 매년 얼마나 올라야 고정이 유리해지는지 손익분기점을 계산합니다.",
+     "대출", "금리가 얼마나 올라야 고정이 유리한지"),
+    ("buy-vs-rent.html", "매매 vs 전세", "매매 vs 전세 총비용 비교 계산기 — 보유기간 기준 손익분기 상승률",
+     "매매 vs 전세 총비용 비교 계산기. 대출이자, 자기자본 기회비용, 취득세, 중개보수, 보유세, 가격 변동을 넣어 보유기간 동안의 총비용을 비교하고 집값이 매년 몇 % 올라야 매매가 유리한지 손익분기 상승률을 계산합니다.",
+     "매매·투자", "보유기간 총비용과 손익분기 집값 상승률"),
+    ("tax-calendar.html", "세금 달력", "부동산 세금 달력 · 신고 납부 기한 계산기 — 취득세 60일, 양도세 예정신고, 재산세, 종부세",
+     "부동산 세금 달력. 잔금일을 넣으면 취득세 60일, 소유권이전등기 60일, 양도세 예정신고 기한이 나오고 보유 항목을 켜면 재산세 7·9월, 종합부동산세 12월, 임대소득 신고 일정이 오늘 기준 D-day와 함께 정렬됩니다.",
+     "매매·투자", "취득·양도·보유 세금 기한을 D-day로"),
+    ("salary.html", "연봉 실수령액", "연봉 실수령액 계산기 — 4대보험·소득세 뺀 월 실수령액과 연봉별 표",
+     "연봉 실수령액 계산기. 연봉과 부양가족, 비과세 수당을 넣으면 국민연금·건강보험·장기요양·고용보험과 소득세·지방소득세를 뺀 월 실수령액을 추정하고 연봉 2,400만~2억 실수령액 표를 보여줍니다. 요율은 기준일과 함께 상수로 관리합니다.",
+     "생활", "4대보험·세금 뺀 월 실수령액"),
+    ("severance.html", "퇴직금", "퇴직금 계산기 — 평균임금 기준 법정 퇴직금과 퇴직소득세",
+     "퇴직금 계산기. 입사일·퇴직일과 월 임금, 상여금, 연차수당을 넣으면 1일 평균임금과 법정 퇴직금, 근속연수공제와 환산급여공제를 반영한 예상 퇴직소득세와 세후 수령액을 계산합니다.",
+     "생활", "평균임금 × 30일 × 재직일수 ÷ 365와 세금"),
+]
+# 표·자료 페이지 (파일, 짧은 이름, 제목, description, 한 줄 설명)
+TABLES = [
+    ("table-acquisition-tax.html", "취득세율표", "취득세율표 2026 — 주택 수·조정대상지역·면적별 취득세, 지방교육세, 농특세",
+     "2026년 기준 취득세율표. 1주택 1~3%, 조정대상지역 2주택 8%, 3주택 이상 12%, 주택 외 4%, 상속·증여·원시취득 세율과 지방교육세·농어촌특별세, 생애최초 감면을 한 표로 정리했습니다.", "주택 수·지역·면적별 세율 한 표"),
+    ("table-capital-gains-tax.html", "양도세율표", "양도소득세율표 2026 — 누진세율, 단기 보유, 다주택 중과, 장기보유특별공제",
+     "2026년 기준 양도소득세율표. 과세표준 8구간 누진세율과 누진공제, 주택·분양권·토지 단기 보유 세율, 조정대상지역 다주택 중과와 유예, 장기보유특별공제 표1·표2, 기본공제와 비과세 기준을 정리했습니다.", "누진세율·단기·중과·장특공제 한 표"),
+    ("table-brokerage-fee.html", "중개보수 요율표", "부동산 중개보수 요율표 — 주택 매매·임대차, 오피스텔, 상가 상한 요율과 한도액",
+     "부동산 중개보수(복비) 요율표. 주택 매매와 임대차의 거래금액 구간별 상한 요율과 한도액, 주거용 오피스텔, 상가·토지 협의 상한, 월세 거래금액 환산 방법을 정리했습니다.", "거래금액 구간별 상한 요율과 한도액"),
+    ("table-subscription-points.html", "청약 가점표", "청약 가점표 — 무주택기간 32점, 부양가족 35점, 청약통장 가입기간 17점",
+     "주택청약 가점표. 무주택기간 1년 미만 2점부터 15년 이상 32점, 부양가족 0명 5점부터 6명 이상 35점, 청약통장 가입기간 6개월 미만 1점부터 15년 이상 17점까지 84점 만점 배점표입니다.", "84점 만점 배점표"),
+    ("base-rate-history.html", "기준금리 변동 이력", "한국은행 기준금리 변동 이력 — 2008년부터 현재까지 결정일과 금리",
+     "한국은행 기준금리 변동 이력표. 2008년 금융위기 이후 인하, 2021~2023년 인상, 2024년 이후 인하까지 결정일별 금리와 변동폭을 정리하고 전월세 전환율과의 관계를 설명합니다.", "결정일별 금리와 변동폭"),
+]
+# 서식 페이지
+FORMS = [
+    ("form-rent-receipt.html", "월세 영수증 양식", "월세 영수증 양식 — 브라우저에서 작성하고 인쇄",
+     "월세 영수증 양식. 임대인·임차인·주소·금액·해당 월을 입력하면 영수증이 완성되고 바로 인쇄할 수 있습니다. 월세 세액공제와 현금영수증 안내 포함. 입력값은 저장하지 않습니다.", "입력하면 완성되는 영수증, 바로 인쇄"),
+    ("form-notice.html", "통지문 예시", "계약 갱신 요구·계약 종료 통지·보증금 반환 요청 문구 예시 — 문자·내용증명",
+     "임대차 계약 갱신 요구, 계약 종료(갱신 거절) 통지, 보증금 반환 요청 내용증명 문구 예시. 복사해서 문자나 내용증명에 쓸 수 있고 보내는 시점과 방법을 설명합니다.", "갱신 요구·종료 통지·반환 요청 문구"),
+    ("form-special-terms.html", "특약 문구 모음", "임대차·매매 계약서 특약 문구 모음 — 전세 보증금 보호, 월세, 매매",
+     "전세·월세·매매 계약서에 넣을 특약 문구 모음. 근저당 말소 조건, 보증보험 가입 조건부 계약, 잔금 전 권리변동 금지, 원상복구 범위, 하자 처리 등 상황별 문구를 복사해 쓸 수 있습니다.", "상황별 특약 문구 복사"),
 ]
 REFS = [
     ("checklist.html", "양도·취득 체크리스트", "양도·취득 체크리스트 — 확인 항목과 서류",
@@ -66,7 +116,9 @@ GUIDES = [
 DOCS = [
     ("about.html", "사이트 소개"), ("privacy.html", "개인정보처리방침"), ("terms.html", "이용약관"),
 ]
-CATS = ["임대", "대출", "매매·투자", "참고"]
+CATS = ["임대", "대출", "매매·투자", "생활", "참고"]
+GLOSSARY_INDEX = ("glossary.html", "부동산 용어 사전", "부동산 용어 사전 — 계약·등기·세금·대출 용어 쉬운 설명",
+                  "부동산 용어 사전. 근저당권, 확정일자, 대항력, 우선변제권, 전세가율, 조정대상지역, 장기보유특별공제, DSR, LTV 등 계약·등기·세금·대출 용어를 한 페이지에 하나씩 쉽게 설명하고 관련 계산기로 연결합니다.")
 
 def desc_of(path):
     return [t for t in TOOLS if t[0] == path][0][3]
@@ -74,17 +126,26 @@ def desc_of(path):
 def tools_by_cat(cat):
     return [t for t in TOOLS + REFS if t[4] == cat]
 
+def extra_groups():
+    """메뉴·푸터에 붙는 표·자료, 서식·용어 묶음"""
+    tables = [(f, n, "", "", "표·자료", d) for (f, n, _t, _d, d) in TABLES]
+    forms = [(f, n, "", "", "서식·용어", d) for (f, n, _t, _d, d) in FORMS] + [(GLOSSARY_INDEX[0], GLOSSARY_INDEX[1], "", "", "서식·용어", "계약·등기·세금·대출 용어 설명")]
+    return [("표·자료", tables), ("서식·용어", forms)]
+
 # ---------------- 공통 조각 ----------------
 ICON_SUN = '<svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>'
 ICON_MOON = '<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>'
 ICON_MENU = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>'
 
-QUICK_NAV = [("index.html", "홈"), ("rent.html", "월세"), ("loan.html", "대출이자"), ("acquisition-tax.html", "취득세"), ("capital-gains-tax.html", "양도세"), ("area.html", "평수"), ("subscription.html", "청약"), ("guides.html", "안내 글")]
+QUICK_NAV = [("index.html", "홈"), ("rent.html", "월세"), ("loan.html", "대출이자"), ("acquisition-tax.html", "취득세"), ("capital-gains-tax.html", "양도세"), ("salary.html", "연봉"), ("renewal.html", "갱신 청구권"), ("subscription.html", "청약"), ("area.html", "평수"), ("glossary.html", "용어 사전"), ("guides.html", "안내 글")]
 
 def menu_panel():
     groups = []
     for cat in CATS:
         items = "".join(f'<li><a href="{f}">{name}<small>{desc}</small></a></li>' for (f, name, _t, _d, _c, desc) in tools_by_cat(cat))
+        groups.append(f'<div class="menu-group"><h3>{cat}</h3><ul>{items}</ul></div>')
+    for cat, lst in extra_groups():
+        items = "".join(f'<li><a href="{f}">{name}<small>{desc}</small></a></li>' for (f, name, _t, _d, _c, desc) in lst)
         groups.append(f'<div class="menu-group"><h3>{cat}</h3><ul>{items}</ul></div>')
     docs = "".join(f'<li><a href="{f}">{n}</a></li>' for f, n in DOCS)
     return f'''      <div id="menu-panel" class="menu-panel" hidden>
@@ -126,6 +187,9 @@ def footer(disclaimer="본 계산기는 참고용이며 금융·세무·법률 �
     cols = []
     for cat in CATS:
         items = "".join(f'<li><a href="{f}">{n}</a></li>' for (f, n, *_r) in tools_by_cat(cat))
+        cols.append(f'<div class="menu-group"><h3>{cat}</h3><ul>{items}</ul></div>')
+    for cat, lst in extra_groups():
+        items = "".join(f'<li><a href="{f}">{n}</a></li>' for (f, n, *_r) in lst)
         cols.append(f'<div class="menu-group"><h3>{cat}</h3><ul>{items}</ul></div>')
     docs = "".join(f'<li><a href="{f}">{n}</a></li>' for f, n in DOCS)
     return f'''  <footer class="site-footer">
@@ -254,7 +318,10 @@ REMEMBER_TOGGLE = '''            <div class="field" style="margin-top:14px">
 '''
 
 def related(cur):
-    items = [t for t in TOOLS if t[0] != cur][:4]
+    me = [t for t in TOOLS if t[0] == cur]
+    same = [t for t in TOOLS if t[0] != cur and me and t[4] == me[0][4]]
+    others = [t for t in TOOLS if t[0] != cur and t not in same]
+    items = (same + others)[:4]
     cards = "".join(f'<a class="tool-card" href="{f}"><p class="t">{n}</p><p class="d">{d}</p></a>' for (f, n, _t, _d, _c, d) in items)
     return f'''
     <section class="card related" aria-labelledby="rel-title">

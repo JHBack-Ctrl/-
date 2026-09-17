@@ -156,14 +156,26 @@ def home():
     <section class="hub-cat" aria-labelledby="cat-{i}">
       <h2 id="cat-{i}">{cat}</h2>
       <div class="tool-grid">{cards(cat, "rent.html" if cat == "임대" else None)}</div>
-    </section>''' for i, cat in enumerate(CATS[:3]))
+    </section>''' for i, cat in enumerate(CATS[:4]))
     guide_cards = "".join(f'<a class="tool-card" href="{f}"><p class="t">{n}</p><p class="d">{d}</p></a>' for (f, n, _t, d) in GUIDES)
+    table_cards = "".join(f'<a class="tool-card" href="{f}"><p class="t">{n}</p><p class="d">{d}</p></a>' for (f, n, _t, _d, d) in TABLES)
+    form_cards = "".join(f'<a class="tool-card" href="{f}"><p class="t">{n}</p><p class="d">{d}</p></a>' for (f, n, _t, _d, d) in FORMS)
+    n_tools = len(TOOLS)
     main = f'''    <section class="hero hub-hero">
       <p class="eyebrow">Real Estate · Calculators</p>
       <h1>집계산기</h1>
-      <p class="hero-sub">월세 실부담부터 취득세까지, 부동산 숫자를 같은 기준으로</p>
-      <p class="hero-body">관리비와 보증금 기회비용을 더한 진짜 월세, 상환 방식별 대출 이자, 청약 가점, 취득세와 양도세까지 12개 계산기를 모았습니다. 회원가입이 없고 입력값을 서버로 보내지 않으며 모든 계산은 브라우저 안에서 끝납니다.</p>
+      <p class="hero-sub">월세 실부담부터 양도세, 연봉 실수령액까지, 집과 돈의 숫자를 같은 기준으로</p>
+      <p class="hero-body">관리비와 보증금 기회비용을 더한 진짜 월세, 상환 방식별 대출 이자, 계약 갱신 기간, 취득세와 양도세, 연봉 실수령액까지 {n_tools}개 계산기와 세율표·용어 사전·계약 서식을 모았습니다. 회원가입이 없고 입력값을 서버로 보내지 않으며 모든 계산은 브라우저 안에서 끝납니다.</p>
     </section>{sections}
+    <section class="hub-cat" aria-labelledby="cat-table">
+      <h2 id="cat-table">표·자료</h2>
+      <p class="hub-sub">계산기에 들어 있는 세율표와 요율표를 표 하나로. 기준일이 붙어 있습니다.</p>
+      <div class="tool-grid">{table_cards}</div>
+    </section>
+    <section class="hub-cat" aria-labelledby="cat-form">
+      <h2 id="cat-form">서식 · 용어</h2>
+      <div class="tool-grid">{form_cards}<a class="tool-card featured" href="glossary.html"><p class="t">부동산 용어 사전</p><p class="d">대항력, 확정일자, 근저당, DSR… 한 페이지에 하나씩</p></a></div>
+    </section>
     <section class="hub-cat" aria-labelledby="cat-ref">
       <h2 id="cat-ref">참고</h2>
       <div class="tool-grid">
@@ -194,6 +206,6 @@ def home():
     # 예전 공유 링크(index.html?r=…)는 월세 계산기로 넘김
     redirect = '''  <script>(function(){var q=location.search;if(/[?&](r|m|d|rent|deposit)=/.test(q)){location.replace('rent.html'+q);}})();</script>
 '''
-    return page("집계산기 — 월세 실부담부터 취득세까지 부동산 계산기 모음",
-                "월세 실부담, 대출이자, DSR·LTV 한도, 취득세, 청약 가점, 평수 변환, 중개보수 등 부동산 계산기 11개. 회원가입 없이 브라우저에서만 계산하며 입력값을 저장하지 않습니다.",
+    return page("집계산기 — 월세 실부담부터 양도세, 연봉 실수령액까지 계산기 모음",
+                f"월세 실부담, 계약 갱신 청구권, 대출이자, DSR·LTV 한도, 취득세, 양도소득세, 청약 가점, 연봉 실수령액, 퇴직금 등 계산기 {n_tools}개와 세율표, 부동산 용어 사전, 계약 서식. 회원가입 없이 브라우저에서만 계산하며 입력값을 저장하지 않습니다.",
                 "index.html", main, extra_head=ld + redirect)
