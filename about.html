@@ -106,8 +106,21 @@
 
       <h2>문의</h2>
       <p>오류 신고, 계산기 추가 요청, 제휴 문의는 아래로 보내주세요.</p>
-      <p><strong>이메일:</strong> <span class="muted">(운영자 이메일 주소를 여기에 넣으세요)</span></p>
+      <p><strong>이메일:</strong>
+        <a id="contact-mail" href="#">메일 주소 보기</a>
+        <noscript>100lab.studio [골뱅이] gmail.com</noscript>
+      </p>
       <p class="muted">문의 내용은 답변 목적으로만 사용하며 별도로 보관하지 않습니다.</p>
+      <script>
+        /* 스팸 수집 봇이 소스에서 주소를 통째로 긁어가지 못하도록 뒤집어 두고 화면에서 조립한다 */
+        (function () {
+          var a = document.getElementById('contact-mail');
+          if (!a) return;
+          var mail = 'moc.liamg@oiduts.bal001'.split('').reverse().join('');
+          a.href = 'mailto:' + mail;
+          a.textContent = mail;
+        })();
+      </script>
 
       <h2>관련 문서</h2>
       <ul>
@@ -120,6 +133,7 @@
       <span class="slot-label">광고</span>
       <div class="ad-placeholder">애드센스 슬롯 자리 (플레이스홀더)</div>
     </aside>
+  
   
   
   
