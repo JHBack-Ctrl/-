@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jhback-ctrl.github.io/-/sitemap.xml

@@ -17,6 +17,16 @@
 | `checklist.html` | 양도·취득 체크리스트 — 확인 항목과 준비 서류 (세액 계산 없음) |
 | `policy.html` | 세제·정책 참고 — 공식 확인처 링크 모음 (세율 제시 없음) |
 
+## 검색엔진 파일
+
+- `sitemap.xml` — 6개 페이지의 절대 주소 목록. 배포 주소가 바뀌면 `loc` 값을 함께 수정해야 합니다
+- `robots.txt` — 전체 허용과 sitemap 위치 안내
+
+주의: GitHub Pages 프로젝트 페이지(`user.github.io/repo/`)에서는 크롤러가 호스트 최상위인
+`https://jhback-ctrl.github.io/robots.txt`만 읽습니다. 이 저장소의 `robots.txt`는 하위 경로에 있어
+그대로는 적용되지 않습니다. 커스텀 도메인을 연결하면 그때부터 정상 동작합니다.
+sitemap은 경로 제약이 없으므로 Google Search Console에 주소를 직접 제출하면 됩니다.
+
 ## 구조
 
 - `css/site.css` — 공통 스타일. 색·간격은 `:root` 변수로 관리하며 다크 모드 대응
