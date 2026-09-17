@@ -2,7 +2,7 @@
    GA4: GA_ID = 'G-XXXXXXXXXX'   /  네이버 애널리틱스: NAVER_ID = '발급받은 ID'
    ID를 넣으면 privacy.html 6번 항목을 실제 도입 내용으로 갱신할 것. */
 (function () {
-  var GA_ID = '';
+  var GA_ID = 'G-H6LHC9GYQH';
   var NAVER_ID = '';
   if (location.protocol === 'file:') return;
   if (GA_ID) {
