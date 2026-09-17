@@ -24,3 +24,7 @@
 입력이 바뀌면 즉시 재계산되며, "실부담 계산하기" 버튼은 재계산 후 결과로 스크롤합니다.
 
 본 계산기는 참고용이며 금융·세무·법률 자문이 아닙니다.
+
+## 배포 (GitHub Pages)
+
+`.github/workflows/pages.yml`이 `main`에 푸시될 때마다 GitHub Pages로 배포합니다. 처음 한 번은 저장소 **Settings → Pages**에서 Source를 `GitHub Actions`로 설정해야 합니다.
