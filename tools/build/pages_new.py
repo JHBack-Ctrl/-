@@ -386,9 +386,9 @@ def acquisition_tax_page():
           <h2>세금 내역</h2>
           <p class="hint" id="out-kind"></p>
           <table class="tbl"><tbody>
-            <tr><th scope="row">취득세 <span class="unit"><span id="out-tax-rate">0</span>%</span></th><td><span id="out-tax">0</span>원</td></tr>
-            <tr><th scope="row">지방교육세 <span class="unit"><span id="out-edu-rate">0</span>%</span></th><td><span id="out-edu">0</span>원</td></tr>
-            <tr><th scope="row">농어촌특별세 <span class="unit"><span id="out-rural-rate">0</span>%</span></th><td><span id="out-rural">0</span>원</td></tr>
+            <tr><th scope="row">취득세 <span class="unit"><span id="out-tax-rate">0</span>%</span></th><td><span id="out-tax-d">0</span>원</td></tr>
+            <tr><th scope="row">지방교육세 <span class="unit"><span id="out-edu-rate">0</span>%</span></th><td><span id="out-edu-d">0</span>원</td></tr>
+            <tr><th scope="row">농어촌특별세 <span class="unit"><span id="out-rural-rate">0</span>%</span></th><td><span id="out-rural-d">0</span>원</td></tr>
             <tr id="reduction-row" hidden><th scope="row">생애최초 감면</th><td>−<span id="out-reduction">0</span>원</td></tr>
           </tbody></table>
           <p class="result-note"><span id="rate-date"></span>. 참고용 추정이며 실제 세액은 위택스 신고 화면과 세무사 확인이 기준입니다.</p>

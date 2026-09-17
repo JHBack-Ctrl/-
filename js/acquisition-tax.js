@@ -51,7 +51,8 @@
     $('house-fields').hidden = i.kind !== 'house';
     S.setText('out-total', S.fmtWon(r.total)); S.setText('sticky-monthly', S.fmtWon(r.total) + '원');
     S.setText('out-tax', S.fmtWon(r.tax)); S.setText('out-tax-rate', S.fmtRate(r.taxRate)); S.setText('out-edu', S.fmtWon(r.edu)); S.setText('out-edu-rate', S.fmtRate(r.eduRate));
-    S.setText('out-rural', S.fmtWon(r.rural)); S.setText('out-rural-rate', S.fmtRate(r.ruralRate)); S.setText('out-reduction', S.fmtWon(r.reduction)); S.setText('out-effective', S.fmtPct(r.effective));
+    S.setText('out-rural', S.fmtWon(r.rural)); S.setText('out-rural-rate', S.fmtRate(r.ruralRate));
+    S.setText('out-tax-d', S.fmtWon(r.tax)); S.setText('out-edu-d', S.fmtWon(r.edu)); S.setText('out-rural-d', S.fmtWon(r.rural)); S.setText('out-reduction', S.fmtWon(r.reduction)); S.setText('out-effective', S.fmtPct(r.effective));
     $('reduction-row').hidden = r.reduction <= 0;
     S.setText('out-kind', r.kind); S.setText('rate-date', RATE_DATE);
     var note = i.price > 0 ? '취득가액 ' + S.fmtKorean(i.price) + ', ' + r.kind + ' 기준 취득세율 ' + S.fmtRate(r.taxRate) + '%. 합계 실효세율 ' + S.fmtPct(r.effective) + '%.' : '취득가액을 입력하면 바로 계산됩니다.';

@@ -1,7 +1,7 @@
 {
   "name": "집계산기",
   "short_name": "집계산기",
-  "description": "월세 실부담부터 취득세까지 부동산 계산기 모음",
+  "description": "월세 실부담부터 양도세, 연봉 실수령액까지 계산기 모음",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

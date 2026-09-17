@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>전세보증보험 가입 가능 여부 자가진단 — 보증금 한도·담보인정비율 90%</title>
+  <meta name="description" content="전세보증금 반환보증 가입 자가진단. 지역별 보증금 한도, 담보인정비율 90%, 선순위채권 60%, 계약기간과 신청 시기, 전입신고·확정일자 등 HUG 요건을 입력값과 비교해 가능 보증금 상한과 미충족 항목을 보여줍니다.">
+  <meta name="theme-color" content="#f6f4ee">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="canonical" href="https://jhback-ctrl.github.io/-/jeonse-insurance.html">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="집계산기">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="전세보증보험 가입 가능 여부 자가진단 — 보증금 한도·담보인정비율 90%">
+  <meta property="og:description" content="전세보증금 반환보증 가입 자가진단. 지역별 보증금 한도, 담보인정비율 90%, 선순위채권 60%, 계약기간과 신청 시기, 전입신고·확정일자 등 HUG 요건을 입력값과 비교해 가능 보증금 상한과 미충족 항목을 보여줍니다.">
+  <meta property="og:url" content="https://jhback-ctrl.github.io/-/jeonse-insurance.html">
+  <meta property="og:image" content="https://jhback-ctrl.github.io/-/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="전세보증보험 가입 가능 여부 자가진단 — 보증금 한도·담보인정비율 90%">
+  <meta name="twitter:description" content="전세보증금 반환보증 가입 자가진단. 지역별 보증금 한도, 담보인정비율 90%, 선순위채권 60%, 계약기간과 신청 시기, 전입신고·확정일자 등 HUG 요건을 입력값과 비교해 가능 보증금 상한과 미충족 항목을 보여줍니다.">
+  <meta name="twitter:image" content="https://jhback-ctrl.github.io/-/og.png">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "전세보증보험 가입 가능 여부 자가진단",
+  "url": "https://jhback-ctrl.github.io/-/jeonse-insurance.html",
+  "description": "전세보증금 반환보증 가입 자가진단. 지역별 보증금 한도, 담보인정비율 90%, 선순위채권 60%, 계약기간과 신청 시기, 전입신고·확정일자 등 HUG 요건을 입력값과 비교해 가능 보증금 상한과 미충족 항목을 보여줍니다.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "inLanguage": "ko-KR",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "집계산기",
+    "url": "https://jhback-ctrl.github.io/-/"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "전세보증금 반환보증이 뭔가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "계약이 끝났는데 임대인이 보증금을 돌려주지 않으면 보증기관(HUG, SGI서울보증, HF)이 대신 돌려주고 임대인에게 청구하는 상품입니다. 보증료는 보증금의 연 0.1~0.15% 수준입니다. 가입은 임차인이 하며 임대인 동의는 필요 없습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "주택가격은 어떻게 정하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "아파트는 KB시세·부동산원 시세나 공시가격의 일정 비율(2024년부터 126%)을, 빌라·다가구는 공시가격 비율이나 감정평가액을 씁니다. 실제 심사에서 쓰는 가격이 시세보다 낮은 경우가 많으니 공시가격 기준으로도 넣어보세요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "선순위채권이 뭔가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "내 보증금보다 먼저 변제받는 권리입니다. 등기부 을구의 근저당 채권최고액, 다가구주택이면 나보다 먼저 들어온 세입자들의 보증금 합계가 여기 들어갑니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "언제 신청하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "신규 계약은 잔금·전입 후부터 계약기간의 절반이 지나기 전까지, 갱신 계약은 갱신 계약기간의 절반이 지나기 전까지입니다. 계약 전에 가입 가능 여부를 먼저 확인하고 안 되면 계약을 다시 생각하세요."
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "집계산기",
+      "item": "https://jhback-ctrl.github.io/-/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "전세보증보험 자가진단",
+      "item": "https://jhback-ctrl.github.io/-/jeonse-insurance.html"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="header-row">
+        <a class="brand" href="./" aria-label="집계산기 홈"><span class="brand-mark" aria-hidden="true"></span>집계산기</a>
+        <div class="header-actions">
+          <button type="button" id="theme-toggle" class="icon-btn" aria-pressed="false" aria-label="어두운 화면으로 전환"><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+          <button type="button" id="menu-toggle" class="icon-btn" aria-expanded="false" aria-controls="menu-panel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>전체 계산기</button>
+        </div>
+      </div>
+      <nav aria-label="빠른 메뉴">
+        <ul class="tool-nav"><li><a href="index.html">홈</a></li><li><a href="rent.html">월세</a></li><li><a href="loan.html">대출이자</a></li><li><a href="acquisition-tax.html">취득세</a></li><li><a href="capital-gains-tax.html">양도세</a></li><li><a href="salary.html">연봉</a></li><li><a href="subscription.html">청약</a></li><li><a href="guides.html">안내 글</a></li></ul>
+      </nav>
+    </div>
+      <div id="menu-panel" class="menu-panel" hidden>
+        <div class="container">
+          <div class="menu-groups">
+            <div class="menu-group"><h3>임대</h3><ul><li><a href="rent.html">월세 실부담<small>관리비와 보증금 기회비용까지 더한 진짜 월 지출</small></a></li><li><a href="conversion.html">전월세 전환율<small>법정 전환율로 전세를 월세로, 월세를 전세로</small></a></li><li><a href="rent-tax-credit.html">월세 세액공제<small>연말정산에서 돌려받는 월세 세액공제액</small></a></li><li><a href="fee.html">중개보수<small>법정 상한 요율 기준 예상 최대 중개보수</small></a></li><li><a href="renewal.html">계약 갱신 청구권<small>갱신 요구 기간 D-day와 5% 인상 상한</small></a></li><li><a href="jeonse-insurance.html">전세보증보험 자가진단<small>HUG 요건별 판정과 가능 보증금 상한</small></a></li><li><a href="jeonse-fraud-check.html">전세 사기 위험 체크<small>전세가율과 위험 신호 점수로 계약 전 점검</small></a></li><li><a href="moving.html">이사 체크리스트<small>이사일 기준 단계별 할 일과 법정 기한</small></a></li></ul></div><div class="menu-group"><h3>대출</h3><ul><li><a href="loan.html">대출이자<small>상환 방식별 월 상환액과 회차별 상환표</small></a></li><li><a href="dsr.html">DSR·LTV 한도<small>연소득과 담보로 보는 대출 가능 금액</small></a></li><li><a href="prepayment.html">중도상환수수료<small>잔여일수 비율로 계산한 수수료와 면제일</small></a></li><li><a href="rate-compare.html">고정 vs 변동금리<small>금리가 얼마나 올라야 고정이 유리한지</small></a></li></ul></div><div class="menu-group"><h3>매매·투자</h3><ul><li><a href="acquisition-tax.html">취득세<small>취득세·지방교육세·농특세 참고용 추정</small></a></li><li><a href="capital-gains-tax.html">양도소득세<small>비과세·장특공제·중과까지 반영한 참고용 추정</small></a></li><li><a href="yield.html">상가 수익률<small>공실과 대출을 반영한 총투자·자기자본 수익률</small></a></li><li><a href="subscription.html">청약 가점<small>무주택기간·부양가족·통장기간 84점 만점</small></a></li><li><a href="area.html">평수 변환<small>평 ↔ ㎡ 변환과 평당 가격</small></a></li><li><a href="buy-vs-rent.html">매매 vs 전세<small>보유기간 총비용과 손익분기 집값 상승률</small></a></li><li><a href="tax-calendar.html">세금 달력<small>취득·양도·보유 세금 기한을 D-day로</small></a></li></ul></div><div class="menu-group"><h3>생활</h3><ul><li><a href="salary.html">연봉 실수령액<small>4대보험·세금 뺀 월 실수령액</small></a></li><li><a href="severance.html">퇴직금<small>평균임금 × 30일 × 재직일수 ÷ 365와 세금</small></a></li></ul></div><div class="menu-group"><h3>참고</h3><ul><li><a href="checklist.html">양도·취득 체크리스트<small>계약 전후 확인 항목과 준비 서류</small></a></li><li><a href="policy.html">세제·정책 참고<small>세금별 확인 포인트와 공식 기관 링크</small></a></li><li><a href="guides.html">안내 글<small>개념 설명과 계산 방법</small></a></li></ul></div><div class="menu-group"><h3>표·자료</h3><ul><li><a href="table-acquisition-tax.html">취득세율표<small>주택 수·지역·면적별 세율 한 표</small></a></li><li><a href="table-capital-gains-tax.html">양도세율표<small>누진세율·단기·중과·장특공제 한 표</small></a></li><li><a href="table-brokerage-fee.html">중개보수 요율표<small>거래금액 구간별 상한 요율과 한도액</small></a></li><li><a href="table-subscription-points.html">청약 가점표<small>84점 만점 배점표</small></a></li><li><a href="base-rate-history.html">기준금리 변동 이력<small>결정일별 금리와 변동폭</small></a></li></ul></div><div class="menu-group"><h3>서식·용어</h3><ul><li><a href="form-rent-receipt.html">월세 영수증 양식<small>입력하면 완성되는 영수증, 바로 인쇄</small></a></li><li><a href="form-notice.html">통지문 예시<small>갱신 요구·종료 통지·반환 요청 문구</small></a></li><li><a href="form-special-terms.html">특약 문구 모음<small>상황별 특약 문구 복사</small></a></li><li><a href="glossary.html">부동산 용어 사전<small>계약·등기·세금·대출 용어 설명</small></a></li></ul></div>
+          </div>
+          <ul class="footer-links" style="margin:14px 0 0"><li><a href="about.html">사이트 소개</a></li><li><a href="privacy.html">개인정보처리방침</a></li><li><a href="terms.html">이용약관</a></li></ul>
+        </div>
+      </div>
+  </header>
+
+<div class="page-shell">
+  <aside class="rail" aria-label="광고">
+    <div class="card slot">
+      <span class="slot-label">광고</span>
+      <div class="ad-placeholder">애드센스 세로 슬롯 자리<br>(플레이스홀더)</div>
+    </div>
+  </aside>
+  <main id="main" class="container">
+    <section class="hero">
+      <p class="eyebrow">Deposit Guarantee</p>
+      <h1>전세보증보험 가입 가능 여부 자가진단</h1>
+      <p class="hero-sub">보증금 한도, 담보인정비율 90%, 선순위채권, 신청 시기를 한 번에</p>
+      <p class="hero-body">HUG 전세보증금반환보증의 주요 요건을 상수로 두고 입력값과 비교합니다. 가능 보증금 상한이 얼마인지, 어떤 요건이 걸리는지 계약 전에 확인하세요.</p>
+    </section>
+    <div class="layout">
+      <div>
+        <section id="calc" class="card" aria-labelledby="calc-title">
+          <div class="card-head">
+            <h2 id="calc-title">입력</h2>
+            <span class="muted" style="font-size:13px">입력 즉시 재계산</span>
+          </div>
+          <div class="chips" role="group" aria-label="예시 값 채우기"><button type="button" class="chip" data-preset="ok">가입 가능 예시</button><button type="button" class="chip" data-preset="risky">미충족 예시</button><button type="button" class="chip" data-preset="clear">지우기</button></div>
+          <form id="calc-form" novalidate>
+              <div class="field">
+                <label for="region">지역</label>
+                <select id="region"><option value="metro">수도권 (서울·경기·인천)</option><option value="other">그 외 지역</option></select>
+              </div>              <div class="field">
+                <label for="price">주택가격 (시세 또는 공시가격 × 인정비율)</label>
+                <div class="input-wrap"><input id="price" type="text" inputmode="numeric" autocomplete="off" placeholder="500,000,000" data-money><span class="suffix">원</span></div>
+                <p class="field-help">심사에 쓰는 가격은 시세보다 낮을 수 있습니다. 보수적으로 넣으세요</p>
+              </div>              <div class="field">
+                <label for="deposit">전세 보증금</label>
+                <div class="input-wrap"><input id="deposit" type="text" inputmode="numeric" autocomplete="off" placeholder="350,000,000" data-money><span class="suffix">원</span></div>
+              </div>              <div class="field">
+                <label for="senior">선순위 근저당 채권최고액</label>
+                <div class="input-wrap"><input id="senior" type="text" inputmode="numeric" autocomplete="off" placeholder="0" data-money><span class="suffix">원</span></div>
+                <p class="field-help">등기부 을구. 없으면 0</p>
+              </div>              <div class="field">
+                <label for="multi">다가구 선순위 보증금 합계</label>
+                <div class="input-wrap"><input id="multi" type="text" inputmode="numeric" autocomplete="off" placeholder="0" data-money><span class="suffix">원</span></div>
+                <p class="field-help">다가구·다중주택만. 아파트·빌라는 0</p>
+              </div>              <div class="field">
+                <label for="term">계약기간</label>
+                <div class="input-wrap"><input id="term" type="number" inputmode="decimal" step="1" min="0" value="24"><span class="suffix">개월</span></div>
+              </div>              <div class="field">
+                <label for="elapsed">계약 시작 후 경과</label>
+                <div class="input-wrap"><input id="elapsed" type="number" inputmode="decimal" step="1" min="0" value="0"><span class="suffix">개월</span></div>
+              </div>              <div class="field">
+                <label class="toggle"><input type="checkbox" id="registered"><span class="knob" aria-hidden="true"></span>전입신고·확정일자 완료 (또는 잔금일에 할 예정)</label>
+              </div>              <div class="field">
+                <label class="toggle"><input type="checkbox" id="broker"><span class="knob" aria-hidden="true"></span>공인중개사 날인 계약서</label>
+              </div>              <div class="field">
+                <label class="toggle"><input type="checkbox" id="seizure"><span class="knob" aria-hidden="true"></span>등기부에 압류·가압류·가처분·경매 있음</label>
+              </div>              <div class="field">
+                <label class="toggle"><input type="checkbox" id="owner"><span class="knob" aria-hidden="true"></span>임대인이 보증사고 이력·보증금지 대상</label>
+              </div>            <div class="field" style="margin-top:14px">
+              <label class="toggle"><input type="checkbox" id="remember-toggle"><span class="knob" aria-hidden="true"></span>최근 계산 기억하기</label>
+              <p class="field-help">이 기기의 브라우저에만 저장되며 서버로 보내지 않습니다. 끄면 저장한 값을 지웁니다.</p>
+            </div>
+            <button type="submit" class="btn btn-primary">가입 요건 확인</button>
+            <div class="btn-row">
+              <button type="button" id="native-share-btn" class="btn btn-ghost btn-sm"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 16V3M7 8l5-5 5 5"/></svg>공유하기</button>
+              <button type="button" id="share-btn" class="btn btn-ghost btn-sm">링크 복사</button>
+              <button type="button" id="image-btn" class="btn btn-ghost btn-sm"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>이미지 저장</button>
+            </div>
+          </form>
+        </section>
+      </div>
+      <div class="col-sticky">
+        <section id="result" class="card result-hero" aria-live="polite" aria-labelledby="result-title">
+          <h2 id="result-title" class="sr-only">계산 결과</h2>
+          <p class="result-kicker">가입 가능 여부 (참고)</p>
+          <p class="result-big"><span id="out-big">0</span><span class="won"></span></p>
+          <div class="stat-row"><div class="stat"><p class="k">가능 보증금 상한</p><p class="v"><span id="out-max">0</span><small>원</small></p></div><div class="stat"><p class="k">미충족</p><p class="v"><span id="out-fail">0</span><small>개</small></p></div><div class="stat"><p class="k">확인 필요</p><p class="v"><span id="out-warn">0</span><small>개</small></p></div></div>
+          <p class="result-note" id="out-note"></p>
+        </section>
+        <section class="card">
+          <h2>요건별 판정</h2>
+          <ul class="ref-list" id="judge-list"></ul>
+          <p class="result-note"><span id="rules-date"></span>. 참고용 자가진단이며 실제 가입 여부는 보증기관 심사로 정해집니다.</p>
+          <div class="cta-box"><p>정확한 가입 조건과 보증료는 보증기관에서 확인하세요.</p><a id="hug-link" class="btn btn-primary" href="https://www.khug.or.kr" target="_blank" rel="noopener">HUG 전세보증 안내 열기</a></div>
+        </section>
+        <aside class="card slot" aria-label="광고">
+          <span class="slot-label">광고</span>
+          <div class="ad-placeholder">애드센스 슬롯 자리 (플레이스홀더)</div>
+        </aside>
+      </div>
+    </div>
+    <aside class="card slot inline" aria-label="광고">
+      <span class="slot-label">광고</span>
+      <div class="ad-placeholder">애드센스 본문 슬롯 자리 (플레이스홀더)</div>
+    </aside>
+    <section class="card" aria-labelledby="guide-title">
+      <h2 id="guide-title">가입이 안 될 때</h2>
+      <div class="prose">
+<ul><li><strong>보증금이 한도를 넘음</strong> — 보증금을 낮추고 일부를 월세로 돌리는 방법이 있습니다. <a href='conversion.html'>전월세 전환율 계산기</a>로 월세를 확인하세요.</li><li><strong>선순위 근저당이 큼</strong> — 잔금일에 임대인이 대출을 상환·말소하는 조건을 특약으로 넣으세요. <a href='form-special-terms.html'>특약 문구 모음</a>에 예시가 있습니다.</li><li><strong>다가구 선순위 확인 불가</strong> — 임대인에게 확정일자 부여 현황과 전입세대 열람을 요청하세요. 거부하면 계약을 다시 생각할 신호입니다.</li></ul>
+<p>위험 신호를 종합적으로 보려면 <a href='jeonse-fraud-check.html'>전세 사기 위험 신호 체크</a>를 이용하세요.</p>
+      </div>
+    </section>
+    <section class="card" aria-labelledby="faq-title">
+      <h2 id="faq-title">자주 묻는 질문</h2>
+      <p class="hint">자주 나오는 질문을 모았습니다.</p>
+      <div class="faq">
+        <details>
+          <summary>전세보증금 반환보증이 뭔가요?</summary>
+          <div class="a">
+          <p>계약이 끝났는데 임대인이 보증금을 돌려주지 않으면 보증기관(HUG, SGI서울보증, HF)이 대신 돌려주고 임대인에게 청구하는 상품입니다. 보증료는 보증금의 연 0.1~0.15% 수준입니다.</p>
+          <p>가입은 임차인이 하며 임대인 동의는 필요 없습니다.</p>
+          </div>
+        </details>
+        <details>
+          <summary>주택가격은 어떻게 정하나요?</summary>
+          <div class="a">
+          <p>아파트는 KB시세·부동산원 시세나 공시가격의 일정 비율(2024년부터 126%)을, 빌라·다가구는 공시가격 비율이나 감정평가액을 씁니다. 실제 심사에서 쓰는 가격이 시세보다 낮은 경우가 많으니 공시가격 기준으로도 넣어보세요.</p>
+          </div>
+        </details>
+        <details>
+          <summary>선순위채권이 뭔가요?</summary>
+          <div class="a">
+          <p>내 보증금보다 먼저 변제받는 권리입니다. 등기부 을구의 근저당 채권최고액, 다가구주택이면 나보다 먼저 들어온 세입자들의 보증금 합계가 여기 들어갑니다.</p>
+          </div>
+        </details>
+        <details>
+          <summary>언제 신청하나요?</summary>
+          <div class="a">
+          <p>신규 계약은 잔금·전입 후부터 계약기간의 절반이 지나기 전까지, 갱신 계약은 갱신 계약기간의 절반이 지나기 전까지입니다. 계약 전에 가입 가능 여부를 먼저 확인하고 안 되면 계약을 다시 생각하세요.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+    <section class="card related" aria-labelledby="rel-title">
+      <h2 id="rel-title">함께 쓰는 계산기</h2>
+      <div class="tool-grid"><a class="tool-card" href="rent.html"><p class="t">월세 실부담</p><p class="d">관리비와 보증금 기회비용까지 더한 진짜 월 지출</p></a><a class="tool-card" href="conversion.html"><p class="t">전월세 전환율</p><p class="d">법정 전환율로 전세를 월세로, 월세를 전세로</p></a><a class="tool-card" href="rent-tax-credit.html"><p class="t">월세 세액공제</p><p class="d">연말정산에서 돌려받는 월세 세액공제액</p></a><a class="tool-card" href="fee.html"><p class="t">중개보수</p><p class="d">법정 상한 요율 기준 예상 최대 중개보수</p></a></div>
+    </section>
+  </main>
+  <aside class="rail" aria-label="광고">
+    <div class="card slot">
+      <span class="slot-label">광고</span>
+      <div class="ad-placeholder">애드센스 세로 슬롯 자리<br>(플레이스홀더)</div>
+    </div>
+  </aside>
+</div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="menu-groups" style="margin-bottom:14px"><div class="menu-group"><h3>임대</h3><ul><li><a href="rent.html">월세 실부담</a></li><li><a href="conversion.html">전월세 전환율</a></li><li><a href="rent-tax-credit.html">월세 세액공제</a></li><li><a href="fee.html">중개보수</a></li><li><a href="renewal.html">계약 갱신 청구권</a></li><li><a href="jeonse-insurance.html">전세보증보험 자가진단</a></li><li><a href="jeonse-fraud-check.html">전세 사기 위험 체크</a></li><li><a href="moving.html">이사 체크리스트</a></li></ul></div><div class="menu-group"><h3>대출</h3><ul><li><a href="loan.html">대출이자</a></li><li><a href="dsr.html">DSR·LTV 한도</a></li><li><a href="prepayment.html">중도상환수수료</a></li><li><a href="rate-compare.html">고정 vs 변동금리</a></li></ul></div><div class="menu-group"><h3>매매·투자</h3><ul><li><a href="acquisition-tax.html">취득세</a></li><li><a href="capital-gains-tax.html">양도소득세</a></li><li><a href="yield.html">상가 수익률</a></li><li><a href="subscription.html">청약 가점</a></li><li><a href="area.html">평수 변환</a></li><li><a href="buy-vs-rent.html">매매 vs 전세</a></li><li><a href="tax-calendar.html">세금 달력</a></li></ul></div><div class="menu-group"><h3>생활</h3><ul><li><a href="salary.html">연봉 실수령액</a></li><li><a href="severance.html">퇴직금</a></li></ul></div></div>
+      <ul class="footer-links footer-extra"><li><a href="glossary.html">용어 사전</a></li><li><a href="guides.html">안내 글</a></li><li><a href="checklist.html">체크리스트</a></li><li><a href="policy.html">세제·정책</a></li><li><a href="table-acquisition-tax.html">취득세율표</a></li><li><a href="table-capital-gains-tax.html">양도세율표</a></li><li><a href="table-brokerage-fee.html">중개보수 요율표</a></li><li><a href="table-subscription-points.html">청약 가점표</a></li><li><a href="base-rate-history.html">기준금리 변동 이력</a></li><li><a href="form-rent-receipt.html">월세 영수증 양식</a></li><li><a href="form-notice.html">통지문 예시</a></li><li><a href="form-special-terms.html">특약 문구 모음</a></li></ul>
+      <ul class="footer-links"><li><a href="about.html">사이트 소개</a></li><li><a href="privacy.html">개인정보처리방침</a></li><li><a href="terms.html">이용약관</a></li></ul>
+      <p class="disclaimer">본 계산기는 참고용이며 금융·세무·법률 자문이 아닙니다.</p>
+      <p class="privacy">입력값은 서버로 전송되거나 저장되지 않습니다. 최근 계산 기억 기능을 켜면 이 기기 브라우저에만 저장됩니다.</p>
+    </div>
+  </footer>
+  <div id="sticky-summary" class="sticky-summary" aria-hidden="true">
+    <div><p class="k">가입 가능 여부</p><p class="v"><span id="sticky-monthly">0</span></p></div>
+    <a href="#result">결과 보기</a>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="js/common.js"></script>
+  <script src="js/analytics.js"></script>
+  <script src="js/jeonse-insurance.js"></script>
+</body>
+</html>

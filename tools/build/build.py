@@ -4,8 +4,12 @@ sys.path.insert(0, os.path.dirname(__file__))
 from site_core import *
 from pages_new import NEW_PAGES
 from pages_cgt import CGT_PAGES
-NEW_PAGES.update(CGT_PAGES)
+from pages_tools2 import TOOLS2_PAGES
+NEW_PAGES.update(CGT_PAGES); NEW_PAGES.update(TOOLS2_PAGES)
 from pages_guides import guide_repayment, guide_brokerage, guide_conversion, guide_jeonse_vs_monthly, guides_index, home
+from pages_tables import TABLE_PAGES
+from pages_forms import FORM_PAGES
+from pages_glossary import TERMS, term_page, term_path, glossary_index
 
 os.chdir(ROOT)
 
@@ -56,19 +60,27 @@ write("guide-jeonse-vs-monthly.html", guide_jeonse_vs_monthly())
 write("guides.html", guides_index())
 write("index.html", home())
 
+# ---------- 4b) 표·자료, 서식, 용어 사전 ----------
+for f, fn in TABLE_PAGES.items(): write(f, fn())
+for f, fn in FORM_PAGES.items(): write(f, fn())
+for t in TERMS: write(term_path(t[0]), term_page(t))
+write("glossary.html", glossary_index())
+
 # ---------- 5) 부속 파일 ----------
 manifest = {
-    "name": "집계산기", "short_name": "집계산기", "description": "월세 실부담부터 취득세까지 부동산 계산기 모음",
+    "name": "집계산기", "short_name": "집계산기", "description": "월세 실부담부터 양도세, 연봉 실수령액까지 계산기 모음",
     "start_url": "./", "scope": "./", "display": "standalone", "background_color": "#f6f4ee", "theme_color": "#0e6b52", "lang": "ko",
     "icons": [{"src": "icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}]
 }
 write("manifest.json", json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
 
-ALL_HTML = [t[0] for t in TOOLS] + [r[0] for r in REFS] + [g[0] for g in GUIDES] + [d[0] for d in DOCS] + ["index.html", "404.html"]
-assets = ["css/site.css", "js/common.js", "js/analytics.js", "favicon.svg", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "manifest.json"] + \
-         [f"js/{n}.js" for n in ["rent", "loan", "yield", "fee", "area", "conversion", "subscription", "rent-tax-credit", "dsr", "prepayment", "acquisition-tax", "capital-gains-tax"]]
+TERM_HTML = [term_path(t[0]) for t in TERMS]
+ALL_HTML = [t[0] for t in TOOLS] + [r[0] for r in REFS] + [g[0] for g in GUIDES] + [d[0] for d in DOCS] + [x[0] for x in TABLES] + [x[0] for x in FORMS] + ["glossary.html", "index.html", "404.html"]
+assets = ["css/site.css", "js/common.js", "js/analytics.js", "js/forms.js", "favicon.svg", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "manifest.json"] + \
+         [f"js/{n}.js" for n in ["rent", "loan", "yield", "fee", "area", "conversion", "subscription", "rent-tax-credit", "dsr", "prepayment", "acquisition-tax", "capital-gains-tax",
+                                 "renewal", "tax-calendar", "moving", "rate-compare", "buy-vs-rent", "jeonse-insurance", "jeonse-fraud-check", "salary", "severance"]]
 sw = """/* 집계산기 서비스 워커: 정적 자산은 캐시 우선, HTML은 네트워크 우선(오프라인 시 캐시) */
-var VERSION = 'jipcalc-v4';
+var VERSION = 'jipcalc-v5';
 var ASSETS = %s;
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(ASSETS.map(function (a) { return new Request(a, { cache: 'reload' }); })).catch(function () {}); }).then(function () { return self.skipWaiting(); }));
@@ -119,6 +131,10 @@ sm += url("index.html", "weekly", "1.0")
 for t in TOOLS: sm += url(t[0], "monthly", "0.9")
 for r in REFS: sm += url(r[0], "monthly", "0.6")
 for g in GUIDES: sm += url(g[0], "monthly", "0.7")
+for x in TABLES: sm += url(x[0], "monthly", "0.8")
+for x in FORMS: sm += url(x[0], "monthly", "0.7")
+sm += url("glossary.html", "weekly", "0.8")
+for f in TERM_HTML: sm += url(f, "monthly", "0.6")
 for d in DOCS: sm += url(d[0], "yearly", "0.3")
 sm += "</urlset>\n"
 write("sitemap.xml", sm)

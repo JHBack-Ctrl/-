@@ -8,7 +8,7 @@
 
 ## 페이지
 
-**계산기 12개**
+**계산기 21개**
 
 | 파일 | 내용 |
 | --- | --- |
@@ -24,6 +24,21 @@
 | `yield.html` | 상가 수익률 — 공실·대출 반영 총투자·자기자본 수익률, 공실률 민감도 |
 | `subscription.html` | 청약 가점 — 무주택기간·부양가족·통장기간 84점 |
 | `area.html` | 평수 변환 — 평 ↔ ㎡, 평당·㎡당 가격, 참고표 |
+| `renewal.html` | 계약 갱신 청구권 — 갱신 요구 가능 기간 D-day, 보증금·월세 5% 상한, 환산보증금 기준 |
+| `jeonse-insurance.html` | 전세보증보험 자가진단 — HUG 요건(보증금 한도, 담보인정비율 90%, 선순위 60%, 신청 시기)별 판정 |
+| `jeonse-fraud-check.html` | 전세 사기 위험 체크 — 전세가율 + 위험 신호 10개 가중치 점수 |
+| `moving.html` | 이사 체크리스트 — 이사일 기준 단계별 할 일, 전입신고 14일·자동차 30일 기한, 진행률 |
+| `rate-compare.html` | 고정 vs 변동금리 — 6개월 재산정 시나리오 총 이자 비교, 손익분기 연 변동폭 |
+| `buy-vs-rent.html` | 매매 vs 전세 — 보유기간 총비용(이자·기회비용·세금·중개보수·가격변동) 비교, 손익분기 상승률 |
+| `tax-calendar.html` | 세금 달력 — 취득세 60일, 등기 60일, 양도세 예정신고, 재산세·종부세·임대소득세 D-day |
+| `salary.html` | 연봉 실수령액 — 4대보험·소득세·지방소득세 공제, 연봉별 표 |
+| `severance.html` | 퇴직금 — 평균임금 기준 법정 퇴직금, 근속연수공제·환산급여공제 반영 퇴직소득세 |
+
+**표·자료** `table-acquisition-tax.html`, `table-capital-gains-tax.html`, `table-brokerage-fee.html`, `table-subscription-points.html`, `base-rate-history.html` — 세율표·요율표·가점표·기준금리 이력. 값이 바뀌면 `tools/build/pages_tables.py`와 해당 js 상수를 함께 고친다.
+
+**서식** `form-rent-receipt.html`(입력→인쇄), `form-notice.html`(통지문 예시), `form-special-terms.html`(특약 문구) — `tools/build/pages_forms.py`, `js/forms.js`
+
+**용어 사전** `glossary.html` + `term-*.html` 39개 — `tools/build/pages_glossary.py`의 `TERMS`에 항목을 추가하면 페이지·목록·sitemap이 함께 생성된다.
 
 **그 밖의 페이지**
 
@@ -67,12 +82,18 @@ ID를 넣으면 `privacy.html` 6-1 항목을 실제 도입 내용으로 갱신�
 | `js/subscription.js` | 가점표 | 주택공급에 관한 규칙 별표 1 |
 | `js/dsr.js` | LTV·DSR·스트레스 가산 기본값 | 금융위원회 발표 |
 | `js/prepayment.js` | 수수료율·부과기간 기본값 | 각 금융기관 약정 |
+| `js/renewal.js` | 갱신 요구 기간(6~2개월), 인상 상한 5%, 전환율 가산 | 주택임대차보호법 |
+| `js/tax-calendar.js` | 취득세·양도세 신고 기한, 재산세·종부세 납부 기간 | 지방세법, 소득세법, 종부세법 |
+| `js/jeonse-insurance.js` | 보증금 한도, 담보인정비율, 선순위 비율 | HUG 전세보증금반환보증 안내 |
+| `js/salary.js` | 4대보험 요율, 국민연금 기준소득월액 상·하한, 근로소득공제·세액공제, 세율표 | 국민연금공단, 건보공단, 소득세법. 매년 초 확인 |
+| `js/severance.js` | 근속연수공제·환산급여공제표, 세율표 | 소득세법 |
+| `tools/build/pages_tables.py` | 표 페이지의 세율·요율·가점표, 기준금리 이력 `RATE_HISTORY` | 위 각 법령, 한국은행 |
 
 ## 구조
 
 - `css/site.css` — 공통 스타일. 색·간격은 `:root` 변수로 관리하며 다크 모드 대응
 - `js/common.js` — 숫자 파싱·포맷, 금액 입력 콤마, 토스트, 공유 링크, 내비
-- `js/<계산기>.js` — 페이지별 계산 로직 11개. 공통 배선은 `Site.wireCalc`가 담당
+- `js/<계산기>.js` — 페이지별 계산 로직 21개. 공통 배선은 `Site.wireCalc`가 담당
 - `js/analytics.js` — 방문 통계 로더 (ID 비어 있으면 동작 안 함)
 - `sw.js`, `manifest.json` — 앱 설치와 오프라인 캐시
 - `tools/build/` — 사이트 빌더
