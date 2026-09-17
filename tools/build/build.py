@@ -9,7 +9,7 @@ os.chdir(ROOT)
 
 # ---------- 1) 기존 계산기 4개: 본문 추출 → 새 틀로 재포장 ----------
 OLD_CALC = {  # 파일: (등록부 인덱스, 스크립트, 하단 요약 라벨)
-    "index.html": (0, "js/rent.js", "월 실부담"),   # → rent.html 로 이동
+    "rent.html": (0, "js/rent.js", "월 실부담"),
     "loan.html": (4, "js/loan.js", "첫 달 상환액"),
     "yield.html": (8, "js/yield.js", "자기자본 수익률"),
     "fee.html": (3, "js/fee.js", "예상 최대 중개보수"),
@@ -19,13 +19,10 @@ for src, (idx, script, sticky) in OLD_CALC.items():
     f, name, title, desc, cat, short = TOOLS[idx]
     main = extract_main(html)
     ld = extract_ld(html)
-    if src == "index.html":
-        # 기존 홈의 '계산기 전체' 카드 섹션은 홈으로 옮겼으니 제거
-        main = re.sub(r'\n    <section class="card" aria-labelledby="tools-title">.*?</section>', '', main, count=1, flags=re.S)
-        ld = ld.replace('"url": "' + BASE + '"', '"url": "' + BASE + 'rent.html"')
+    assert 'id="calc-form"' in main, src + ": 계산기 본문이 아닙니다"
     main = patch_calc_main(main)
-    main += related(f)
-    ld += breadcrumb_ld(name, f)
+    if 'id="rel-title"' not in main: main += related(f)
+    if 'BreadcrumbList' not in ld: ld += breadcrumb_ld(name, f)
     write(f, page(title, desc, f, main, extra_head=ld, scripts=[script], sticky=sticky))
 
 # ---------- 2) 참고·문서 페이지: 본문만 유지하고 틀 교체 ----------

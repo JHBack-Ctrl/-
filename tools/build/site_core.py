@@ -268,11 +268,11 @@ def extract_ld(html):
     return "".join(re.findall(r"  <script type=\"application/ld\+json\">.*?</script>\n", html, re.S))
 
 def patch_calc_main(main):
-    """기존 계산기 본문에 액션 버튼·기억 토글·본문 광고를 넣는다."""
-    # 버튼 묶음 교체
-    main = re.sub(r'            <div class="btn-row">.*?</div>', lambda m: action_buttons('\n              <button type="button" id="copy-btn" class="btn btn-ghost btn-sm">결과 텍스트 복사</button>' if 'copy-btn' in m.group(0) else ''), main, count=1, flags=re.S)
-    # 기억 토글: 제출 버튼 앞
-    main = main.replace('            <button type="submit" class="btn btn-primary">', REMEMBER_TOGGLE + '            <button type="submit" class="btn btn-primary">', 1)
-    # 본문 광고: FAQ 앞
-    main = main.replace('\n    <section class="card" aria-labelledby="faq-title">', INLINE_AD + '\n    <section class="card" aria-labelledby="faq-title">', 1)
+    """기존 계산기 본문에 액션 버튼·기억 토글·본문 광고를 넣는다. 여러 번 실행해도 중복되지 않는다."""
+    if 'id="native-share-btn"' not in main:
+        main = re.sub(r'            <div class="btn-row">.*?</div>', lambda m: action_buttons('\n              <button type="button" id="copy-btn" class="btn btn-ghost btn-sm">결과 텍스트 복사</button>' if 'copy-btn' in m.group(0) else ''), main, count=1, flags=re.S)
+    if 'id="remember-toggle"' not in main:
+        main = main.replace('            <button type="submit" class="btn btn-primary">', REMEMBER_TOGGLE + '            <button type="submit" class="btn btn-primary">', 1)
+    if 'slot inline' not in main:
+        main = main.replace('\n    <section class="card" aria-labelledby="faq-title">', INLINE_AD + '\n    <section class="card" aria-labelledby="faq-title">', 1)
     return main
