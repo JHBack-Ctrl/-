@@ -32,6 +32,9 @@ TOOLS = [
     ("acquisition-tax.html", "취득세", "취득세 계산기 — 주택·상가 취득세와 지방교육세·농특세",
      "취득세 계산기. 취득가액, 주택 수와 조정대상지역 여부, 전용면적을 넣으면 취득세와 지방교육세, 농어촌특별세를 합한 예상 세금을 참고용으로 추정합니다.",
      "매매·투자", "취득세·지방교육세·농특세 참고용 추정"),
+    ("capital-gains-tax.html", "양도소득세", "양도소득세 계산기 — 1세대 1주택 비과세·장기보유특별공제·다주택 중과",
+     "양도소득세 계산기. 주택·입주권·분양권·토지·상가·국외 부동산의 양도차익에 1세대 1주택 비과세, 고가주택 안분, 장기보유특별공제, 단기·다주택 중과, 이월과세, 부담부증여, 감면까지 반영해 양도세와 지방소득세를 참고용으로 추정합니다.",
+     "매매·투자", "비과세·장특공제·중과까지 반영한 참고용 추정"),
     ("yield.html", "상가 수익률", "상가 수익률 계산기 — 공실·대출 반영",
      "상가 수익률 계산기. 매매가·보증금·월세·운영비·공실률·대출 조건을 넣으면 연 순영업수익, 총투자 수익률과 자기자본 수익률을 계산합니다.",
      "매매·투자", "공실과 대출을 반영한 총투자·자기자본 수익률"),
@@ -65,6 +68,9 @@ DOCS = [
 ]
 CATS = ["임대", "대출", "매매·투자", "참고"]
 
+def desc_of(path):
+    return [t for t in TOOLS if t[0] == path][0][3]
+
 def tools_by_cat(cat):
     return [t for t in TOOLS + REFS if t[4] == cat]
 
@@ -73,7 +79,7 @@ ICON_SUN = '<svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="
 ICON_MOON = '<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>'
 ICON_MENU = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>'
 
-QUICK_NAV = [("index.html", "홈"), ("rent.html", "월세"), ("loan.html", "대출이자"), ("acquisition-tax.html", "취득세"), ("area.html", "평수"), ("subscription.html", "청약"), ("guides.html", "안내 글")]
+QUICK_NAV = [("index.html", "홈"), ("rent.html", "월세"), ("loan.html", "대출이자"), ("acquisition-tax.html", "취득세"), ("capital-gains-tax.html", "양도세"), ("area.html", "평수"), ("subscription.html", "청약"), ("guides.html", "안내 글")]
 
 def menu_panel():
     groups = []
