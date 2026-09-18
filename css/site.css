@@ -652,3 +652,35 @@ details[open] .details-summary::after { content: "접기"; }
 .hub-fold .tool-grid, .hub-fold .hub-sub { padding: 0 16px 16px; }
 .hub-fold .hub-sub { margin: 0; padding-bottom: 8px; }
 .footer-extra { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+
+/* ---------- 홈 화면에 추가 안내 ---------- */
+.install-bar {
+  position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 50;
+  background: var(--surface); color: var(--ink);
+  border: 1px solid var(--line-2); border-radius: 14px; padding: 12px 14px;
+  display: flex; align-items: center; gap: 12px;
+  box-shadow: 0 12px 34px -12px rgba(0,0,0,.35);
+  transform: translateY(140%); transition: transform .3s var(--ease);
+}
+.install-bar.show { transform: none; }
+/* 계산기 페이지의 하단 요약 바가 떠 있으면 그 위로 올라간다 */
+.sticky-summary.show ~ .install-bar { bottom: 80px; }
+.install-mark {
+  width: 34px; height: 34px; border-radius: 10px; background: var(--accent); position: relative; flex: none;
+}
+.install-mark::after {
+  content: ""; position: absolute; left: 9px; top: 9px; width: 16px; height: 16px;
+  border: 3px solid var(--accent-ink); border-radius: 5px; border-top-color: transparent;
+  transform: rotate(45deg);
+}
+.install-text { flex: 1; min-width: 0; }
+.install-text .t { margin: 0; font-size: 14px; font-weight: 700; letter-spacing: -.01em; }
+.install-text .d { margin: 2px 0 0; font-size: 12.5px; color: var(--ink-3); }
+.install-bar .install-go { width: auto; flex: none; padding: 8px 14px; }
+.install-close {
+  flex: none; width: 30px; height: 30px; border-radius: 8px; border: 0;
+  background: transparent; color: var(--ink-3); font-size: 15px; cursor: pointer; line-height: 1;
+}
+.install-close:hover { background: var(--bg-deep); color: var(--ink); }
+@media (min-width: 900px) { .install-bar { display: none; } }
+@media print { .install-bar { display: none !important; } }

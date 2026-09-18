@@ -331,6 +331,56 @@
     try { navigator.serviceWorker.register('sw.js').catch(function () { /* 등록 실패는 무시 */ }); } catch (e) { /* 무시 */ }
   }
 
+  // ---- 홈 화면에 추가 안내 ----
+  // 모바일 첫 방문에만 한 번 뜨고, 닫으면 다시 뜨지 않는다.
+  // 안드로이드 크롬은 브라우저가 준 설치 프롬프트를 바로 띄우고,
+  // 아이폰 사파리는 자동 설치를 막아놓아 공유 버튼 경로를 글로 안내한다.
+  var INSTALL_KEY = STORAGE_PREFIX + 'install-dismissed';
+  function initInstallPrompt() {
+    if (location.protocol === 'file:') return;
+    if (lsGet(INSTALL_KEY)) return;                       // 이미 닫았거나 추가함
+    if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) return;  // 이미 설치해서 연 화면
+    if (navigator.standalone) return;                     // iOS 홈 화면에서 연 경우
+    if (!window.matchMedia || !window.matchMedia('(max-width: 899px)').matches) return;        // 모바일 폭에서만
+
+    var ua = navigator.userAgent;
+    var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+    var isSafari = isIOS && /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS/.test(ua);
+    var deferred = null;
+
+    function dismiss(bar) { lsSet(INSTALL_KEY, '1'); if (bar) bar.classList.remove('show'); setTimeout(function () { if (bar && bar.parentNode) bar.parentNode.removeChild(bar); }, 300); }
+
+    function build(mode) {
+      var bar = document.createElement('div');
+      bar.className = 'install-bar';
+      bar.setAttribute('role', 'region');
+      bar.setAttribute('aria-label', '홈 화면에 추가 안내');
+      var actionHTML = mode === 'ios'
+        ? '<p class="t">홈 화면에 추가하면 앱처럼 쓸 수 있어요</p><p class="d">아래 <strong>공유</strong> 버튼을 누르고 <strong>홈 화면에 추가</strong>를 고르세요</p>'
+        : '<p class="t">홈 화면에 추가하면 앱처럼 쓸 수 있어요</p><p class="d">설치 없이 아이콘만 생깁니다</p>';
+      bar.innerHTML = '<div class="install-mark" aria-hidden="true"></div><div class="install-text">' + actionHTML + '</div>' +
+        (mode === 'ios' ? '' : '<button type="button" class="btn btn-primary btn-sm install-go">추가</button>') +
+        '<button type="button" class="install-close" aria-label="안내 닫기">✕</button>';
+      document.body.appendChild(bar);
+      requestAnimationFrame(function () { bar.classList.add('show'); });
+      bar.querySelector('.install-close').addEventListener('click', function () { dismiss(bar); });
+      var go = bar.querySelector('.install-go');
+      if (go) go.addEventListener('click', function () {
+        if (!deferred) { dismiss(bar); return; }
+        deferred.prompt();
+        deferred.userChoice.then(function () { deferred = null; dismiss(bar); }).catch(function () { dismiss(bar); });
+      });
+      return bar;
+    }
+
+    window.addEventListener('beforeinstallprompt', function (e) {
+      e.preventDefault(); deferred = e;
+      setTimeout(function () { if (!lsGet(INSTALL_KEY)) build('android'); }, 2500);
+    });
+    window.addEventListener('appinstalled', function () { lsSet(INSTALL_KEY, '1'); });
+    if (isSafari) setTimeout(function () { if (!lsGet(INSTALL_KEY)) build('ios'); }, 2500);
+  }
+
   // ---- 준비 중 링크 토스트 ----
   function initSoonLinks() {
     $$('[data-soon]').forEach(function (el) {
@@ -426,5 +476,5 @@
 
   // 테마는 화면 깜빡임을 줄이기 위해 즉시 적용
   applyTheme(lsGet(THEME_KEY));
-  ready(function () { initTheme(); initMenu(); markCurrentNav(); initSoonLinks(); initServiceWorker(); });
+  ready(function () { initTheme(); initMenu(); markCurrentNav(); initSoonLinks(); initServiceWorker(); initInstallPrompt(); });
 })(window);
