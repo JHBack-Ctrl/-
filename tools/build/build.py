@@ -78,11 +78,11 @@ write("manifest.json", json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
 
 TERM_HTML = [term_path(t[0]) for t in TERMS]
 ALL_HTML = [t[0] for t in TOOLS] + [r[0] for r in REFS] + [g[0] for g in GUIDES] + [d[0] for d in DOCS] + [x[0] for x in TABLES] + [x[0] for x in FORMS] + ["glossary.html", "index.html", "404.html"]
-assets = ["css/site.css", "js/common.js", "js/analytics.js", "js/forms.js", "favicon.svg", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "manifest.json"] + \
+assets = ["css/site.css", "js/common.js", "js/analytics.js", "js/forms.js", "js/home.js", "favicon.svg", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "manifest.json"] + \
          [f"js/{n}.js" for n in ["rent", "loan", "yield", "fee", "area", "conversion", "subscription", "rent-tax-credit", "dsr", "prepayment", "acquisition-tax", "capital-gains-tax",
                                  "renewal", "tax-calendar", "moving", "rate-compare", "buy-vs-rent", "jeonse-insurance", "jeonse-fraud-check", "salary", "severance"]]
 sw = """/* 전국부동산계산기 서비스 워커: 정적 자산은 캐시 우선, HTML은 네트워크 우선(오프라인 시 캐시) */
-var VERSION = 'jipcalc-v5';
+var VERSION = 'jipcalc-v6';
 var ASSETS = %s;
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(ASSETS.map(function (a) { return new Request(a, { cache: 'reload' }); })).catch(function () {}); }).then(function () { return self.skipWaiting(); }));

@@ -145,41 +145,58 @@ def guides_index():
     return page(r[2], r[3], r[0], main, extra_head=breadcrumb_ld("안내 글", "guides.html"))
 
 def home():
-    def cards(cat, featured=None):
-        out = []
-        for (f, n, _t, _d, _c, d) in tools_by_cat(cat):
-            if f == "guides.html": continue
-            tag = ' <span class="tag">인기</span>' if f in ("rent.html", "loan.html", "area.html", "subscription.html", "capital-gains-tax.html") else ""
-            out.append(f'<a class="tool-card{" featured" if f == featured else ""}" href="{f}"><p class="t">{n}{tag}</p><p class="d">{d}</p></a>')
-        return "".join(out)
+    """타일형 홈. 등록부에서 직접 만들기 때문에 계산기를 추가하면 홈에도 자동으로 붙는다."""
+    def tile(f, name, desc, extra_cls=""):
+        k = TILE_KEYS.get(f, "")
+        d = f'<span class="d">{desc}</span>' if desc else ""
+        return (f'<a class="tile{extra_cls}" href="{f}" data-k="{name} {k}">'
+                f'{tile_icon(f)}<span class="t">{name}</span>{d}</a>')
+
     POPULAR = ["rent.html", "loan.html", "acquisition-tax.html", "capital-gains-tax.html", "salary.html", "subscription.html"]
-    pop = "".join(f'<a class="tool-card featured" href="{f}"><p class="t">{n}</p><p class="d">{d}</p></a>' for (f, n, _t, _d, _c, d) in [t for t in TOOLS if t[0] in POPULAR])
-    def fold(cid, title, inner, count, open_=False, sub=None):
-        s_ = f'<p class="hub-sub">{sub}</p>' if sub else ""
+    pop = "".join(tile(f, n, d) for (f, n, _t, _d, _c, d) in sorted(
+        [t for t in TOOLS if t[0] in POPULAR], key=lambda t: POPULAR.index(t[0])))
+
+    def section(title, inner, count, cls=""):
+        n_ = f'<span class="n">{count}개</span>' if count else ""
         return f'''
-    <details class="hub-fold"{" open" if open_ else ""} id="{cid}">
-      <summary><h2>{title}</h2><span class="muted">{count}개</span></summary>
-      {s_}<div class="tool-grid">{inner}</div>
-    </details>'''
-    folds = "".join(fold(f"cat-{i}", cat, cards(cat), len([t for t in tools_by_cat(cat) if t[0] != "guides.html"]), open_=(i == 0)) for i, cat in enumerate(CATS[:4]))
-    guide_cards = "".join(f'<a class="tool-card" href="{f}"><p class="t">{n}</p><p class="d">{d}</p></a>' for (f, n, _t, d) in GUIDES)
-    table_cards = "".join(f'<a class="tool-card" href="{f}"><p class="t">{n}</p><p class="d">{d}</p></a>' for (f, n, _t, _d, d) in TABLES)
-    form_cards = "".join(f'<a class="tool-card" href="{f}"><p class="t">{n}</p><p class="d">{d}</p></a>' for (f, n, _t, _d, d) in FORMS)
-    ref_cards = ('<a class="tool-card" href="checklist.html"><p class="t">양도·취득 체크리스트</p><p class="d">계약 전후 확인 항목과 준비 서류</p></a>'
-                 '<a class="tool-card" href="policy.html"><p class="t">세제·정책 참고</p><p class="d">세금별 확인 포인트와 공식 기관 링크</p></a>')
+    <section class="sec" data-sec>
+      <div class="sec-head"><h2>{title}</h2>{n_}</div>
+      <div class="tiles{cls}" data-group>{inner}</div>
+    </section>'''
+
+    cat_secs = []
+    for cat in CATS[:4]:
+        items = [t for t in tools_by_cat(cat) if t[0] != "guides.html"]
+        cat_secs.append(section(cat, "".join(tile(f, n, d) for (f, n, _t, _d, _c, d) in items), len(items)))
+    # 광고는 첫 두 묶음 뒤에
+    cats_html = "".join(cat_secs[:2]) + INLINE_AD + "".join(cat_secs[2:])
+
+    mini = ("".join(tile(f, n, "") for (f, n, _t, _d, _d2) in TABLES)
+            + "".join(tile(f, n, "") for (f, n, _t, _d, _d2) in FORMS)
+            + tile(GLOSSARY_INDEX[0], GLOSSARY_INDEX[1], ""))
+    mini_sec = section("표 · 서식 · 용어", mini, len(TABLES) + len(FORMS) + 1, cls=" mini")
+
+    # 안내 글 제목은 기사 제목이라 타일에는 짧은 이름으로 건다
+    GUIDE_SHORT = {"guide-repayment.html": "상환 방식 차이", "guide-brokerage.html": "복비 계산법",
+                   "guide-conversion.html": "전월세 전환율이란", "guide-jeonse-vs-monthly.html": "전세 vs 월세 읽는 법"}
+    ref = ("".join(f'<a class="tile" href="{f}" data-k="{n}">{tile_icon(f)}<span class="t">{GUIDE_SHORT.get(f, n)}</span></a>'
+                   for (f, n, _t, _d) in GUIDES)
+           + "".join(tile(f, n, "") for (f, n, _t, _d, _c, _s) in REFS if f != "guides.html"))
+    ref_sec = section("안내 글 · 참고", ref, len(GUIDES) + len(REFS) - 1, cls=" mini")
+
     n_tools = len(TOOLS)
-    main = f'''    <section class="hero hub-hero">
+    main = f'''    <section class="hero tile-hero">
       <p class="eyebrow">Real Estate · Calculators</p>
       <h1>전국부동산계산기</h1>
-      <p class="hero-sub">월세 실부담부터 양도세, 연봉 실수령액까지, 집과 돈의 숫자를 같은 기준으로</p>
-      <p class="hero-body">계산기 {n_tools}개와 세율표, 용어 사전, 계약 서식. 회원가입이 없고 입력값을 서버로 보내지 않습니다.</p>
+      <p class="hero-sub">계산기 {n_tools}개와 세율표·서식·용어 사전. 회원가입 없이 브라우저에서만 계산합니다.</p>
     </section>
-    <section class="hub-cat" aria-labelledby="cat-pop">
-      <h2 id="cat-pop">많이 찾는 계산기</h2>
-      <div class="tool-grid">{pop}</div>
-    </section>
-    <p class="hub-sub" style="margin-top:22px">전체 계산기 {n_tools}개. 항목을 눌러 펼치세요.</p>{folds}{INLINE_AD}{fold("cat-table", "표·자료", table_cards, len(TABLES), sub="계산기에 들어 있는 세율표와 요율표를 표 하나로. 기준일이 붙어 있습니다.")}{fold("cat-form", "서식 · 용어 사전", form_cards + '<a class="tool-card featured" href="glossary.html"><p class="t">부동산 용어 사전</p><p class="d">대항력, 확정일자, 근저당, DSR… 한 페이지에 하나씩</p></a>', len(FORMS) + 1)}{fold("cat-guide", "안내 글 · 참고", guide_cards + ref_cards, len(GUIDES) + 2)}
-    <section class="card" style="margin-top:24px">
+    <div class="tool-search-wrap">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <label class="sr-only" for="q">계산기 검색</label>
+      <input class="tool-search" id="q" type="search" placeholder="무엇을 계산하시나요?  예: 취득세, 연봉, 전세" autocomplete="off">
+    </div>{section("많이 찾는 계산기", pop, 0, cls=" hot")}{cats_html}{mini_sec}{ref_sec}
+    <p class="tile-empty" id="tile-empty" hidden>찾는 계산기가 없습니다. 다른 말로 검색해 보세요.</p>
+    <section class="card" style="margin-top:28px">
       <h2>이 사이트의 원칙</h2>
       <div class="prose">
         <ul>
@@ -199,4 +216,4 @@ def home():
 '''
     return page("전국부동산계산기 — 월세 실부담부터 양도세, 연봉 실수령액까지 계산기 모음",
                 f"월세 실부담, 계약 갱신 청구권, 대출이자, DSR·LTV 한도, 취득세, 양도소득세, 청약 가점, 연봉 실수령액, 퇴직금 등 계산기 {n_tools}개와 세율표, 부동산 용어 사전, 계약 서식. 회원가입 없이 브라우저에서만 계산하며 입력값을 저장하지 않습니다.",
-                "index.html", main, extra_head=ld + redirect)
+                "index.html", main, extra_head=ld + redirect, scripts=("js/home.js",))
