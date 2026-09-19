@@ -147,6 +147,79 @@ ICON_MENU = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h1
 
 QUICK_NAV = [("index.html", "홈"), ("rent.html", "월세"), ("loan.html", "대출이자"), ("acquisition-tax.html", "취득세"), ("capital-gains-tax.html", "양도세"), ("salary.html", "연봉"), ("subscription.html", "청약"), ("guides.html", "안내 글")]
 
+# 홈 타일 아이콘. 24×24 stroke 방식, 색은 CSS가 정한다.
+_P = '<svg viewBox="0 0 24 24" aria-hidden="true">{}</svg>'
+_DOC = '<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/>'
+_CAL = '<path d="M4 6h16v14H4z"/><path d="M8 3v4M16 3v4M4 10h16"/>'
+TILE_ICONS = {
+    "rent.html": '<path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5h4v5"/>',
+    "conversion.html": '<path d="M4 8h13l-3-3M20 16H7l3 3"/>',
+    "rent-tax-credit.html": '<path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9.5 8h5M9.5 12h5"/>',
+    "fee.html": '<path d="M19 5 5 19"/><circle cx="7.5" cy="7.5" r="2.5"/><circle cx="16.5" cy="16.5" r="2.5"/>',
+    "renewal.html": _CAL + '<path d="M14 16.5a2.8 2.8 0 1 1-.9-2.1"/><path d="M13.6 12.4v2h-2"/>',
+    "jeonse-insurance.html": '<path d="M12 3.5 19 6v6c0 4.2-2.9 7.5-7 9-4.1-1.5-7-4.8-7-9V6z"/><path d="m9 12 2 2 4-4"/>',
+    "jeonse-fraud-check.html": '<path d="M12 4 2.5 20h19z"/><path d="M12 10v4.5M12 17.2v.1"/>',
+    "moving.html": '<path d="M3.5 7.5 12 4l8.5 3.5v9L12 20l-8.5-3.5z"/><path d="M3.5 7.5 12 11l8.5-3.5M12 11v9"/>',
+    "loan.html": '<path d="M4 19V9M9.5 19V5M15 19v-7M20.5 19v-4"/><path d="M3 21h18"/>',
+    "dsr.html": '<path d="M4 17a8 8 0 1 1 16 0"/><path d="m12 17 4.2-5"/><circle cx="12" cy="17" r="1.4"/>',
+    "prepayment.html": '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
+    "rate-compare.html": '<path d="M3 15h18"/><path d="M3 19c4-9 10 1 18-8"/>',
+    "acquisition-tax.html": _DOC + '<path d="M9 13h6M9 17h4"/>',
+    "capital-gains-tax.html": _DOC + '<path d="M12 17v-6M9.5 13.5 12 11l2.5 2.5"/>',
+    "yield.html": '<path d="M4 20V9.5L12 5l8 4.5V20z"/><path d="M8.5 20v-5h7v5"/><path d="M4 20h16"/>',
+    "subscription.html": '<path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/>',
+    "area.html": '<path d="M4 4h16v16H4z"/><path d="M4 9h5V4M20 15h-5v5"/>',
+    "buy-vs-rent.html": '<path d="M12 4v16"/><path d="M4 8h16"/><path d="M4 8 1.8 13.5h4.4zM20 8l-2.2 5.5h4.4z"/>',
+    "tax-calendar.html": _CAL + '<path d="M8 14h3M8 17h3"/>',
+    "salary.html": '<path d="M3 7.5h18v11H3z"/><path d="M3 11h18"/><path d="M16 15h2.5"/>',
+    "severance.html": '<path d="M3.5 8h17v11h-17z"/><path d="M9 8V5.5h6V8"/><path d="M3.5 12.5h17"/>',
+    # 표·서식·용어
+    "table-acquisition-tax.html": '<path d="M4 5h16v14H4z"/><path d="M4 10h16M10 10v9"/>',
+    "table-capital-gains-tax.html": '<path d="M4 5h16v14H4z"/><path d="M4 10h16M10 10v9"/>',
+    "table-brokerage-fee.html": '<path d="M4 5h16v14H4z"/><path d="M4 10h16M10 10v9"/>',
+    "table-subscription-points.html": '<path d="M4 5h16v14H4z"/><path d="M4 10h16M10 10v9"/>',
+    "base-rate-history.html": '<path d="M3 18c4-2 5-9 9-9s6 5 9 3"/>',
+    "form-rent-receipt.html": '<path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9.5 9h5M9.5 13h5"/>',
+    "form-notice.html": '<path d="M3.5 7h17v12h-17z"/><path d="m3.5 7 8.5 6 8.5-6"/>',
+    "form-special-terms.html": '<path d="M5 4h10l4 4v12H5z"/><path d="M8.5 12h7M8.5 16h5"/>',
+    "glossary.html": '<path d="M4 5.5C6.5 4 9.5 4 12 5.5c2.5-1.5 5.5-1.5 8 0V19c-2.5-1.5-5.5-1.5-8 0-2.5-1.5-5.5-1.5-8 0z"/><path d="M12 5.5V19"/>',
+    # 안내·참고
+    "checklist.html": '<path d="M5 4h14v16H5z"/><path d="m8.5 10 1.6 1.6L14 8"/><path d="M8.5 15.5h7"/>',
+    "policy.html": '<path d="M12 3.5 19 6v6c0 4.2-2.9 7.5-7 9-4.1-1.5-7-4.8-7-9V6z"/><path d="M12 9.5v4M12 16.2v.1"/>',
+    "guides.html": '<path d="M4 5.5C6.5 4 9.5 4 12 5.5c2.5-1.5 5.5-1.5 8 0V19c-2.5-1.5-5.5-1.5-8 0-2.5-1.5-5.5-1.5-8 0z"/><path d="M12 5.5V19"/>',
+}
+_GUIDE_ICON = '<path d="M6 3h12v18H6z"/><path d="M9 8h6M9 12h6M9 16h3"/>'
+
+def tile_icon(path):
+    return '<span class="ico">' + _P.format(TILE_ICONS.get(path, _GUIDE_ICON)) + '</span>'
+
+# 검색어 보강: 이름·설명에 없지만 사람들이 실제로 치는 말
+TILE_KEYS = {
+    "rent.html": "월세 실부담 관리비 보증금 기회비용 원룸",
+    "conversion.html": "전월세 전환율 전세 월세 환산 법정",
+    "rent-tax-credit.html": "월세 세액공제 연말정산 환급 소득공제",
+    "fee.html": "중개보수 복비 수수료 부동산 요율",
+    "renewal.html": "계약갱신청구권 갱신 재계약 5% 상한 묵시적",
+    "jeonse-insurance.html": "전세보증보험 HUG 반환보증 SGI 보증보험",
+    "jeonse-fraud-check.html": "전세사기 깡통전세 위험 전세가율 근저당",
+    "moving.html": "이사 체크리스트 전입신고 확정일자 이사날짜",
+    "loan.html": "대출이자 주담대 원리금균등 원금균등 상환표 이자계산",
+    "dsr.html": "DSR LTV 대출한도 주택담보대출 가능금액 스트레스",
+    "prepayment.html": "중도상환수수료 조기상환 면제",
+    "rate-compare.html": "고정금리 변동금리 비교 금리",
+    "acquisition-tax.html": "취득세 지방교육세 농특세 등록세 생애최초",
+    "capital-gains-tax.html": "양도소득세 양도세 비과세 장기보유특별공제 중과",
+    "yield.html": "상가 수익률 임대수익률 월세수익률 공실 레버리지",
+    "subscription.html": "청약 가점 무주택 부양가족 청약통장 아파트",
+    "area.html": "평수 변환 제곱미터 평당가 전용면적 공급면적",
+    "buy-vs-rent.html": "매매 전세 비교 집사기 총비용",
+    "tax-calendar.html": "세금 달력 재산세 종부세 신고기한 납부",
+    "salary.html": "연봉 실수령액 월급 실수령 4대보험 세후",
+    "severance.html": "퇴직금 퇴직소득세 평균임금 근속",
+    "glossary.html": "용어 사전 대항력 확정일자 근저당 우선변제권",
+    "base-rate-history.html": "기준금리 한국은행 금리 이력",
+}
+
 def menu_panel():
     groups = []
     for cat in CATS:
@@ -345,7 +418,8 @@ def write(path, s):
 
 def extract_main(html):
     m = re.search(r"<main[^>]*>(.*)</main>", html, re.S)
-    return m.group(1).strip("\n")
+    # rstrip까지 해야 한다. 공백만 있는 줄을 남기면 다시 빌드할 때마다 빈 줄이 쌓인다.
+    return m.group(1).lstrip("\n").rstrip()
 
 def extract_ld(html):
     return "".join(re.findall(r"  <script type=\"application/ld\+json\">.*?</script>\n", html, re.S))
