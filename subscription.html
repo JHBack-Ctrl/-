@@ -152,7 +152,7 @@
       <p class="eyebrow">Subscription · Score</p>
       <h1>청약 가점 계산기</h1>
       <p class="hero-sub">무주택기간·부양가족·통장기간으로 84점 만점 계산</p>
-      <p class="hero-body">생년월일, 혼인 여부, 부양가족 수, 청약통장 가입일을 넣으면 가점을 계산합니다. 참고용이며 실제 청약에서는 청약홈이 산정한 점수를 써야 합니다. 잘못 넣어 당첨되면 취소될 수 있습니다.</p>
+      <p class="hero-body">생년월일, 혼인 여부, 부양가족 수, 청약통장 가입일을 넣으면 가점을 계산합니다. 무주택기간은 만 30세부터 자동 산정되고, 입주자모집공고일을 넣으면 그날 기준으로 셉니다. 참고용이며 실제 청약에서는 청약홈이 산정한 점수를 써야 합니다. 잘못 넣어 당첨되면 취소될 수 있습니다.</p>
     </section>
     <div class="layout">
       <div>
@@ -163,7 +163,8 @@
           </div>
           <form id="calc-form" novalidate>
             <fieldset>
-              <legend>무주택기간</legend>
+              <legend>무주택기간 산정 정보</legend>
+              <p class="field-help" style="margin:-4px 0 12px">무주택기간은 직접 넣는 것이 아니라 아래 정보로 자동 산정됩니다. <strong>만 30세가 되는 날</strong>부터 세고, 그 전 기간은 들어가지 않습니다. 30세 전에 혼인했으면 혼인신고일부터, 집을 판 적이 있으면 마지막 처분일부터입니다.</p>
               <div class="field">
                 <label for="birth">생년월일</label>
                 <input id="birth" type="date">
@@ -191,6 +192,13 @@
               </div>              <div class="field">
                 <label for="account">청약통장 가입일</label>
                 <input id="account" type="date">
+              </div>            </fieldset>
+            <fieldset>
+              <legend>기준일</legend>
+              <div class="field">
+                <label for="notice">입주자모집공고일 (선택)</label>
+                <input id="notice" type="date">
+                <p class="field-help">실제 가점은 공고일 기준으로 셉니다. 비워두면 오늘 기준으로 계산합니다.</p>
               </div>            </fieldset>
             <div class="field" style="margin-top:14px">
               <label class="toggle"><input type="checkbox" id="remember-toggle"><span class="knob" aria-hidden="true"></span>최근 계산 기억하기</label>
@@ -248,6 +256,8 @@
 <p><strong>청약통장 가입기간</strong>은 최대 17점입니다. 6개월 미만 1점, 6개월 이상 1년 미만 2점, 1년 이상부터 1년마다 1점씩 올라 15년 이상이면 17점입니다.</p>
 <h3>무주택기간 시작일</h3>
 <p>만 30세가 되는 날이 기본입니다. 30세 전에 혼인했으면 혼인신고일부터입니다. 과거에 주택을 소유했다면 마지막으로 처분한 날 이후부터 다시 셉니다. 셋 중 가장 늦은 날이 시작일입니다.</p>
+<h3>기준일</h3>
+<p>실제 청약에서 무주택기간과 통장 가입기간은 오늘이 아니라 <strong>입주자모집공고일</strong>까지 셉니다. 공고일을 넣으면 그날 기준 점수가 나오고, 비워두면 오늘 기준입니다. 공고일이 몇 달 뒤라 그 사이에 1년 단위가 바뀌면 점수가 2점(무주택) 또는 1점(통장) 오를 수 있습니다.</p>
 <h3>가점제와 추첨제</h3>
 <p>모든 청약이 가점으로 정해지지는 않습니다. 지역과 면적, 주택 유형에 따라 가점제와 추첨제 비율이 다릅니다. 가점이 낮아도 추첨 물량에 도전할 수 있고, 특별공급은 별도 자격 요건을 봅니다.</p>
 <p>가점표는 주택공급에 관한 규칙 별표1에 있으며 제도 개편으로 바뀔 수 있습니다. 이 계산기의 점수표는 스크립트 상단에 상수로 두었습니다.</p>
