@@ -1,5 +1,5 @@
 # 전체 조립: 기존 페이지 재포장, 새 페이지 생성, 부속 파일
-import os, re, json, sys
+import os, re, json, sys, hashlib
 sys.path.insert(0, os.path.dirname(__file__))
 from site_core import *
 from pages_new import NEW_PAGES
@@ -83,28 +83,6 @@ ALL_HTML = [t[0] for t in TOOLS] + [r[0] for r in REFS] + [g[0] for g in GUIDES]
 assets = ["css/site.css", "js/common.js", "js/analytics.js", "js/forms.js", "js/home.js", "favicon.svg", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "manifest.json"] + \
          [f"js/{n}.js" for n in ["rent", "loan", "yield", "fee", "area", "conversion", "subscription", "rent-tax-credit", "dsr", "prepayment", "acquisition-tax", "capital-gains-tax",
                                  "renewal", "tax-calendar", "moving", "rate-compare", "buy-vs-rent", "jeonse-insurance", "jeonse-fraud-check", "salary", "severance"]]
-sw = """/* 전국부동산계산기 서비스 워커: 정적 자산은 캐시 우선, HTML은 네트워크 우선(오프라인 시 캐시) */
-var VERSION = 'jipcalc-v7';
-var ASSETS = %s;
-self.addEventListener('install', function (e) {
-  e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(ASSETS.map(function (a) { return new Request(a, { cache: 'reload' }); })).catch(function () {}); }).then(function () { return self.skipWaiting(); }));
-});
-self.addEventListener('activate', function (e) {
-  e.waitUntil(caches.keys().then(function (keys) { return Promise.all(keys.filter(function (k) { return k !== VERSION; }).map(function (k) { return caches.delete(k); })); }).then(function () { return self.clients.claim(); }));
-});
-self.addEventListener('fetch', function (e) {
-  var req = e.request;
-  if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
-  var isHTML = req.mode === 'navigate' || (req.headers.get('accept') || '').indexOf('text/html') !== -1;
-  if (isHTML) {
-    e.respondWith(fetch(req).then(function (res) { var copy = res.clone(); caches.open(VERSION).then(function (c) { c.put(req, copy); }); return res; })
-      .catch(function () { return caches.match(req).then(function (r) { return r || caches.match('404.html'); }); }));
-  } else {
-    e.respondWith(caches.match(req).then(function (r) { return r || fetch(req).then(function (res) { var copy = res.clone(); caches.open(VERSION).then(function (c) { c.put(req, copy); }); return res; }); }));
-  }
-});
-""" % json.dumps(assets + ALL_HTML, ensure_ascii=False)
-write("sw.js", sw)
 
 analytics = """/* 방문 통계 — ID를 비우면 그 도구는 아무것도 로드하지 않는다.
    GA4: analytics.google.com 의 측정 ID (G-로 시작)
@@ -137,6 +115,40 @@ for jsf in ["js/conversion.js", "js/renewal.js"]:
     js = re.sub(r"var BASE_RATE_DEFAULT = [\d.]+", f"var BASE_RATE_DEFAULT = {BASE_RATE:.2f}", js, count=1)
     js = re.sub(r"var BASE_RATE_DATE = '[^']*'", f"var BASE_RATE_DATE = '{BASE_RATE_LABEL}'", js, count=1)
     write(jsf, js)
+
+
+# 서비스 워커 버전은 캐시 대상 파일 내용의 해시로 만든다. 어떤 파일이든 바뀌면 버전이 바뀌어
+# 방문자 브라우저의 옛 캐시가 버려진다. 손으로 올리는 번호는 빼먹기 쉬워서(#20에서 실제로 빼먹음) 없앴다.
+# 그래서 sw.js는 다른 산출물이 전부 쓰인 뒤 맨 마지막에 만든다.
+def sw_version():
+    h = hashlib.sha1()
+    for f in assets + ALL_HTML + TERM_HTML:
+        fp = os.path.join(ROOT, f)
+        if os.path.exists(fp): h.update(open(fp, "rb").read())
+    return h.hexdigest()[:10]
+
+sw = """/* 전국부동산계산기 서비스 워커: 정적 자산은 캐시 우선, HTML은 네트워크 우선(오프라인 시 캐시) */
+var VERSION = 'jipcalc-%s';
+var ASSETS = %s;
+self.addEventListener('install', function (e) {
+  e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(ASSETS.map(function (a) { return new Request(a, { cache: 'reload' }); })).catch(function () {}); }).then(function () { return self.skipWaiting(); }));
+});
+self.addEventListener('activate', function (e) {
+  e.waitUntil(caches.keys().then(function (keys) { return Promise.all(keys.filter(function (k) { return k !== VERSION; }).map(function (k) { return caches.delete(k); })); }).then(function () { return self.clients.claim(); }));
+});
+self.addEventListener('fetch', function (e) {
+  var req = e.request;
+  if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
+  var isHTML = req.mode === 'navigate' || (req.headers.get('accept') || '').indexOf('text/html') !== -1;
+  if (isHTML) {
+    e.respondWith(fetch(req).then(function (res) { var copy = res.clone(); caches.open(VERSION).then(function (c) { c.put(req, copy); }); return res; })
+      .catch(function () { return caches.match(req).then(function (r) { return r || caches.match('404.html'); }); }));
+  } else {
+    e.respondWith(caches.match(req).then(function (r) { return r || fetch(req).then(function (res) { var copy = res.clone(); caches.open(VERSION).then(function (c) { c.put(req, copy); }); return res; }); }));
+  }
+});
+""" % (sw_version(), json.dumps(assets + ALL_HTML, ensure_ascii=False))
+write("sw.js", sw)
 
 # sitemap
 def url(f, freq, pri):
