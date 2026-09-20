@@ -156,10 +156,10 @@ def conversion_page():
             <fieldset style="margin-top:6px">
               <legend>전환율</legend>
               <div class="grid-2">
-{num("baseRate", "한국은행 기준금리", "2.50", "%", "0.05")}
-{num("marketRate", "시장 전환율 (비교용)", "5.5", "%", "0.1")}
+{num("baseRate", "한국은행 기준금리", f"{BASE_RATE:.2f}", "%", "0.05", help_="법정 상한 = 기준금리 + 2%p (최대 10%). 갱신하거나 계약 중에 전세→월세로 바꿀 때만 적용되는 상한이고, 신규 계약에는 강제되지 않습니다.")}
+{num("marketRate", "시장 전환율 (비교용)", "5.5", "%", "0.1", help_="실제 거래에서 보증금을 월세로 바꿀 때 적용되는 연 이자율. 지역·시기마다 다르고 보통 법정 상한보다 높습니다. 한국부동산원(R-ONE)에서 지역별 수치를 확인하세요.")}
               </div>
-              <p class="field-help">법정 상한 = min(10%, 기준금리 + 2%p). <span id="legal-formula"></span> 기준금리 기본값은 <span id="base-date"></span>이며 바뀌면 고쳐 넣으세요.</p>
+              <p class="field-help"><span id="legal-formula"></span> 기준금리 기본값은 <span id="base-date"></span> 기준이며 바뀌면 고쳐 넣으세요. <a href="base-rate-history.html">변동 이력</a></p>
             </fieldset>
 ''' + form_close("환산하기")
     right = result_hero("법정 전환율로 환산한 월세 (월)", "out-big", "원", [("법정 전환율", "out-legal-rate", "%"), ("시장 전환율", "out-market-rate", "%")], kicker_id="out-kicker", big_unit_id="out-unit") + '''

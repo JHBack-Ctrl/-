@@ -17,7 +17,7 @@
   var NONBUSINESS_LAND_ADD = 10;                  // 비사업용 토지 가산 %p
   var UNREGISTERED_RATE = 70;                     // 미등기 양도
   var HEAVY_ADD = { 2: 20, 3: 30 };               // 조정대상지역 다주택 중과 가산 %p (2주택 / 3주택 이상)
-  var HEAVY_SUSPENDED_UNTIL = '2026-05-09';       // 다주택 중과 한시 배제 종료일(마지막 확인). 연장 여부 매년 확인
+  var HEAVY_SUSPENDED_UNTIL = '2026-05-09';       // 다주택 중과 한시 배제 종료일. 2026-05-10부터 중과 재개 (2026-09 확인). 2027~28년 완화는 정부안 단계라 미반영
   var BASIC_DEDUCTION = 2500000;                  // 양도소득 기본공제 (연 1회)
   var HIGH_PRICE_CAP = 1200000000;                // 1세대 1주택 비과세 한도 (양도가액 12억)
   var LTD_GENERAL = { minYears: 3, perYear: 2, max: 30 };                       // 장기보유특별공제 표1
@@ -146,7 +146,7 @@
     }
     if (i.heavyExcluded && isHouse && i.adjArea && homes >= 2) heavyNote = '중과 배제 대상 주택으로 지정해 중과하지 않았습니다.';
     var suspendedUntil = S.parseDate(HEAVY_SUSPENDED_UNTIL);
-    if (isHouse && i.adjArea && homes >= 2 && i.saleDate > suspendedUntil && i.heavySuspended) warns.push('양도일이 마지막으로 확인된 중과 유예 종료일(' + HEAVY_SUSPENDED_UNTIL + ') 이후입니다. 유예 연장 여부를 확인하세요.');
+    if (isHouse && i.adjArea && homes >= 2 && i.saleDate > suspendedUntil && i.heavySuspended) warns.push('양도일이 중과 유예 종료일(' + HEAVY_SUSPENDED_UNTIL + ') 이후입니다. 유예는 종료되어 원칙적으로 중과가 적용되며, 2026-05-09까지 계약 체결·계약금 지급이 증빙되는 경우에만 배제됩니다.');
     out.heavy = heavy; out.heavyNote = heavyNote;
 
     // ---- 장기보유특별공제 ----
