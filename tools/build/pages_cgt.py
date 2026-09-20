@@ -78,7 +78,7 @@ def capital_gains_tax_page():
 ''' + num("resMonths", "이 주택 거주 기간", "0", "개월", "1", help_="전입~전출 실제 거주") + select("special", "1주택 특례", [("none", "해당 없음"), ("temp2", "일시적 2주택"), ("inherit", "상속주택 보유"), ("marriage", "혼인 합가"), ("care", "동거봉양 합가"), ("rental", "거주주택 특례(임대주택 보유)")]) + '''              </div>
               <div id="newhome-field" hidden>
 ''' + date("newHomeDate", "신주택 취득일", "종전주택 취득 1년 후 취득, 신주택 취득 후 3년 내 양도") + '''              </div>
-''' + check("adjArea", "양도 시점에 조정대상지역", "다주택 중과 판정에 사용") + check("adjAcquired", "2017년 8월 3일 이후 조정대상지역에서 취득", "비과세에 2년 거주 요건 추가") + check("heavySuspended", "다주택 중과 한시 배제(유예) 적용", "마지막 확인된 유예 종료일: <span id=\"suspend-date\"></span>. 연장 여부는 매년 확인") + check("heavyExcluded", "중과 배제 대상 주택", "수도권·광역시·세종 외 3억 이하 주택, 장기임대주택 등") + '''            </fieldset>
+''' + check("adjArea", "양도 시점에 조정대상지역", "다주택 중과 판정에 사용") + check("adjAcquired", "2017년 8월 3일 이후 조정대상지역에서 취득", "비과세에 2년 거주 요건 추가") + check("heavySuspended", "다주택 중과 한시 배제(유예) 적용", "유예는 <span id=\"suspend-date\"></span>에 종료됐습니다. 그 이후 양도분은 기본값이 꺼짐(중과 적용)입니다. 2026년 5월 9일까지 계약 체결·계약금 지급이 증빙되는 경우에만 켜세요.") + check("heavyExcluded", "중과 배제 대상 주택", "수도권·광역시·세종 외 3억 이하 주택, 장기임대주택 등") + '''            </fieldset>
             <div id="assoc-fields" hidden>
             <fieldset>
               <legend>조합원입주권</legend>
