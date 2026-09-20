@@ -179,14 +179,16 @@
               <div class="grid-2">
               <div class="field">
                 <label for="baseRate">한국은행 기준금리</label>
-                <div class="input-wrap"><input id="baseRate" type="number" inputmode="decimal" step="0.05" min="0" value="2.50"><span class="suffix">%</span></div>
+                <div class="input-wrap"><input id="baseRate" type="number" inputmode="decimal" step="0.05" min="0" value="3.00"><span class="suffix">%</span></div>
+                <p class="field-help">법정 상한 = 기준금리 + 2%p (최대 10%). 갱신하거나 계약 중에 전세→월세로 바꿀 때만 적용되는 상한이고, 신규 계약에는 강제되지 않습니다.</p>
               </div>
               <div class="field">
                 <label for="marketRate">시장 전환율 (비교용)</label>
                 <div class="input-wrap"><input id="marketRate" type="number" inputmode="decimal" step="0.1" min="0" value="5.5"><span class="suffix">%</span></div>
+                <p class="field-help">실제 거래에서 보증금을 월세로 바꿀 때 적용되는 연 이자율. 지역·시기마다 다르고 보통 법정 상한보다 높습니다. 한국부동산원(R-ONE)에서 지역별 수치를 확인하세요.</p>
               </div>
               </div>
-              <p class="field-help">법정 상한 = min(10%, 기준금리 + 2%p). <span id="legal-formula"></span> 기준금리 기본값은 <span id="base-date"></span>이며 바뀌면 고쳐 넣으세요.</p>
+              <p class="field-help"><span id="legal-formula"></span> 기준금리 기본값은 <span id="base-date"></span> 기준이며 바뀌면 고쳐 넣으세요. <a href="base-rate-history.html">변동 이력</a></p>
             </fieldset>
             <div class="field" style="margin-top:14px">
               <label class="toggle"><input type="checkbox" id="remember-toggle"><span class="knob" aria-hidden="true"></span>최근 계산 기억하기</label>

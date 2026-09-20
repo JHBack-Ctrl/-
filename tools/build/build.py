@@ -131,6 +131,13 @@ analytics = """/* 방문 통계 — ID를 비우면 그 도구는 아무것도 �
 """
 write("js/analytics.js", analytics)
 
+# 기준금리 상수는 site_core.RATE_HISTORY 마지막 값을 js에 주입한다. 손으로 고치지 말 것.
+for jsf in ["js/conversion.js", "js/renewal.js"]:
+    js = read(jsf)
+    js = re.sub(r"var BASE_RATE_DEFAULT = [\d.]+", f"var BASE_RATE_DEFAULT = {BASE_RATE:.2f}", js, count=1)
+    js = re.sub(r"var BASE_RATE_DATE = '[^']*'", f"var BASE_RATE_DATE = '{BASE_RATE_LABEL}'", js, count=1)
+    write(jsf, js)
+
 # sitemap
 def url(f, freq, pri):
     return f"  <url>\n    <loc>{BASE + ('' if f == 'index.html' else f)}</loc>\n    <lastmod>{TODAY}</lastmod>\n    <changefreq>{freq}</changefreq>\n    <priority>{pri}</priority>\n  </url>\n"
