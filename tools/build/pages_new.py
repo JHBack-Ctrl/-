@@ -190,18 +190,24 @@ def subscription_page():
         "<p><strong>청약통장 가입기간</strong>은 최대 17점입니다. 6개월 미만 1점, 6개월 이상 1년 미만 2점, 1년 이상부터 1년마다 1점씩 올라 15년 이상이면 17점입니다.</p>",
         "<h3>무주택기간 시작일</h3>",
         "<p>만 30세가 되는 날이 기본입니다. 30세 전에 혼인했으면 혼인신고일부터입니다. 과거에 주택을 소유했다면 마지막으로 처분한 날 이후부터 다시 셉니다. 셋 중 가장 늦은 날이 시작일입니다.</p>",
+        "<h3>기준일</h3>",
+        "<p>실제 청약에서 무주택기간과 통장 가입기간은 오늘이 아니라 <strong>입주자모집공고일</strong>까지 셉니다. 공고일을 넣으면 그날 기준 점수가 나오고, 비워두면 오늘 기준입니다. 공고일이 몇 달 뒤라 그 사이에 1년 단위가 바뀌면 점수가 2점(무주택) 또는 1점(통장) 오를 수 있습니다.</p>",
         "<h3>가점제와 추첨제</h3>",
         "<p>모든 청약이 가점으로 정해지지는 않습니다. 지역과 면적, 주택 유형에 따라 가점제와 추첨제 비율이 다릅니다. 가점이 낮아도 추첨 물량에 도전할 수 있고, 특별공급은 별도 자격 요건을 봅니다.</p>",
         "<p>가점표는 주택공급에 관한 규칙 별표1에 있으며 제도 개편으로 바뀔 수 있습니다. 이 계산기의 점수표는 스크립트 상단에 상수로 두었습니다.</p>",
     ])
     left = form_open() + '''            <fieldset>
-              <legend>무주택기간</legend>
+              <legend>무주택기간 산정 정보</legend>
+              <p class="field-help" style="margin:-4px 0 12px">무주택기간은 직접 넣는 것이 아니라 아래 정보로 자동 산정됩니다. <strong>만 30세가 되는 날</strong>부터 세고, 그 전 기간은 들어가지 않습니다. 30세 전에 혼인했으면 혼인신고일부터, 집을 판 적이 있으면 마지막 처분일부터입니다.</p>
 ''' + date("birth", "생년월일") + check("married", "혼인했습니다", "만 30세 전 혼인이면 혼인신고일부터 무주택기간을 셉니다.") + date("marriage", "혼인신고일", wrap_id="marriage-field", hidden=True) + \
         check("ownedBefore", "과거에 주택을 소유한 적이 있습니다") + date("lastSale", "마지막 주택 처분일", wrap_id="lastSale-field", hidden=True) + \
         check("owner", "현재 주택을 소유하고 있습니다", "소유 중이면 무주택기간 점수는 0점입니다.") + '''            </fieldset>
             <fieldset>
               <legend>부양가족과 청약통장</legend>
 ''' + num("dependents", "부양가족 수 (본인 제외)", "0", "명", "1", max_="10", help_="배우자, 3년 이상 같은 등본의 직계존속, 미혼 자녀. 6명 이상은 35점으로 같습니다.") + date("account", "청약통장 가입일") + '''            </fieldset>
+            <fieldset>
+              <legend>기준일</legend>
+''' + date("notice", "입주자모집공고일 (선택)", "실제 가점은 공고일 기준으로 셉니다. 비워두면 오늘 기준으로 계산합니다.") + '''            </fieldset>
 ''' + form_close("가점 계산하기")
     right = result_hero("예상 청약 가점 (84점 만점)", "out-total", "점", [("무주택기간 (32)", "out-homeless", "점"), ("부양가족 (35)", "out-dependent", "점"), ("통장 가입기간 (17)", "out-account", "점")]) + '''
         <section class="card">
@@ -228,7 +234,7 @@ def subscription_page():
               <tr><td>유주택</td><td>0</td><td>6명 이상</td><td>35</td><td></td><td></td></tr>
             </tbody></table></div>
         </section>'''
-    main = hero("Subscription · Score", "청약 가점 계산기", "무주택기간·부양가족·통장기간으로 84점 만점 계산", "생년월일, 혼인 여부, 부양가족 수, 청약통장 가입일을 넣으면 가점을 계산합니다. 참고용이며 실제 청약에서는 청약홈이 산정한 점수를 써야 합니다. 잘못 넣어 당첨되면 취소될 수 있습니다.") + layout(left, right) + INLINE_AD + guide + faq_section(faq) + related("subscription.html")
+    main = hero("Subscription · Score", "청약 가점 계산기", "무주택기간·부양가족·통장기간으로 84점 만점 계산", "생년월일, 혼인 여부, 부양가족 수, 청약통장 가입일을 넣으면 가점을 계산합니다. 무주택기간은 만 30세부터 자동 산정되고, 입주자모집공고일을 넣으면 그날 기준으로 셉니다. 참고용이며 실제 청약에서는 청약홈이 산정한 점수를 써야 합니다. 잘못 넣어 당첨되면 취소될 수 있습니다.") + layout(left, right) + INLINE_AD + guide + faq_section(faq) + related("subscription.html")
     return main, app_ld("청약 가점 계산기", desc_of("subscription.html"), "subscription.html") + faq_ld(faq) + breadcrumb_ld("청약 가점", "subscription.html")
 
 # ============================================================ 월세 세액공제
