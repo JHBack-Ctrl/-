@@ -182,7 +182,10 @@ def home():
                    "guide-acquisition-tax.html": "취득세, 왜 달라지나", "guide-cgt-exemption.html": "양도세 비과세 2년",
                    "guide-subscription-points.html": "청약 가점이 안 오르는 이유", "guide-dsr-ltv.html": "DSR과 LTV 차이",
                    "guide-salary-net.html": "연봉 실수령액 구조", "guide-severance.html": "퇴직금 요건과 계산",
-                   "guide-jeonse-registry.html": "전세 전 등기부 보는 법"}
+                   "guide-jeonse-registry.html": "전세 전 등기부 보는 법",
+                   "guide-renewal-refusal.html": "갱신 거절되는 경우", "guide-jeonse-insurance-fail.html": "보증보험 안 되는 집",
+                   "guide-area-84.html": "84㎡가 34평이 아닌 이유", "guide-rent-tax-credit-who.html": "월세 세액공제 조건",
+                   "guide-fixed-vs-variable.html": "고정 vs 변동 고르기"}
     ref = ("".join(f'<a class="tile" href="{f}" data-k="{n}">{tile_icon(f)}<span class="t">{GUIDE_SHORT.get(f, n)}</span></a>'
                    for (f, n, _t, _d) in GUIDES)
            + "".join(tile(f, n, "") for (f, n, _t, _d, _c, _s) in REFS if f != "guides.html"))
