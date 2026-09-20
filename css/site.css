@@ -114,11 +114,12 @@ button { font: inherit; }
     align-items: start;
   }
   .page-shell > .container { max-width: none; padding: 0; }
-  .rail { display: block; position: sticky; top: 84px; }
+  .rail { display: block; position: sticky; top: 118px; }   /* 헤더 두 줄(1280~1359px) */
   .rail .slot { padding: 30px 12px 14px; margin: 0; }
   .rail .ad-placeholder { min-height: 560px; font-size: 12.5px; text-align: center; padding: 0 6px; }
   .rail .slot-label { top: 10px; left: 10px; }
 }
+@media (min-width: 1360px) { .rail { top: 84px; } }   /* 헤더 한 줄 */
 @media (min-width: 1500px) {
   .page-shell { grid-template-columns: 250px minmax(0, 1fr) 250px; max-width: 1500px; }
 }
@@ -216,8 +217,12 @@ button { font: inherit; }
 .menu-group a small { display: block; color: var(--ink-3); font-weight: 400; font-size: 12.5px; }
 @media (min-width: 900px) {
   .header-row { height: 64px; }
+}
+/* 빠른 이동이 11개라 브랜드 옆 한 줄에는 1360px 이상에서만 다 들어간다.
+   그 아래 폭에서는 모바일처럼 두 번째 줄로 내린다. 스크롤바가 숨겨져 있어 잘리면 있는 줄도 모른다. */
+@media (min-width: 1360px) {
   .tool-nav { padding: 0; }
-  .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 12px; max-width: 1360px; }
   .site-header nav { flex: 1; min-width: 0; }
 }
 

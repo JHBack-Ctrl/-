@@ -144,6 +144,42 @@ def guides_index():
     </section>'''
     return page(r[2], r[3], r[0], main, extra_head=breadcrumb_ld("안내 글", "guides.html"))
 
+def _hub(path, eyebrow, h1, sub, body, sections):
+    h = [x for x in HUBS if x[0] == path][0]
+    secs = ""
+    for (title, note, cards) in sections:
+        note_html = f'<p class="hub-sub">{note}</p>' if note else ""
+        cards_html = "".join(f'<a class="tool-card" href="{f}"><p class="t">{n}</p><p class="d">{d}</p></a>' for (f, n, d) in cards)
+        secs += f'''
+    <section class="card">
+      <h2>{title}</h2>{note_html}
+      <div class="tool-grid">{cards_html}</div>
+    </section>'''
+    main = f'''    <section class="hero">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{h1}</h1>
+      <p class="hero-sub">{sub}</p>
+      <p class="hero-body">{body}</p>
+    </section>{secs}'''
+    return page(h[2], h[3], path, main, extra_head=breadcrumb_ld(h[1], path))
+
+def tables_index():
+    return _hub("tables.html", "Tables", "표·자료", "계산기 속 세율표와 요율표를 표 하나로",
+                "세율과 요율은 바뀝니다. 각 표에는 기준일이 붙어 있고, 계산기의 상수와 같은 값입니다.",
+                [("세율표·요율표", None, [(f, n, d) for (f, n, _t, _d, d) in TABLES])])
+
+def forms_index():
+    return _hub("forms.html", "Forms · Glossary", "서식·용어", "계약할 때 바로 쓰는 서식과 용어 설명",
+                "입력하면 완성되는 영수증, 복사해서 쓰는 통지문과 특약 문구, 한 페이지에 하나씩 설명한 용어 사전입니다. 입력값은 저장하지 않습니다.",
+                [("서식", None, [(f, n, d) for (f, n, _t, _d, d) in FORMS]),
+                 ("용어 사전", "대항력, 확정일자, 근저당, DSR… 계약·등기·세금·대출 용어를 쉬운 말로.", [("glossary.html", "부동산 용어 사전", "39개 용어, 항목마다 관련 계산기 연결")])])
+
+def refs_index():
+    return _hub("refs.html", "References", "참고 자료", "계약과 세금 전에 확인할 것",
+                "세율이나 법령을 해석하지 않습니다. 무엇을 어디서 확인해야 하는지, 숫자를 어떻게 읽어야 하는지 안내합니다.",
+                [("확인 목록·확인처", None, [(f, n, d) for (f, n, _t, _d, _c, d) in REFS if f != "guides.html"]),
+                 ("안내 글", f"부동산 숫자를 읽는 법 {len(GUIDES)}편.", [(f, n, "") for (f, n, _t, _d) in GUIDES] + [("guides.html", "안내 글 목록 전체 보기", "")])])
+
 def home():
     """타일형 홈. 등록부에서 직접 만들기 때문에 계산기를 추가하면 홈에도 자동으로 붙는다."""
     def tile(f, name, desc, extra_cls=""):
