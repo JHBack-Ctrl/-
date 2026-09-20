@@ -6,7 +6,7 @@ from pages_new import NEW_PAGES
 from pages_cgt import CGT_PAGES
 from pages_tools2 import TOOLS2_PAGES
 NEW_PAGES.update(CGT_PAGES); NEW_PAGES.update(TOOLS2_PAGES)
-from pages_guides import guide_repayment, guide_brokerage, guide_conversion, guide_jeonse_vs_monthly, guides_index, home
+from pages_guides import guide_repayment, guide_brokerage, guide_conversion, guide_jeonse_vs_monthly, guides_index, home, tables_index, forms_index, refs_index
 from pages_guides2 import GUIDES2
 from pages_tables import TABLE_PAGES
 from pages_forms import FORM_PAGES
@@ -62,6 +62,7 @@ write("guide-conversion.html", guide_conversion())
 write("guide-jeonse-vs-monthly.html", guide_jeonse_vs_monthly())
 for f, fn in GUIDES2: write(f, fn())
 write("guides.html", guides_index())
+write("tables.html", tables_index()); write("forms.html", forms_index()); write("refs.html", refs_index())
 write("index.html", home())
 
 # ---------- 4b) 표·자료, 서식, 용어 사전 ----------
@@ -79,7 +80,7 @@ manifest = {
 write("manifest.json", json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
 
 TERM_HTML = [term_path(t[0]) for t in TERMS]
-ALL_HTML = [t[0] for t in TOOLS] + [r[0] for r in REFS] + [g[0] for g in GUIDES] + [d[0] for d in DOCS] + [x[0] for x in TABLES] + [x[0] for x in FORMS] + ["glossary.html", "index.html", "404.html"]
+ALL_HTML = [t[0] for t in TOOLS] + [r[0] for r in REFS] + [h[0] for h in HUBS] + [g[0] for g in GUIDES] + [d[0] for d in DOCS] + [x[0] for x in TABLES] + [x[0] for x in FORMS] + ["glossary.html", "index.html", "404.html"]
 assets = ["css/site.css", "js/common.js", "js/analytics.js", "js/forms.js", "js/home.js", "favicon.svg", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "manifest.json"] + \
          [f"js/{n}.js" for n in ["rent", "loan", "yield", "fee", "area", "conversion", "subscription", "rent-tax-credit", "dsr", "prepayment", "acquisition-tax", "capital-gains-tax",
                                  "renewal", "tax-calendar", "moving", "rate-compare", "buy-vs-rent", "jeonse-insurance", "jeonse-fraud-check", "salary", "severance"]]
@@ -157,6 +158,7 @@ sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps
 sm += url("index.html", "weekly", "1.0")
 for t in TOOLS: sm += url(t[0], "monthly", "0.9")
 for r in REFS: sm += url(r[0], "monthly", "0.6")
+for h in HUBS: sm += url(h[0], "monthly", "0.6")
 for g in GUIDES: sm += url(g[0], "monthly", "0.7")
 for x in TABLES: sm += url(x[0], "monthly", "0.8")
 for x in FORMS: sm += url(x[0], "monthly", "0.7")

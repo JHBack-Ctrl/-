@@ -111,6 +111,15 @@ REFS = [
     ("guides.html", "안내 글", "안내 글 — 부동산 숫자 읽는 법",
      "월세, 대출, 전월세 전환, 중개보수를 이해하는 데 필요한 개념을 설명하는 안내 글 모음입니다.", "참고", "개념 설명과 계산 방법"),
 ]
+# 빠른 이동용 허브 페이지 (파일, 짧은 이름, 제목, description)
+HUBS = [
+    ("tables.html", "표·자료", "표·자료 — 취득세율표, 양도세율표, 중개보수 요율표, 청약 가점표, 기준금리 이력",
+     "계산기에 들어 있는 세율표와 요율표를 표 하나로 정리한 자료 모음. 취득세율표, 양도소득세율표, 중개보수 요율표, 청약 가점표, 한국은행 기준금리 변동 이력. 기준일이 붙어 있습니다."),
+    ("forms.html", "서식·용어", "서식·용어 — 월세 영수증, 통지문 예시, 특약 문구, 부동산 용어 사전",
+     "계약할 때 바로 쓰는 서식과 용어 설명. 월세 영수증 양식, 갱신 요구·종료 통지·보증금 반환 요청 문구, 계약서 특약 문구 모음, 대항력·확정일자·근저당 등 부동산 용어 사전."),
+    ("refs.html", "참고 자료", "참고 자료 — 양도·취득 체크리스트, 세제·정책 확인처, 안내 글",
+     "계약과 세금 전에 확인할 것을 모은 참고 자료. 양도·취득 체크리스트, 세제·정책 공식 확인처, 부동산 숫자를 읽는 안내 글 16편."),
+]
 GUIDES = [
     ("guide-repayment.html", "원리금균등과 원금균등, 무엇이 다른가", "원리금균등과 원금균등 차이 — 어떤 상환 방식을 골라야 하나",
      "원리금균등, 원금균등, 만기일시 상환 방식의 차이를 숫자로 비교합니다. 총 이자와 월 부담이 어떻게 달라지는지, 어떤 상황에 어떤 방식이 맞는지 설명합니다."),
@@ -185,7 +194,7 @@ ICON_SUN = '<svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="
 ICON_MOON = '<svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>'
 ICON_MENU = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>'
 
-QUICK_NAV = [("index.html", "홈"), ("rent.html", "월세"), ("loan.html", "대출이자"), ("acquisition-tax.html", "취득세"), ("capital-gains-tax.html", "양도세"), ("salary.html", "연봉"), ("subscription.html", "청약"), ("guides.html", "안내 글")]
+QUICK_NAV = [("index.html", "홈"), ("rent.html", "월세"), ("loan.html", "대출이자"), ("acquisition-tax.html", "취득세"), ("capital-gains-tax.html", "양도세"), ("salary.html", "연봉"), ("subscription.html", "청약"), ("tables.html", "표·자료"), ("forms.html", "서식·용어"), ("refs.html", "참고 자료"), ("guides.html", "안내 글")]
 
 # 홈 타일 아이콘. 24×24 stroke 방식, 색은 CSS가 정한다.
 _P = '<svg viewBox="0 0 24 24" aria-hidden="true">{}</svg>'
