@@ -164,6 +164,10 @@ button { font: inherit; }
 }
 .tool-nav { margin: 0; padding: 0 0 8px; list-style: none; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
 .tool-nav::-webkit-scrollbar { display: none; }
+/* 넘치는 쪽 끝을 흐리게: 더 있다는 표시 (data-overflow는 js/common.js initNavScroll이 붙인다) */
+.tool-nav[data-overflow="right"] { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 36px), transparent); }
+.tool-nav[data-overflow="left"] { -webkit-mask-image: linear-gradient(to right, transparent, #000 36px); mask-image: linear-gradient(to right, transparent, #000 36px); }
+.tool-nav[data-overflow="both"] { -webkit-mask-image: linear-gradient(to right, transparent, #000 36px, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to right, transparent, #000 36px, #000 calc(100% - 36px), transparent); }
 .tool-nav a {
   display: inline-block; white-space: nowrap;
   padding: 7px 12px; border-radius: 999px;

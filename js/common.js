@@ -315,6 +315,30 @@
     });
   }
 
+  // ---- 빠른 이동 가로 스크롤 ----
+  // 좁은 화면에서 목록이 넘치면 스크롤바를 숨겨 두어서, 마우스만 있는 사람은 넘길 방법이 없었다.
+  // 세로 휠을 가로 스크롤로 돌리고, 더 있는 쪽 가장자리를 흐리게 해서 넘친다는 걸 보여준다.
+  function initNavScroll() {
+    var nav = document.querySelector('.tool-nav');
+    if (!nav) return;
+    function mark() {
+      var over = nav.scrollWidth - nav.clientWidth > 2;
+      var left = nav.scrollLeft > 2, right = nav.scrollLeft + nav.clientWidth < nav.scrollWidth - 2;
+      nav.setAttribute('data-overflow', !over ? 'none' : left && right ? 'both' : left ? 'left' : 'right');
+    }
+    nav.addEventListener('wheel', function (e) {
+      if (nav.scrollWidth - nav.clientWidth <= 2) return;
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;   // 트랙패드 가로 제스처는 그대로
+      e.preventDefault(); nav.scrollLeft += e.deltaY;
+    }, { passive: false });
+    nav.addEventListener('scroll', mark, { passive: true });
+    window.addEventListener('resize', mark);
+    // 현재 페이지 항목이 가려져 있으면 보이게 당겨 온다
+    var cur = nav.querySelector('a[aria-current="page"]');
+    if (cur && cur.offsetLeft + cur.offsetWidth > nav.clientWidth) nav.scrollLeft = cur.offsetLeft - 16;
+    mark();
+  }
+
   // ---- 모바일 하단 요약 바 ----
   function bindStickySummary(targetId) {
     var bar = $('sticky-summary'), target = $(targetId);
@@ -476,5 +500,5 @@
 
   // 테마는 화면 깜빡임을 줄이기 위해 즉시 적용
   applyTheme(lsGet(THEME_KEY));
-  ready(function () { initTheme(); initMenu(); markCurrentNav(); initSoonLinks(); initServiceWorker(); initInstallPrompt(); });
+  ready(function () { initTheme(); initMenu(); markCurrentNav(); initNavScroll(); initSoonLinks(); initServiceWorker(); initInstallPrompt(); });
 })(window);
