@@ -7,6 +7,7 @@ from pages_cgt import CGT_PAGES
 from pages_tools2 import TOOLS2_PAGES
 NEW_PAGES.update(CGT_PAGES); NEW_PAGES.update(TOOLS2_PAGES)
 from pages_guides import guide_repayment, guide_brokerage, guide_conversion, guide_jeonse_vs_monthly, guides_index, home
+from pages_guides2 import GUIDES2
 from pages_tables import TABLE_PAGES
 from pages_forms import FORM_PAGES
 from pages_glossary import TERMS, term_page, term_path, glossary_index
@@ -59,6 +60,7 @@ write("guide-repayment.html", guide_repayment())
 write("guide-brokerage.html", guide_brokerage())
 write("guide-conversion.html", guide_conversion())
 write("guide-jeonse-vs-monthly.html", guide_jeonse_vs_monthly())
+for f, fn in GUIDES2: write(f, fn())
 write("guides.html", guides_index())
 write("index.html", home())
 
@@ -82,7 +84,7 @@ assets = ["css/site.css", "js/common.js", "js/analytics.js", "js/forms.js", "js/
          [f"js/{n}.js" for n in ["rent", "loan", "yield", "fee", "area", "conversion", "subscription", "rent-tax-credit", "dsr", "prepayment", "acquisition-tax", "capital-gains-tax",
                                  "renewal", "tax-calendar", "moving", "rate-compare", "buy-vs-rent", "jeonse-insurance", "jeonse-fraud-check", "salary", "severance"]]
 sw = """/* 전국부동산계산기 서비스 워커: 정적 자산은 캐시 우선, HTML은 네트워크 우선(오프라인 시 캐시) */
-var VERSION = 'jipcalc-v6';
+var VERSION = 'jipcalc-v7';
 var ASSETS = %s;
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(ASSETS.map(function (a) { return new Request(a, { cache: 'reload' }); })).catch(function () {}); }).then(function () { return self.skipWaiting(); }));

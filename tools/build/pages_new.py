@@ -79,11 +79,7 @@ def result_hero(kicker, big_id, unit, stats, note_id="out-note", kicker_id=None,
           <p class="result-note" id="{note_id}"></p>
         </section>'''
 
-AD_SIDE = '''
-        <aside class="card slot" aria-label="광고">
-          <span class="slot-label">광고</span>
-          <div class="ad-placeholder">애드센스 슬롯 자리 (플레이스홀더)</div>
-        </aside>'''
+AD_SIDE = ''  # 계산기 옆 광고 자리. 승인 전에는 비워둔다 (site_core.rail 주석 참고)
 
 def layout(left, right):
     return f'''
