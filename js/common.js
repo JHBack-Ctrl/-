@@ -7,7 +7,8 @@
   var THEME_KEY = STORAGE_PREFIX + 'theme';         // "light" | "dark" | 없음(자동)
   // 한글 도메인은 location.host 가 퓨니코드(xn--...)로 나오므로 사람이 보는 문구에는 이 값을 쓴다
   var SITE_HOST = '전국부동산계산기.com';
-  function displayHost() { return /^xn--/.test(location.hostname) ? SITE_HOST : location.host; }
+  // 퓨니코드 주소는 한글로 보여준다. host가 비는 경우(file://로 연 경우)에도 사이트 주소가 나와야 한다.
+  function displayHost() { return (!location.host || /^xn--/.test(location.hostname)) ? SITE_HOST : location.host; }
 
   function $(id) { return document.getElementById(id); }
   function $$(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
@@ -153,7 +154,12 @@
       try {
         var W = 1080, pad = 72, scale = 2;
         var rows = c.rows || [];
-        var H = 470 + rows.length * 56 + (c.note ? 90 : 0);
+        var font = '"Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif';
+        // 높이는 내용에서 계산한다. 고정값으로 잡으면 설명 줄 수에 따라 아래가 비거나 잘린다.
+        var mctx = document.createElement('canvas').getContext('2d');
+        mctx.font = '400 20px ' + font;
+        var noteLines = c.note ? wrapLines(mctx, c.note, W - pad * 2).length : 0;
+        var H = pad + 270 + rows.length * 56 + (c.note ? 40 + noteLines * 28 : 0) + 76;
         var cv = document.createElement('canvas');
         cv.width = W * scale; cv.height = H * scale;
         var ctx = cv.getContext('2d');
@@ -161,7 +167,6 @@
         var dark = document.documentElement.getAttribute('data-theme') === 'dark' ||
           (!document.documentElement.getAttribute('data-theme') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
         var bg = dark ? '#1b1d20' : '#ffffff', ink = dark ? '#eef0f2' : '#17191c', ink2 = dark ? '#b6bbc3' : '#4a4f57', ink3 = dark ? '#7f858f' : '#7b818b', accent = dark ? '#4fc39d' : '#0e6b52', accentInk = dark ? '#08160f' : '#ffffff', line = dark ? '#2b2f35' : '#e2dfd6';
-        var font = '"Pretendard Variable", Pretendard, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif';
         ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
         // 브랜드 마크: 헤더의 .brand-mark(22px)를 34px로 키워 그대로 그림
         drawBrandMark(ctx, pad, pad, 34, accent, accentInk);
@@ -203,8 +208,15 @@
         });
         ctx.textAlign = 'left';
         if (c.note) { y += 40; ctx.fillStyle = ink3; ctx.font = '400 20px ' + font; wrapText(ctx, c.note, pad, y, W - pad * 2, 28); }
+        // 푸터: 이 이미지가 공유됐을 때 어디서 왔는지 보여야 한다. 주소는 강조색으로 크게,
+        // 면책 문구는 작게 오른쪽에.
+        var fy = H - 40;
+        ctx.textBaseline = 'middle';
+        ctx.strokeStyle = line; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(pad, fy - 26); ctx.lineTo(W - pad, fy - 26); ctx.stroke();
+        ctx.fillStyle = accent; ctx.font = '700 26px ' + font; ctx.textAlign = 'left';
+        ctx.fillText(displayHost(), pad, fy);
         ctx.fillStyle = ink3; ctx.font = '400 19px ' + font; ctx.textAlign = 'right';
-        ctx.fillText('참고용 · 금융·세무·법률 자문 아님 · ' + displayHost() + location.pathname.replace(/\/[^\/]*$/, '/'), W - pad, H - 36);
+        ctx.fillText('참고용 · 금융·세무·법률 자문 아님', W - pad, fy);
         var a = document.createElement('a');
         a.download = (c.file || 'result') + '.png';
         a.href = cv.toDataURL('image/png');
@@ -228,14 +240,18 @@
     ctx.beginPath(); ctx.moveTo(s, -s); ctx.lineTo(s, s); ctx.lineTo(-s, s); ctx.lineTo(-s, -s); ctx.stroke();
     ctx.restore();
   }
-  function wrapText(ctx, text, x, y, maxW, lh) {
-    var words = String(text).split(' '), line = '';
+  function wrapLines(ctx, text, maxW) {
+    var words = String(text).split(' '), lines = [], line = '';
     for (var i = 0; i < words.length; i++) {
       var test = line + words[i] + ' ';
-      if (ctx.measureText(test).width > maxW && i > 0) { ctx.fillText(line, x, y); line = words[i] + ' '; y += lh; }
+      if (ctx.measureText(test).width > maxW && i > 0) { lines.push(line); line = words[i] + ' '; }
       else line = test;
     }
-    ctx.fillText(line, x, y);
+    lines.push(line);
+    return lines;
+  }
+  function wrapText(ctx, text, x, y, maxW, lh) {
+    wrapLines(ctx, text, maxW).forEach(function (l, i) { ctx.fillText(l, x, y + i * lh); });
   }
 
   // ---- 최근 계산 기억 (브라우저에만 저장, 켜고 끄는 스위치) ----
