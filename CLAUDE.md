@@ -1,0 +1,102 @@
+# 전국부동산계산기 — 운영 안내
+
+부동산·생활 계산기 사이트. https://전국부동산계산기.com
+(퓨니코드 `xn--989anm2s84p8on6teba611m.com`, GitHub Pages, 정적 파일만)
+
+서버·DB·로그인·유료 API가 없습니다. 모든 계산은 브라우저에서만 일어나고 입력값은 전송되지 않습니다.
+이 제약은 의도된 것이고, 운영비가 도메인비뿐인 이유입니다. 깨지 마세요.
+
+## 빌드
+
+```
+python3 tools/build/build.py
+```
+
+등록부에서 96쪽 전체를 다시 만듭니다. HTML을 직접 고치지 말고 빌더를 고치세요.
+같은 소스로 두 번 돌리면 결과가 같아야 합니다(멱등). 달라지면 버그입니다.
+
+- `site_core.py` — 등록부(TOOLS, TABLES, FORMS, REFS, GUIDES, HUBS, RATE_HISTORY)와 공통 틀.
+  메뉴·사이트맵·홈 타일이 전부 여기서 나옵니다
+- `pages_new.py` / `pages_cgt.py` / `pages_tools2.py` — 계산기 본문
+- `pages_guides.py` — 홈, 안내 글 목록, 허브 3쪽, 안내 글 4편
+- `pages_guides2.py` — 안내 글 12편
+- `pages_tables.py` / `pages_forms.py` / `pages_glossary.py` — 표·서식·용어
+- `build.py` — 위를 모아 쓰고 `manifest.json`, `sw.js`, `sitemap.xml`, `js/analytics.js`를 생성
+
+`sw.js`의 VERSION은 캐시 대상 파일 내용 해시로 자동 생성됩니다. 손으로 올리지 마세요.
+이 값이 안 바뀌면 방문자 브라우저가 옛 파일을 계속 씁니다(실제로 한 번 겪음).
+
+## 검증
+
+```
+node <스크래치>/verify3.js <출력폴더>
+```
+
+96쪽의 중복 id, 깨진 링크, 가로 넘침(320/390px), JSON-LD 파싱과 계산기 값을 확인합니다.
+커밋 전에 반드시 돌리세요.
+
+## 정기 점검표
+
+법이 바뀌는 값은 전부 각 파일 상단 상수 블록에 모여 있습니다. 그 블록만 고치면 됩니다.
+
+### 금통위 (기준금리)
+
+2026년 남은 일정: **10월 22일, 11월 26일**
+(2026년은 1/15, 2/26, 4/10, 5/28, 7/16, 8/27, 10/22, 11/26. 2027년 일정은 매년 10월말 발표)
+
+금리가 **바뀌었을 때만** 할 일 — 동결이면 아무것도 안 함:
+
+1. `tools/build/site_core.py`의 `RATE_HISTORY` 맨 뒤에 `("2026-10-22", 3.25),` 추가
+2. `RATE_HISTORY_CHECKED`를 그 달로 수정
+3. 빌드 → 검증 → 커밋
+
+`BASE_RATE`는 `RATE_HISTORY`의 마지막 값에서 나오고, 전환율·갱신 계산기 기본값과
+`js/conversion.js`·`js/renewal.js` 상수는 빌드가 주입합니다. 한 곳만 고치면 됩니다.
+
+법정 전환율 = 기준금리 + 2%p (상한 10%)라서, 금리가 바뀌면 전월세 전환 상한도 바뀝니다.
+이게 세입자에게 실질적인 뉴스라 스레드·블로그에 올릴 거리가 됩니다.
+
+### 12월 — 세제개편안 국회 통과
+
+- 다주택 양도세 중과: `js/capital-gains-tax.js`의 `HEAVY_ADD`, `HEAVY_SUSPENDED_UNTIL`
+  2026-05-09로 유예 종료됨. 정부안에 2027년 +5/+10%p, 2028년 +10/+15%p 완화가 있으나
+  **국회 통과 전이라 미반영**. 통과되면 양도 연도별로 바꿔야 함
+- 취득세: `js/acquisition-tax.js`
+- 표: `tools/build/pages_tables.py`
+
+### 1월 — 4대보험 요율·소득세
+
+매년 바뀝니다. 연말정산 시즌이라 검색도 몰립니다.
+
+- `js/salary.js` — `PENSION_RATE`, `PENSION_BASE_MIN/MAX`, `HEALTH_RATE`, `LTC_RATE`,
+  `EMPLOY_RATE`, `BRACKETS`, `EARNED_DEDUCTION`, `RULES_DATE`
+- `js/severance.js` — `SERVICE_DEDUCTION`, `CONVERTED_DEDUCTION`, `BRACKETS`
+- `js/rent-tax-credit.js` — `INCOME_CAP`, `RATE_HIGH/LOW`, `RENT_CAP`, `TAX_YEAR_LABEL`
+
+### 수시
+
+- 조정대상지역 지정·해제 → 취득세·양도세 계산기는 사용자가 직접 고르므로 코드 수정은 불필요.
+  다만 안내 글에 예시로 적힌 지역이 있으면 확인
+- HUG 전세보증보험 요건 → `js/jeonse-insurance.js`의 `DEPOSIT_CAP`, `LTV_CAP`, `SENIOR_CAP`
+- 중개보수 요율 → 거의 안 바뀜
+
+## 원칙
+
+글을 쓰거나 계산기를 고칠 때 지키는 것:
+
+- **판단하지 않고 숫자만 보여준다.** 어느 쪽이 이득이라고 단정하지 않음
+- **계산 기준을 공개한다.** 공식과 반영하지 않는 항목을 각 페이지에 적음
+- **세율표에 기준일을 붙인다.** 바뀔 수 있는 값은 상수로 분리
+- 세금 계산기는 **참고용**임을 명시하고 "정확한 세금", "확정 금액", "이만큼 아낍니다" 같은 표현은 쓰지 않음
+- 특정 매물·상품·지역 추천이나 투자 권유 금지
+- 안내 글 본문의 숫자는 **반드시 이 사이트 계산기로 뽑아서 대조**할 것.
+  글과 계산기가 다른 값을 말하면 신뢰가 무너짐
+
+## 외부 연결
+
+- 구글 서치콘솔 — 도메인 속성(가비아 TXT). 계정: junhyunback0914@gmail.com
+- 네이버 서치어드바이저 — HTML 태그. 값은 `site_core.NAVER_VERIFY`
+- GA4 `G-H6LHC9GYQH`, 네이버 애널리틱스 `1c5c9c6d95dc2d0` — `build.py`의 analytics 생성부
+- 문의 메일 100lab.studio@gmail.com — `about.html`에 난독화해 넣음
+- 애드센스 미신청. `site_core.rail()`, `INLINE_AD`, `pages_new.AD_SIDE`가 빈 값으로 자리만 있음.
+  승인되면 거기에 코드를 넣고, 슬롯에 "광고" 라벨을 반드시 붙일 것
