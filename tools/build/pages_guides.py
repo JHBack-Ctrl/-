@@ -224,7 +224,8 @@ def home():
                    "guide-fixed-vs-variable.html": "고정 vs 변동 고르기",
                    "guide-loan-rate-structure.html": "대출금리 정해지는 구조",
                    "guide-officetel.html": "오피스텔은 주택인가",
-                   "guide-property-tax.html": "재산세·종부세와 6월 1일"}
+                   "guide-property-tax.html": "재산세·종부세와 6월 1일",
+                   "guide-prepayment.html": "중도상환수수료와 3년"}
     ref = ("".join(f'<a class="tile" href="{f}" data-k="{n}">{tile_icon(f)}<span class="t">{GUIDE_SHORT.get(f, n)}</span></a>'
                    for (f, n, _t, _d) in GUIDES)
            + "".join(tile(f, n, "") for (f, n, _t, _d, _c, _s) in REFS if f != "guides.html"))
