@@ -222,7 +222,8 @@ def home():
                    "guide-renewal-refusal.html": "갱신 거절되는 경우", "guide-jeonse-insurance-fail.html": "보증보험 안 되는 집",
                    "guide-area-84.html": "84㎡가 34평이 아닌 이유", "guide-rent-tax-credit-who.html": "월세 세액공제 조건",
                    "guide-fixed-vs-variable.html": "고정 vs 변동 고르기",
-                   "guide-loan-rate-structure.html": "대출금리 정해지는 구조"}
+                   "guide-loan-rate-structure.html": "대출금리 정해지는 구조",
+                   "guide-officetel.html": "오피스텔은 주택인가"}
     ref = ("".join(f'<a class="tile" href="{f}" data-k="{n}">{tile_icon(f)}<span class="t">{GUIDE_SHORT.get(f, n)}</span></a>'
                    for (f, n, _t, _d) in GUIDES)
            + "".join(tile(f, n, "") for (f, n, _t, _d, _c, _s) in REFS if f != "guides.html"))
