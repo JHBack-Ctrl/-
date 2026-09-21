@@ -12,14 +12,14 @@
 python3 tools/build/build.py
 ```
 
-등록부에서 96쪽 전체를 다시 만듭니다. HTML을 직접 고치지 말고 빌더를 고치세요.
+등록부에서 100쪽 전체를 다시 만듭니다. HTML을 직접 고치지 말고 빌더를 고치세요.
 같은 소스로 두 번 돌리면 결과가 같아야 합니다(멱등). 달라지면 버그입니다.
 
 - `site_core.py` — 등록부(TOOLS, TABLES, FORMS, REFS, GUIDES, HUBS, RATE_HISTORY)와 공통 틀.
   메뉴·사이트맵·홈 타일이 전부 여기서 나옵니다
 - `pages_new.py` / `pages_cgt.py` / `pages_tools2.py` — 계산기 본문
 - `pages_guides.py` — 홈, 안내 글 목록, 허브 3쪽, 안내 글 4편
-- `pages_guides2.py` — 안내 글 12편
+- `pages_guides2.py` — 안내 글 16편
 - `pages_tables.py` / `pages_forms.py` / `pages_glossary.py` — 표·서식·용어
 - `build.py` — 위를 모아 쓰고 `manifest.json`, `sw.js`, `sitemap.xml`, `js/analytics.js`를 생성
 
@@ -32,8 +32,28 @@ python3 tools/build/build.py
 node <스크래치>/verify3.js <출력폴더>
 ```
 
-96쪽의 중복 id, 깨진 링크, 가로 넘침(320/390px), JSON-LD 파싱과 계산기 값을 확인합니다.
+100쪽의 중복 id, 깨진 링크, 가로 넘침(320/390px), JSON-LD 파싱과 계산기 값을 확인합니다.
 커밋 전에 반드시 돌리세요.
+
+## 새 글 올린 뒤 할 일
+
+머지하면 GitHub Pages가 1~2분 안에 반영합니다. 그 다음:
+
+1. **구글 서치콘솔** — 상단 URL 검사창에 **전체 URL**을 넣고 → 색인 생성 요청
+   사이트맵이 자동으로 물어가긴 하지만, 직접 요청하면 며칠 빨라집니다
+2. **네이버 서치어드바이저** — 요청 → 웹 페이지 수집에 **전체 URL**을 넣고 확인
+   반영까지 보통 2~7일
+3. 새 글이 홈 타일과 `guides.html` 목록에 떴는지 눈으로 확인
+
+URL 형식 주의 — 두 곳 다 **전체 URL이어야 합니다.**
+
+```
+https://전국부동산계산기.com/guide-prepayment.html
+```
+
+`/guide-prepayment.html`처럼 경로만 넣으면 네이버가 "올바른 URL 형식으로 입력해주세요"로 거부합니다
+(수집 요청 내역에는 경로만 잘려 보이지만, 넣을 때는 전체 URL입니다).
+한글 도메인이 거부되면 퓨니코드 `https://xn--989anm2s84p8on6teba611m.com/...`로 넣으세요.
 
 ## 정기 점검표
 
